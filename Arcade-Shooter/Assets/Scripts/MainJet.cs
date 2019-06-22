@@ -28,24 +28,29 @@ public class MainJet : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
+            if(Input.touchCount >= 2)
+            {
+                moveAllowed = false;
+            }
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
                     //  if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
-
+                    
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     rd.freezeRotation = true;
                     rd.velocity = new Vector2(0, 0);
                     rd.gravityScale = 0;
-                    GetComponent<BoxCollider2D>().sharedMaterial = null;
+                  //  GetComponent<BoxCollider2D>().sharedMaterial = null;
                     moveAllowed = true;
 
                     break;
                 case TouchPhase.Moved:
-                    // if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
+                     //if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
+                     if(moveAllowed)
                     rd.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
                     break;
                 case TouchPhase.Ended:
