@@ -55,11 +55,11 @@ public class MainJet : MonoBehaviour
                     break;
                 case TouchPhase.Ended:
                     moveAllowed = false;
-                  //  rd.freezeRotation = false;
+                    rd.freezeRotation = false;
                     rd.velocity = Vector2.zero;
                     PhysicsMaterial2D mat = new PhysicsMaterial2D();
-                  //  mat.friction = 0.4f;
-                   // GetComponent<BoxCollider2D>().sharedMaterial = mat;
+                    mat.friction = 0.4f;
+                    GetComponent<BoxCollider2D>().sharedMaterial = mat;
                     break;
             }
         }
