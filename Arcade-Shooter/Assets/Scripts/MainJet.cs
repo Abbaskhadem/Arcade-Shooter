@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class MainJet : MonoBehaviour
 {
+    [SerializeField]
+    Transform[] Gun;
+    [SerializeField]
+    GameObject[] Bullet;
     Rigidbody2D rd;
     float deltaX, deltaY;
+    float FireRate;
     bool moveAllowed = false;
     // Start is called before the first frame update
     void Start()
     {
         rd = GetComponent<Rigidbody2D>();
-        PhysicsMaterial2D mat = new PhysicsMaterial2D();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-    void FixedUpdate()
-    {
+        Shoot();
         MovmentJet();
     }
 
@@ -63,5 +64,18 @@ public class MainJet : MonoBehaviour
                     break;
             }
         }
+    }
+    void Shoot()
+    {
+        FireRate+=Time.deltaTime;
+        if (FireRate>0.2f)
+        {
+            FireRate = 0;
+            for (int i = 0; i < Gun.Length; i++)
+            {
+                Instantiate(Bullet[i], Gun[i].position, Quaternion.identity);
+            }
+        }
+   
     }
 }
