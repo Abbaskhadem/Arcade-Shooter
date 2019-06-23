@@ -112,6 +112,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &171647663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171647664}
+  m_Layer: 0
+  m_Name: Gun2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171647664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171647663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37, y: 1.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1183441910}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516846893
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +157,7 @@ GameObject:
   - component: {fileID: 516846898}
   m_Layer: 0
   m_Name: Test_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,8 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireRate: 0
-  Damage: 0
-  HP: 0
+  HP: 200
   RandomItemDrop: 
   Distanse: 0
   Ranged_Melee: 0
@@ -362,7 +391,7 @@ GameObject:
   - component: {fileID: 834078192}
   m_Layer: 0
   m_Name: Test_Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,8 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireRate: 0
-  Damage: 0
-  HP: 0
+  HP: 3
   RandomItemDrop: 
   Distanse: 0
   Ranged_Melee: 0
@@ -410,7 +438,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &834078194
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -575,9 +603,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183441908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.777, y: -4.384, z: 0}
+  m_LocalPosition: {x: 2.19, y: -4.384, z: 0}
   m_LocalScale: {x: 0.29376, y: 0.29376, z: 0.29376}
-  m_Children: []
+  m_Children:
+  - {fileID: 1274234602}
+  - {fileID: 171647664}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -593,6 +623,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91508fabfde7754db0d91bd0765d17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gun:
+  - {fileID: 1274234602}
+  - {fileID: 171647664}
+  Bullet:
+  - {fileID: 5655061594256983199, guid: de003c1a42549d046b3ac5343c7913e7, type: 3}
+  - {fileID: 5655061594256983199, guid: de003c1a42549d046b3ac5343c7913e7, type: 3}
 --- !u!50 &1183441912
 Rigidbody2D:
   serializedVersion: 4
@@ -613,7 +649,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1183441913
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -640,6 +676,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 2.389935}
   m_EdgeRadius: 0
+--- !u!1 &1274234601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274234602}
+  m_Layer: 0
+  m_Name: Gun1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1274234602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274234601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.39, y: 1.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1183441910}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291181622
 GameObject:
   m_ObjectHideFlags: 0

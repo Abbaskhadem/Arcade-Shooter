@@ -7,8 +7,7 @@ public class enemies : MonoBehaviour
     [SerializeField]
     int FireRate;
     [SerializeField]
-    int Damage;
-    public int HP;
+    int HP;
     [SerializeField]
     int [] RandomItemDrop ;
     [SerializeField]
@@ -40,5 +39,20 @@ public class enemies : MonoBehaviour
     void basicMove()
     {
         MainTarget.position = Vector2.MoveTowards(transform.position, Target[0].position, Speed * Time.deltaTime);
+    }
+
+    public void TakeDamage(int Damage)
+    {
+
+        HP -= Damage;
+        if (HP <= 0)
+        {
+            Death();
+        }
+
+    }
+     void Death()
+    {
+        Destroy(gameObject);
     }
 }
