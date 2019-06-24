@@ -7,9 +7,13 @@ public class enemies : MonoBehaviour
     [SerializeField]
     int FireRate;
     [SerializeField]
+    Transform[] Gun;
+    [SerializeField]
+    GameObject[] Bullet;
+    [SerializeField]
     int HP;
     [SerializeField]
-    int [] RandomItemDrop ;
+    int[] RandomItemDrop;
     [SerializeField]
     int Distanse;
     [SerializeField]
@@ -19,20 +23,21 @@ public class enemies : MonoBehaviour
     [SerializeField]
     int[] MovmentType;
     [SerializeField]
-    Transform [] Target;
+    Transform[] Target;
     [SerializeField]
     Transform MainTarget;
-   
+    public MainJet MJ;
+
     void Start()
     {
-       // Target = GameObject.FindGameObjectWithTag("EnemyPosition").GetComponent<Transform>();
+        // Target = GameObject.FindGameObjectWithTag("EnemyPosition").GetComponent<Transform>();
     }
 
 
     void Update()
     {
         basicMove();
-
+        MJ.Shoot(Bullet, Gun);
 
     }
 
@@ -51,7 +56,7 @@ public class enemies : MonoBehaviour
         }
 
     }
-     void Death()
+    void Death()
     {
         Destroy(gameObject);
     }

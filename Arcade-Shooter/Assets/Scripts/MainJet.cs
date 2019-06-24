@@ -21,7 +21,7 @@ public class MainJet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot();
+        Shoot(Bullet, Gun);
         MovmentJet();
     }
 
@@ -65,10 +65,10 @@ public class MainJet : MonoBehaviour
             }
         }
     }
-    void Shoot()
+   public void Shoot(GameObject[] Bullet, Transform[] Gun)
     {
-        FireRate+=Time.deltaTime;
-        if (FireRate>0.2f)
+        FireRate += Time.deltaTime;
+        if (FireRate > 0.2f)
         {
             FireRate = 0;
             for (int i = 0; i < Gun.Length; i++)
@@ -76,6 +76,6 @@ public class MainJet : MonoBehaviour
                 Instantiate(Bullet[i], Gun[i].position, Quaternion.identity);
             }
         }
-   
+
     }
 }
