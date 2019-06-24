@@ -65,10 +65,10 @@ public class MainJet : MonoBehaviour
             }
         }
     }
-   public void Shoot(GameObject[] Bullet, Transform[] Gun)
+    public void Shoot(GameObject[] Bullet, Transform[] Gun)
     {
         FireRate += Time.deltaTime;
-        if (FireRate > 0.2f)
+        if (FireRate > 0.2)
         {
             FireRate = 0;
             for (int i = 0; i < Gun.Length; i++)

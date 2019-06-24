@@ -218,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516846893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.53, y: 11.77, z: 0}
+  m_LocalPosition: {x: 2.07, y: 11.77, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 807964073}
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0
+  DelayShoot: 0
   Gun:
   - {fileID: 807964073}
   Bullet:
@@ -406,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807964072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516846895}
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0
+  DelayShoot: 0.5
   Gun:
   - {fileID: 1009303920}
   Bullet:
@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183441908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.19, y: -4.384, z: 0}
+  m_LocalPosition: {x: 6.88, y: -4.384, z: 0}
   m_LocalScale: {x: 0.29376, y: 0.29376, z: 0.29376}
   m_Children:
   - {fileID: 1274234602}

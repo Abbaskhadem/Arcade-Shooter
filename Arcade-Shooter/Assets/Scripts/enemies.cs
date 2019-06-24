@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemies : MonoBehaviour
 {
     [SerializeField]
-    int FireRate;
+    float DelayShoot;
+    float FireRate;
     [SerializeField]
     Transform[] Gun;
     [SerializeField]
@@ -27,6 +28,7 @@ public class enemies : MonoBehaviour
     [SerializeField]
     Transform MainTarget;
     public MainJet MJ;
+   
 
     void Start()
     {
@@ -37,8 +39,8 @@ public class enemies : MonoBehaviour
     void Update()
     {
         basicMove();
-        MJ.Shoot(Bullet, Gun);
-
+        shoot();
+       // GetComponent<MainJet>().Shoot(Bullet, Gun);
     }
 
     void basicMove()
@@ -59,5 +61,14 @@ public class enemies : MonoBehaviour
     void Death()
     {
         Destroy(gameObject);
+    }
+    void shoot()
+    {
+        FireRate += Time.deltaTime;
+        if (FireRate > DelayShoot)
+        {
+            FireRate = 0;
+            MJ.Shoot(Bullet, Gun);
+        }
     }
 }
