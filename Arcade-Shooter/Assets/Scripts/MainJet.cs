@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MainJet : MonoBehaviour
 {
+    public int HP;
     [SerializeField]
     Transform[] Gun;
     [SerializeField]
@@ -78,4 +79,13 @@ public class MainJet : MonoBehaviour
         }
 
     }
+    public void TakeDamage(int Damage)
+    {
+        HP -= Damage;
+        if (HP <= 0)
+        {
+            GameManager.LoseGame();
+        }
+    }
+    
 }

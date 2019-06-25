@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    int HP;
     Rigidbody2D rb;
     public int Damage;
     [SerializeField]
-    float Speed = 20f;
-    // Start is called before the first frame update
+    float Speed;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,9 +20,19 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (Speed > 0)
         {
-            col.GetComponent<enemies>().TakeDamage(Damage);
+            if (col.gameObject.tag == "Enemy")
+            {
+                col.GetComponent<enemies>().TakeDamage(Damage);
+            }
+        }
+        else
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                col.GetComponent<MainJet>().TakeDamage(Damage);
+            }
         }
     }
 }

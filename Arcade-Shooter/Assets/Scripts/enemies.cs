@@ -25,28 +25,30 @@ public class enemies : MonoBehaviour
     [SerializeField]
     int[] MovmentType;
     [SerializeField]
-    Transform[] Target;
+    Transform Target;
     [SerializeField]
     Transform MainTarget;
+    Transform EnemyTarget;
 
 
 
     void Start()
     {
-        // Target = GameObject.FindGameObjectWithTag("EnemyPosition").GetComponent<Transform>();
+         //Target = GameObject.FindGameObjectWithTag("EnemyPosition").GetComponent<Transform>();
+         //EnemyTarget = GetComponent<Transform>();
     }
 
 
     void Update()
     {
-        basicMove();
+       // basicMove();
         shoot();
         // GetComponent<MainJet>().Shoot(Bullet, Gun);
     }
 
     void basicMove()
     {
-        MainTarget.position = Vector2.MoveTowards(transform.position, Target[0].position, Speed * Time.deltaTime);
+        EnemyTarget.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
     }
 
     public void TakeDamage(int Damage)
