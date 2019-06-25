@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class enemies : MonoBehaviour
 {
-    [SerializeField]
+
     float DelayShoot;
+    [SerializeField]
     float FireRate;
     [SerializeField]
-    Transform[] Gun;
+    Transform Gun;
     [SerializeField]
-    GameObject[] Bullet;
+    GameObject Bullet;
     [SerializeField]
     int HP;
     [SerializeField]
@@ -27,8 +28,8 @@ public class enemies : MonoBehaviour
     Transform[] Target;
     [SerializeField]
     Transform MainTarget;
-    public MainJet MJ;
-   
+
+
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class enemies : MonoBehaviour
     {
         basicMove();
         shoot();
-       // GetComponent<MainJet>().Shoot(Bullet, Gun);
+        // GetComponent<MainJet>().Shoot(Bullet, Gun);
     }
 
     void basicMove()
@@ -64,11 +65,11 @@ public class enemies : MonoBehaviour
     }
     void shoot()
     {
-        FireRate += Time.deltaTime;
-        if (FireRate > DelayShoot)
+        DelayShoot += Time.deltaTime;
+        if (DelayShoot > FireRate)
         {
-            FireRate = 0;
-            MJ.Shoot(Bullet, Gun);
+            DelayShoot = 0;
+            Instantiate(Bullet, Gun.position, Quaternion.identity);
         }
     }
 }

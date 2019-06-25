@@ -298,7 +298,6 @@ MonoBehaviour:
   Target:
   - {fileID: 1291181623}
   MainTarget: {fileID: 516846895}
-  MJ: {fileID: 1183441911}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayShoot: 0.5
+  DelayShoot: 0
   Gun:
   - {fileID: 1009303920}
   Bullet:
@@ -458,7 +457,6 @@ MonoBehaviour:
   Target:
   - {fileID: 1515636421}
   MainTarget: {fileID: 834078196}
-  MJ: {fileID: 1183441911}
 --- !u!50 &834078193
 Rigidbody2D:
   serializedVersion: 4

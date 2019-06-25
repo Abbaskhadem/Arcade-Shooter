@@ -21,7 +21,7 @@ public class MainJet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot(Bullet, Gun);
+        Shoot();
         MovmentJet();
     }
 
@@ -65,7 +65,7 @@ public class MainJet : MonoBehaviour
             }
         }
     }
-    public void Shoot(GameObject[] Bullet, Transform[] Gun)
+    public void Shoot()
     {
         FireRate += Time.deltaTime;
         if (FireRate > 0.2)
