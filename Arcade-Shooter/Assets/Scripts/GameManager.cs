@@ -19,6 +19,6 @@ public class GameManager : MonoBehaviour
     public static void LoseGame()
     {
         GameLost = true;
-        Debug.Log("Game Has Ended!");
+    //    Debug.Log("Game Has Ended!");
     }
 }

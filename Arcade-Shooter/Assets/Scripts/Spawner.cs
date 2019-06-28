@@ -4,32 +4,141 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject enemy;
+    public int[] WaveEnemiesSpawnType;
+    public int[] EnemiesWave;
+    [SerializeField]
+    Transform[] EnemySpawnLocations;
+    [SerializeField]
+    GameObject [] EnemyType;
+    [SerializeField]
+    GameObject[] EnemyReserves;
+    GameObject enemy;
     Vector2 whereTospawn;
     float roundX;
-    public float spawnRate = 2f;
-    float nextspawn = 0.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public int EnemyCounter;
+    public float SpawnRate;
+    public int EnemiesWaveTmp;
+    public int SpawnType;
+    public bool SpawnAllowed=true;
+    float Timer;
+    public int i;
     void Update()
     {
-        Spawn();
+        if (i < WaveEnemiesSpawnType.Length)
+        {
+            if (SpawnAllowed)
+            {
+                switch (SpawnType)
+                {
+
+                    case 1:
+                        SpawnSoloEnemy();
+                        break;
+                    case 2:
+                        SpawnDouEnemy();
+                        break;
+                    case 3:
+                        SpawnGroupEnemy();
+                        break;
+                    case 4:
+                        SpawnSoloEnemy();
+                        SpawnDouEnemy();
+                        break;
+                    case 5:
+                        SpawnGroupEnemy();
+                        SpawnSoloEnemy();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
-    void Spawn()
+    public void SpawnSoloEnemy()
     {
-        if (Time.time > nextspawn)
-        {
+      
+            if (EnemyCounter < EnemiesWaveTmp)
+            {
+                Timer += Time.deltaTime;
+                if (Timer >= SpawnRate)
+                {
+                    Timer = 0;
+                    Instantiate(EnemyType[0], EnemySpawnLocations[0].position, Quaternion.identity);
+                    EnemyCounter++;
+                }
+            }
+            else if (i < WaveEnemiesSpawnType.Length-1)
+            {
+                Debug.Log("Wave Upgrade");
+                EnemyCounter = 0;
+                SpawnAllowed = false;
+                i++;
+                SpawnType = WaveEnemiesSpawnType[i];
+                EnemiesWaveTmp = EnemiesWave[i];
 
-            nextspawn = (Time.time + 0.05f) + spawnRate;
-            roundX = Random.Range(-1.66f, 2);
-            whereTospawn = new Vector2(roundX, transform.position.y);
-            Instantiate(enemy, whereTospawn, Quaternion.identity);
-        }
+            }
+        
+
+    }
+    public void SpawnGroupEnemy()
+    {
+    
+            if (EnemyCounter < EnemiesWaveTmp)
+            {
+                for (int i = 3; i < 7; i++)
+                {
+                    Timer += Time.deltaTime;
+                    if (Timer >= SpawnRate)
+                    {
+                        Timer = 0;
+                        Instantiate(EnemyType[i], EnemySpawnLocations[i].position, Quaternion.identity);
+                        EnemyCounter++;
+                    }
+                }
+            }
+            else if (i < WaveEnemiesSpawnType.Length-1)
+            {
+                Debug.Log("Wave Upgrade");
+                EnemyCounter = 0;
+                SpawnAllowed = false;
+                i++;
+                SpawnType = WaveEnemiesSpawnType[i];
+                EnemiesWaveTmp = EnemiesWave[i];
+
+            }
+        
+    }
+    public void SpawnDouEnemy()
+    {
+   
+            if (EnemyCounter < EnemiesWaveTmp)
+            {
+                for (int i = 1; i < 3; i++)
+                {
+
+                    Timer += Time.deltaTime;
+                    if (Timer >= SpawnRate)
+                    {
+                        Timer = 0;
+                        Instantiate(EnemyType[i], EnemySpawnLocations[i].position, Quaternion.identity);
+                        EnemyCounter++;
+                    }
+                }
+            }
+            else if (i < WaveEnemiesSpawnType.Length-1)
+            {
+                Debug.Log("Wave Upgrade");
+                EnemyCounter = 0;
+                SpawnAllowed = false;
+                i++;
+                SpawnType = WaveEnemiesSpawnType[i];
+                EnemiesWaveTmp = EnemiesWave[i];
+            }
+        
+    }
+    public void Ready()
+    {
+        SpawnAllowed = true;
     }
 }
