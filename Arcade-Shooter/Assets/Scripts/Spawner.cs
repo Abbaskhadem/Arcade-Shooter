@@ -7,8 +7,6 @@ public class Spawner : MonoBehaviour
     public int[] WaveEnemiesSpawnType;
     public int[] EnemiesWave;
     [SerializeField]
-    Transform[] EnemySpawnLocations;
-    [SerializeField]
     GameObject [] EnemyType;
     [SerializeField]
     GameObject[] EnemyReserves;
@@ -64,13 +62,12 @@ public class Spawner : MonoBehaviour
                 if (Timer >= SpawnRate)
                 {
                     Timer = 0;
-                    Instantiate(EnemyType[0], EnemySpawnLocations[0].position, Quaternion.identity);
+                    Instantiate(EnemyType[0], transform.position, Quaternion.identity);
                     EnemyCounter++;
                 }
             }
             else if (i < WaveEnemiesSpawnType.Length-1)
             {
-                Debug.Log("Wave Upgrade");
                 EnemyCounter = 0;
                 SpawnAllowed = false;
                 i++;
@@ -92,7 +89,7 @@ public class Spawner : MonoBehaviour
                     if (Timer >= SpawnRate)
                     {
                         Timer = 0;
-                        Instantiate(EnemyType[i], EnemySpawnLocations[i].position, Quaternion.identity);
+                        Instantiate(EnemyType[i], transform.position, Quaternion.identity);
                         EnemyCounter++;
                     }
                 }
@@ -121,14 +118,13 @@ public class Spawner : MonoBehaviour
                     if (Timer >= SpawnRate)
                     {
                         Timer = 0;
-                        Instantiate(EnemyType[i], EnemySpawnLocations[i].position, Quaternion.identity);
+                        Instantiate(EnemyType[i], transform.position, Quaternion.identity);
                         EnemyCounter++;
                     }
                 }
             }
             else if (i < WaveEnemiesSpawnType.Length-1)
             {
-                Debug.Log("Wave Upgrade");
                 EnemyCounter = 0;
                 SpawnAllowed = false;
                 i++;

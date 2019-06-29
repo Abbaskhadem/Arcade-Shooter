@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemies : MonoBehaviour
 {
-
+    public int MovementType;
     float DelayShoot;
     [SerializeField]
     float FireRate;
@@ -17,38 +17,28 @@ public class enemies : MonoBehaviour
     [SerializeField]
     int[] RandomItemDrop;
     [SerializeField]
-    int Distanse;
-    [SerializeField]
     bool Ranged_Melee;
     [SerializeField]
     int Speed;
     [SerializeField]
-    int[] MovmentType;
-    [SerializeField]
     Transform Target;
     [SerializeField]
-    Transform MainTarget;
-    Transform EnemyTarget;
-
-
-
-    void Start()
-    {
-         //Target = GameObject.FindGameObjectWithTag("EnemyPosition").GetComponent<Transform>();
-         //EnemyTarget = GetComponent<Transform>();
-    }
-
-
+    float Distance;
     void Update()
     {
-       // basicMove();
-        shoot();
-        // GetComponent<MainJet>().Shoot(Bullet, Gun);
-    }
+        switch (MovementType)
+        {
+            case 1:
+                EnemyAnimMovement();
+                break;
+            case 2:
+                EnemyRotateArea();
+                break;
+            default:
+                break;
+        }
 
-    void basicMove()
-    {
-        EnemyTarget.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+        shoot();
     }
 
     public void TakeDamage(int Damage)
@@ -73,5 +63,21 @@ public class enemies : MonoBehaviour
             DelayShoot = 0;
             Instantiate(Bullet, Gun.position, Quaternion.identity);
         }
+    }
+    void EnemyRotateArea()
+    {
+        
+        if (Vector2.Distance(transform.position, Target.position) > Distance)
+        {
+            Vector3 dir = Target.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle+90, Vector3.forward);
+            transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+        }
+
+    }
+    void EnemyAnimMovement()
+    {
+
     }
 }

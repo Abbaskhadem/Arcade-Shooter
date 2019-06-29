@@ -174,7 +174,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000023841858, y: 0}
@@ -192,17 +192,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 7397549153175554102}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0
 --- !u!1 &5906127594694672057
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +316,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000023841858, y: 0}
@@ -335,17 +334,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 6999353625249400430}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,8 +391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580a90f8e9af80d49bb320bf04d81be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   MovementType: 1
   Speed: 5
+  Distance: 0
 --- !u!95 &313618653
 Animator:
   serializedVersion: 3
@@ -480,6 +480,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542169110727172029, guid: feff9e766e54b53479e15e3af36d8adb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263870956034149503, guid: feff9e766e54b53479e15e3af36d8adb,
+        type: 3}
+      propertyPath: MovementType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feff9e766e54b53479e15e3af36d8adb, type: 3}

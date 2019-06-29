@@ -57,14 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086090908554036857}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.080000035, y: 11.1, z: 0}
   m_LocalScale: {x: 0.8646013, y: 0.8646013, z: 0.008552402}
   m_Children:
   - {fileID: 3526108413895454652}
   m_Father: {fileID: 6234287681371677512}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &5420088522960758811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -162,17 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 2
   FireRate: 1.5
   Gun: {fileID: 3526108413895454652}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
-  Speed: 0
-  MovmentType: 
-  Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Speed: 2
+  Target: {fileID: 4463770368524765651}
+  Distance: 1
 --- !u!1 &4282270783541227041
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,14 +259,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5434015867589829641}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.08, y: 2.81, z: 0}
   m_LocalScale: {x: 0.8646013, y: 0.8646013, z: 0.008552402}
   m_Children:
   - {fileID: 7397549153175554102}
   m_Father: {fileID: 6234287681371677512}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &1288066091841349648
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -365,17 +364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 2
   FireRate: 1.5
   Gun: {fileID: 7397549153175554102}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
-  Speed: 0
-  MovmentType: 
-  Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Speed: 2
+  Target: {fileID: 2106906113250244872}
+  Distance: 1
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +384,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6234287681371677512}
   - component: {fileID: 9209501296206401242}
-  - component: {fileID: 5250842437410424357}
   m_Layer: 0
   m_Name: Group_02
   m_TagString: Untagged
@@ -409,6 +406,7 @@ Transform:
   - {fileID: 4463770368524765651}
   - {fileID: 5362989317000789900}
   - {fileID: 1106451877467841170}
+  - {fileID: 2106906113250244872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,24 +417,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6234287681371677518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580a90f8e9af80d49bb320bf04d81be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   MovementType: 1
   Speed: 5
---- !u!95 &5250842437410424357
+  Distance: 0
+--- !u!1 &6908049675554013996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106906113250244872}
+  - component: {fileID: 1971805408}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Target
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106906113250244872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908049675554013996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2, y: -0.34, z: 0}
+  m_LocalScale: {x: 2.2222223, y: 2.2222223, z: 0.021968365}
+  m_Children: []
+  m_Father: {fileID: 6234287681371677512}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1971805408
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234287681371677518}
+  m_GameObject: {fileID: 6908049675554013996}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a1c4d662221feb498fb7cd2453d3dda, type: 2}
+  m_Controller: {fileID: 9100000, guid: b344118eb8b367746b35b655a068a060, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -472,14 +503,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7377484000042648621}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.080000035, y: 8.420001, z: 0}
   m_LocalScale: {x: 0.8646013, y: 0.8646013, z: 0.008552402}
   m_Children:
   - {fileID: 1258230796463714472}
   m_Father: {fileID: 6234287681371677512}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &8139527779397210556
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -577,17 +608,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 2
   FireRate: 1.5
   Gun: {fileID: 1258230796463714472}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
-  Speed: 0
-  MovmentType: 
-  Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Speed: 2
+  Target: {fileID: 4048433336335489091}
+  Distance: 1
 --- !u!1 &7746064483416107920
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,14 +675,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8802138083184964527}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.080000035, y: 5.58, z: 0}
   m_LocalScale: {x: 0.8646013, y: 0.8646013, z: 0.008552402}
   m_Children:
   - {fileID: 6493459294663477381}
   m_Father: {fileID: 6234287681371677512}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &4362122121101632192
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -750,14 +780,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 2
   FireRate: 1.5
   Gun: {fileID: 6493459294663477381}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
-  Speed: 0
-  MovmentType: 
-  Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Speed: 2
+  Target: {fileID: 5362989317000789900}
+  Distance: 1

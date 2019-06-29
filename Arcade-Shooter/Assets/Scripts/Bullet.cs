@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
         {
             if (col.gameObject.tag == "Enemy")
             {
+                Destroy(gameObject);
                 col.GetComponent<enemies>().TakeDamage(Damage);
             }
         }
@@ -31,6 +32,7 @@ public class Bullet : MonoBehaviour
         {
             if (col.gameObject.tag == "Player")
             {
+                Destroy(gameObject);
                 col.GetComponent<MainJet>().TakeDamage(Damage);
             }
         }

@@ -162,17 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 3526108413895454652}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0
 --- !u!1 &4282270783541227041
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,17 +364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 7397549153175554102}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,8 +422,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580a90f8e9af80d49bb320bf04d81be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   MovementType: 1
   Speed: 5
+  Distance: 0
 --- !u!95 &5250842437410424357
 Animator:
   serializedVersion: 3
@@ -577,17 +577,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 1258230796463714472}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0
 --- !u!1 &7746064483416107920
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,14 +749,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementType: 1
   FireRate: 1.5
   Gun: {fileID: 6493459294663477381}
   Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   HP: 200
   RandomItemDrop: 
-  Distanse: 0
   Ranged_Melee: 0
   Speed: 0
-  MovmentType: 
   Target: {fileID: 0}
-  MainTarget: {fileID: 0}
+  Distance: 0

@@ -170,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -579,7 +579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762472292}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.54, z: -10}
+  m_LocalPosition: {x: -4.38, y: 4.41, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -598,16 +598,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveEnemiesSpawnType: 010000000200000001000000
-  EnemiesWave: 030000000500000002000000
-  EnemySpawnLocations:
-  - {fileID: 355998493}
-  - {fileID: 1739136535}
-  - {fileID: 1739136535}
-  - {fileID: 1739136535}
+  EnemiesWave: 040000000200000002000000
   EnemyType:
-  - {fileID: 6234287681371677518, guid: 7b4a4aa3d4439774f93ff1875f5af196, type: 3}
   - {fileID: 6234287681371677518, guid: fab51fdb4fda6b84e82e745b86967ad3, type: 3}
-  - {fileID: 6234287681371677518, guid: a2bd066bea621f44d99bc82acc38ad40, type: 3}
+  - {fileID: 6234287681371677518, guid: fab51fdb4fda6b84e82e745b86967ad3, type: 3}
   - {fileID: 6234287681371677518, guid: 0e56e89c6e149d744b2dcbbd8a3cdb05, type: 3}
   EnemyReserves: []
   EnemyCounter: 0
@@ -680,7 +674,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139894146
 GameObject:
@@ -861,7 +855,7 @@ PrefabInstance:
     - target: {fileID: 2178618028414250440, guid: 5e4986d3cb712fb4783ff452337225ca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2178618028414250440, guid: 5e4986d3cb712fb4783ff452337225ca,
         type: 3}
