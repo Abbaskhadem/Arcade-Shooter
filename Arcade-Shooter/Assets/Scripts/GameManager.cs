@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Camera Cam;
     public static bool GameLost=false;
+    int a, b;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,11 @@ public class GameManager : MonoBehaviour
         //Debug.Log(SetXGrid());
         
         //Temp.GetComponent<Transform>().localScale = new Vector3(Width, Height, 0);
-        Instantiate(Temp, GG(0, 0), Quaternion.identity);
+
+        for (int i = 0; i < 3; i++)
+        {
+            Instantiate(Temp, GG(i, i), Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
