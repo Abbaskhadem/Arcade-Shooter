@@ -171,7 +171,9 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 4463770368524765651}
+  LeaderVector2: []
   Distance: 1
+  Leader: 0
 --- !u!1 &4282270783541227041
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,8 +374,13 @@ MonoBehaviour:
   RandomItemDrop: 
   Ranged_Melee: 0
   Speed: 2
-  Target: {fileID: 2106906113250244872}
+  Target: {fileID: 0}
+  LeaderVector2:
+  - {x: 1, y: 1}
+  - {x: 9, y: 9}
+  - {x: 5, y: 5}
   Distance: 1
+  Leader: 1
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +624,9 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 4048433336335489091}
+  LeaderVector2: []
   Distance: 1
+  Leader: 0
 --- !u!1 &7746064483416107920
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,4 +798,6 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 5362989317000789900}
+  LeaderVector2: []
   Distance: 1
+  Leader: 0

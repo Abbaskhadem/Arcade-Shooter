@@ -22,7 +22,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            col.GetComponent<enemies>().TakeDamage(Damage);
+         //   col.GetComponent<enemies>().TakeDamage(Damage);
         }
     }
 }

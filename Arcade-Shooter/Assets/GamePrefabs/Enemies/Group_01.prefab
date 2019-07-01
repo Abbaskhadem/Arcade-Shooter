@@ -201,7 +201,11 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 0
   Target: {fileID: 0}
+  MainVector2:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
   Distance: 0
+  HeaderTeem: 0
 --- !u!1 &5906127594694672057
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +347,9 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 0
   Target: {fileID: 0}
+  MainVector2: []
   Distance: 0
+  HeaderTeem: 0
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
