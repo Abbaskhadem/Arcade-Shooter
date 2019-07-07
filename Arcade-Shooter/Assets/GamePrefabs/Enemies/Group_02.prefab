@@ -171,9 +171,9 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 4463770368524765651}
-  LeaderVector2: []
   Distance: 1
   Leader: 0
+  LeaderVector2: []
 --- !u!1 &4282270783541227041
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,12 +375,12 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 0}
+  Distance: 1
+  Leader: 1
   LeaderVector2:
   - {x: 1, y: 1}
   - {x: 9, y: 9}
   - {x: 5, y: 5}
-  Distance: 1
-  Leader: 1
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +413,6 @@ Transform:
   - {fileID: 4463770368524765651}
   - {fileID: 5362989317000789900}
   - {fileID: 1106451877467841170}
-  - {fileID: 2106906113250244872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -433,56 +432,6 @@ MonoBehaviour:
   MovementType: 1
   Speed: 5
   Distance: 0
---- !u!1 &6908049675554013996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2106906113250244872}
-  - component: {fileID: 1971805408}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Target
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2106906113250244872
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6908049675554013996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.34, z: 0}
-  m_LocalScale: {x: 2.2222223, y: 2.2222223, z: 0.021968365}
-  m_Children: []
-  m_Father: {fileID: 6234287681371677512}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1971805408
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6908049675554013996}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b344118eb8b367746b35b655a068a060, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7377484000042648621
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,9 +573,9 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 4048433336335489091}
-  LeaderVector2: []
   Distance: 1
   Leader: 0
+  LeaderVector2: []
 --- !u!1 &7746064483416107920
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +747,6 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 2
   Target: {fileID: 5362989317000789900}
-  LeaderVector2: []
   Distance: 1
   Leader: 0
+  LeaderVector2: []
