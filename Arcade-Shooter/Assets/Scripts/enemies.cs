@@ -6,7 +6,6 @@ public class enemies : MonoBehaviour
 {
     public int MovementType;
     float DelayShoot;
-
     [SerializeField]
     float FireRate;
     [SerializeField]
@@ -20,7 +19,7 @@ public class enemies : MonoBehaviour
     [SerializeField]
     bool Ranged_Melee;
     [SerializeField]
-    int Speed;
+    float Speed;
     [SerializeField]
     Transform Target;
     Vector3 MainTarget;
@@ -30,40 +29,38 @@ public class enemies : MonoBehaviour
     bool Leader;
     [SerializeField]
     Vector2[] LeaderVector2;
-    GameManager GM;
     int i = 0;
     bool check;
+    [SerializeField]
+    private Transform[] routes;
+    private int RouteToGo;
+    private float tparam;
+    private Vector2 Enemyposition;
+    private float SpeedModifier;
+    private bool coroutineAllowed;
+    private bool MoveAllowed;
     void Start()
     {
-
+        RouteToGo = 0;
+        tparam = 0;
+        SpeedModifier = 0.3f;
+        coroutineAllowed = true;
         check = false;
+        MoveAllowed = true;
     }
     void Update()
     {
-        //switch (MovementType)
-        //{
-        //    case 1:
-        //        EnemyAnimMovement();
-        //        break;
-        //    case 2:
-        //        EnemyRotateArea();
-        //        break;
-        //    default:
-        //        break;
-        //}
-        EnemyRotateArea();
+        ManageEnemyMovement();
         shoot();
     }
 
     public void TakeDamage(int Damage)
     {
-
         HP -= Damage;
         if (HP <= 0)
         {
             Death();
         }
-
     }
     void Death()
     {
@@ -78,10 +75,14 @@ public class enemies : MonoBehaviour
             Instantiate(Bullet, Gun.position, Quaternion.identity);
         }
     }
-    void EnemyRotateArea()
+    void ManageEnemyMovement()
     {
         if (Leader == false && Vector2.Distance(transform.position, Target.position) > Distance)
         {
+            //if (coroutineAllowed)
+            //{
+            //    StartCoroutine(GoByTheRoute(RouteToGo));
+            //}
             Vector3 dir = Target.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
@@ -89,32 +90,121 @@ public class enemies : MonoBehaviour
         }
         else
         {
-            if (i < LeaderVector2.Length)
+            if (MoveAllowed)
             {
-                rotation();
-
-                if (Vector2.Distance(transform.position, MainTarget) <= 0.01 && check == false)
+                if (coroutineAllowed)
+                    StartCoroutine(GoByTheRoute(RouteToGo));
+            }
+            else
+            {
+                MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+                transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+                if (i < LeaderVector2.Length)
                 {
-                    rotation();
-                    i++;
-                    if (i == LeaderVector2.Length)
+                    MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+                    transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+                    if (Vector2.Distance(transform.position, MainTarget) <= 0.01 && check == false)
                     {
-                        check = true;
+                        i++;
+                        if (i == LeaderVector2.Length - 1)
+                        {
+                            check = true;
+                        }
+
                     }
                 }
+
             }
+
+            //rotation();
         }
     }
-    void EnemyAnimMovement()
+    // movement Enemy with deffult Strakcher
+    private IEnumerator GoByTheRoute(int RouteNumber)
     {
+        coroutineAllowed = false;
+        Vector2 p0 = routes[RouteNumber].GetChild(0).position;
+        Vector2 p1 = routes[RouteNumber].GetChild(1).position;
+        Vector2 p2 = routes[RouteNumber].GetChild(2).position;
+        Vector2 p3 = routes[RouteNumber].GetChild(3).position;
+        while (tparam < 1)
+        {
+            tparam += Time.deltaTime * SpeedModifier;
+            Enemyposition = Mathf.Pow(1 - tparam, 3) * p0 +
+            3 * Mathf.Pow(1 - tparam, 2) * tparam * p1 +
+            3 * (1 - tparam) * Mathf.Pow(tparam, 2) * p2 +
+            Mathf.Pow(tparam, 3) * p3;
+            Vector3 dir = MainTarget - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+            transform.position = Enemyposition;
+            yield return new WaitForEndOfFrame();
+        }
+        tparam = 0f;
+        RouteToGo += 1;
+        if (RouteToGo > routes.Length - 1)
+        {
+            RouteToGo = 0;
+            MoveAllowed = false;
+        }
+        coroutineAllowed = true;
+    }
+    //rotation and fallow Gride Position
+    //void rotation()
+    //{
+    //    MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+    //    Vector3 dir = MainTarget - transform.position;
+    //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+    //    transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+    //}
 
-    }
-    void rotation()
-    {
-        MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
-        Vector3 dir = MainTarget - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-        transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-    }
+    // liitel diffrent main IEnumerator
+    //private IEnumerator GoByTheRoute1(int RouteNumber)
+    //{
+
+    //        coroutineAllowed = false;
+    //        Vector2 p0 = routes[RouteNumber].GetChild(0).position;
+    //        Vector2 p1 = routes[RouteNumber].GetChild(1).position;
+    //        Vector2 p2 = routes[RouteNumber].GetChild(2).position;
+    //        Vector2 p3 = routes[RouteNumber].GetChild(3).position;
+    //        while (tparam < 1)
+    //        {
+    //            tparam += Time.deltaTime * SpeedModifier;
+    //            Enemyposition = Mathf.Pow(1 - tparam, 3) * p0 +
+    //                3 * Mathf.Pow(1 - tparam, 2) * tparam * p1 +
+    //                3 * (1 - tparam) * Mathf.Pow(tparam, 2) * p2 +
+    //                Mathf.Pow(tparam, 3) * p3;
+    //            Vector3 dir = MainTarget - transform.position;
+    //            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //            transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+    //        if (Vector2.Distance(transform.position, Target.position) > Distance)
+    //        {
+    //            transform.position = Enemyposition;
+
+    //            yield return new WaitForEndOfFrame();
+
+    //        }
+    //        tparam = 0f;
+    //        RouteToGo += 1;
+    //        if (RouteToGo > routes.Length - 1)
+    //            RouteToGo = 0;
+
+    //        coroutineAllowed = true;
+    //        // MoveAllowed = false;
+    //    }
+    //}
+
+    //for update
+    //switch (MovementType)
+    //{
+    //    case 1:
+    //        EnemyAnimMovement();
+    //        break;
+    //    case 2:
+    //        EnemyRotateArea();
+    //        break;
+    //    default:
+    //        break;
+    //}
 }
