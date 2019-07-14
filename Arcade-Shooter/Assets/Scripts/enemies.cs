@@ -28,11 +28,11 @@ public class enemies : MonoBehaviour
     [SerializeField]
     bool Leader;
     [SerializeField]
+    private Transform[] routes;
+    [SerializeField]
     Vector2[] LeaderVector2;
     int i = 0;
-    bool check;
-    [SerializeField]
-    private Transform[] routes;
+    bool check;    
     private int RouteToGo;
     private float tparam;
     private Vector2 Enemyposition;
