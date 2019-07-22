@@ -7,6 +7,11 @@ TagManager:
   - EnemyPosition
   - Enemy
   - Target
+  - PlayerTurret
+  - Player Bullet
+  - Boundary
+  - Enemy Ship 1
+  - Enemy Ship 2
   layers:
   - Default
   - TransparentFX

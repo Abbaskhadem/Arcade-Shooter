@@ -32,8 +32,10 @@ public class enemies : MonoBehaviour
     [SerializeField]
     Vector2[] LeaderVector2;
     int i = 0;
+    public GameObject startWeapon;
     bool check;    
     private int RouteToGo;
+    public List<GameObject> activePlayerTurrets;
     private float tparam;
     private Vector2 Enemyposition;
     private float SpeedModifier;
@@ -41,6 +43,9 @@ public class enemies : MonoBehaviour
     private bool MoveAllowed;
     void Start()
     {
+
+        activePlayerTurrets = new List<GameObject>();
+        activePlayerTurrets.Add(startWeapon);
         RouteToGo = 0;
         tparam = 0;
         SpeedModifier = 0.3f;
@@ -68,56 +73,74 @@ public class enemies : MonoBehaviour
     }
     void shoot()
     {
-        DelayShoot += Time.deltaTime;
-        if (DelayShoot > FireRate)
+        foreach (GameObject turret in activePlayerTurrets)
         {
-            DelayShoot = 0;
-            Instantiate(Bullet, Gun.position, Quaternion.identity);
+            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Player Bullet");
+            if (bullet != null)
+            {
+                FireRate += Time.deltaTime;
+                if (FireRate > 0.2)
+                {
+                    FireRate = 0;
+                    bullet.transform.position = turret.transform.position;
+                    bullet.transform.rotation = turret.transform.rotation;
+                    bullet.SetActive(true);
+                }
+            }
         }
+
+
+
+        // DelayShoot += Time.deltaTime;
+        // if (DelayShoot > FireRate)
+        // {
+        //     DelayShoot = 0;
+        //     Instantiate(Bullet, Gun.position, Quaternion.identity);
+        // }
     }
     void ManageEnemyMovement()
     {
-        if (Leader == false && Vector2.Distance(transform.position, Target.position) > Distance)
-        {
-            //if (coroutineAllowed)
-            //{
-            //    StartCoroutine(GoByTheRoute(RouteToGo));
-            //}
-            Vector3 dir = Target.position - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-            transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
-        }
-        else
-        {
-            if (MoveAllowed)
-            {
-                if (coroutineAllowed)
-                    StartCoroutine(GoByTheRoute(RouteToGo));
-            }
-            else
-            {
-                MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
-                transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-                if (i < LeaderVector2.Length)
-                {
-                    MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
-                    transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-                    if (Vector2.Distance(transform.position, MainTarget) <= 0.01 && check == false)
-                    {
-                        i++;
-                        if (i == LeaderVector2.Length - 1)
-                        {
-                            check = true;
-                        }
-
-                    }
-                }
-
-            }
-
-            //rotation();
-        }
+       // if (Leader == false && Vector2.Distance(transform.position, Target.position) > Distance)
+       // {
+       //     //if (coroutineAllowed)
+       //     //{
+       //     //    StartCoroutine(GoByTheRoute(RouteToGo));
+       //     //}
+       //     Vector3 dir = Target.position - transform.position;
+       //     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+       //     transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+       //     transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+       // }
+       // else
+       // {
+       //     if (MoveAllowed)
+       //     {
+       //         if (coroutineAllowed)
+       //             StartCoroutine(GoByTheRoute(RouteToGo));
+       //     }
+       //     else
+       //     {
+       //         MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+       //         transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+       //         if (i < LeaderVector2.Length)
+       //         {
+       //             MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+       //             transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+       //             if (Vector2.Distance(transform.position, MainTarget) <= 0.01 && check == false)
+       //             {
+       //                 i++;
+       //                 if (i == LeaderVector2.Length - 1)
+       //                 {
+       //                     check = true;
+       //                 }
+       //
+       //             }
+       //         }
+       //
+       //     }
+       //
+       //     //rotation();
+       // }
     }
     // movement Enemy with deffult Strakcher
     private IEnumerator GoByTheRoute(int RouteNumber)
