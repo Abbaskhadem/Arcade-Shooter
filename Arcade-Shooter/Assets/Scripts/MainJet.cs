@@ -13,13 +13,10 @@ public class MainJet : MonoBehaviour
     float deltaX, deltaY;
     float FireRate;
     bool moveAllowed = false;
-    // Start is called before the first frame update
     void Start()
     {
         rd = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         Shoot();
@@ -39,19 +36,14 @@ public class MainJet : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    //  if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
-
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     rd.freezeRotation = true;
                     rd.velocity = new Vector2(0, 0);
                     rd.gravityScale = 0;
-                    //  GetComponent<BoxCollider2D>().sharedMaterial = null;
                     moveAllowed = true;
-
                     break;
                 case TouchPhase.Moved:
-                    //if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     if (moveAllowed)
                         rd.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
                     break;
@@ -59,9 +51,6 @@ public class MainJet : MonoBehaviour
                     moveAllowed = false;
                     rd.freezeRotation = false;
                     rd.velocity = Vector2.zero;
-                    PhysicsMaterial2D mat = new PhysicsMaterial2D();
-                    mat.friction = 0.4f;
-                    GetComponent<BoxCollider2D>().sharedMaterial = mat;
                     break;
             }
         }

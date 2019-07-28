@@ -11,7 +11,6 @@ public class BezierFallow : MonoBehaviour
     private Vector2 Enemyposition;
     private float SpeedModifier;
     private bool coroutineAllowed;
-    // Start is called before the first frame update
     void Start()
     {
         RouteToGo = 0;
@@ -20,13 +19,11 @@ public class BezierFallow : MonoBehaviour
         coroutineAllowed = true;
         
     }
-
-    // Update is called once per frame
     void Update()
     {
+        //if Allowed It Goes On The Routes
         if (coroutineAllowed)
             StartCoroutine(GoByTheRoute(RouteToGo));
-        
     }
     private IEnumerator GoByTheRoute(int RouteNumber)
     {
