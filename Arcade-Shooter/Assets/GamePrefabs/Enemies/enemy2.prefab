@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5638854871445977829}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -0.01, z: 0}
   m_LocalScale: {x: 0.8646013, y: 0.8646013, z: 0.008552402}
   m_Children:
@@ -126,9 +126,13 @@ MonoBehaviour:
   Speed: 0
   Target: {fileID: 0}
   Distance: 0
-  Leader: 0
-  routes: []
-  LeaderVector2: []
+  Leader: 1
+  routes:
+  - {fileID: 0}
+  - {fileID: 0}
+  LeaderVector2:
+  - {x: 5, y: 1}
+  - {x: 3, y: 3}
   startWeapon: {fileID: 8476721878528653271}
   activePlayerTurrets: []
 --- !u!61 &313279351552458510
