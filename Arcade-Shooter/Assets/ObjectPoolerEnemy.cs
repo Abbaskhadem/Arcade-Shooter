@@ -18,9 +18,9 @@ public class ObjectPoolerEnemy : MonoBehaviour
     public List<ObjectPoolItemEnemy> itemsToPool;
     public List<GameObject> pooledObjects;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //at StartPoint loading it Spawns & Deactivates All the Needed GameObjects
         pooledObjects = new List<GameObject>();
         foreach (ObjectPoolItemEnemy item in itemsToPool)
         {
@@ -31,12 +31,12 @@ public class ObjectPoolerEnemy : MonoBehaviour
                 pooledObjects.Add(obj);
             }
         }
-
     }
 
 
     public GameObject GetPooledObjectEnemy(string tag)
     {
+        //Check The Quantity Of Objects
         for (int i = 0; i < pooledObjects.Count; i++)
         {
             if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag.Equals(tag))
@@ -44,6 +44,7 @@ public class ObjectPoolerEnemy : MonoBehaviour
                 return pooledObjects[i];
             }
         }
+        //Check if The List Needs To Grow
         foreach (ObjectPoolItemEnemy item in itemsToPool)
         {
             if (item.objectToPool.CompareTag(tag))
@@ -58,11 +59,5 @@ public class ObjectPoolerEnemy : MonoBehaviour
             }
         }
         return null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
