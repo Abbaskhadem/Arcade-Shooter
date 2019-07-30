@@ -56,7 +56,7 @@ public class enemies : MonoBehaviour
     void Update()
     {
         ManageEnemyMovement();
-        shoot();
+       // shoot();
     }
 
     public void TakeDamage(int Damage)
@@ -120,13 +120,11 @@ public class enemies : MonoBehaviour
            }
            else
            {
-               MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
-               transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
                if (i < LeaderVector2.Length)
                {
-                   MainTarget = GameManager.GG(LeaderVector2[i].x, LeaderVector2[i].y);
+                   MainTarget = new Vector2(LeaderVector2[i].x, LeaderVector2[i].y);
                    transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-                   if (Vector2.Distance(transform.position, MainTarget) <= 0.01 && check == false)
+                   if (Vector2.Distance(transform.position, MainTarget) <= 0 && check == false)
                    {
                        i++;
                        if (i == LeaderVector2.Length - 1)

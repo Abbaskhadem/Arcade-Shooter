@@ -8,36 +8,24 @@ public class GameManager : MonoBehaviour
     GameObject Temp;
     public static float Width;
     public static float Height;
+    private static string tag;
     [SerializeField]
     Camera Cam;
     public static bool GameLost = false;
     int a, b;
-    // Start is called before the first frame update
-    void Start()
+
+    public static List<GameObject> ObjectPooler(GameObject Obj, int MaxObj)
     {
-        Height = 2f * Cam.orthographicSize;
-        Width = Height * Cam.aspect;
-        //Debug.Log(Width);
-        //Debug.Log(SetXGrid());
+        List<GameObject> ListOBJ = new List<GameObject>();
+        for (int i = 0; i < MaxObj; i++)
+        {
+            GameObject MainObj = (GameObject) Instantiate(Obj);
+            MainObj.SetActive(false);
+            ListOBJ.Add(MainObj);
+            //return ListOBJ;
+        }
 
-        //Temp.GetComponent<Transform>().localScale = new Vector3(Width, Height, 0);
-
-
-        // Instantiate(Temp, GG(1, 5), Quaternion.identity);
-        //Instantiate(Temp, GG(4, 0), Quaternion.identity);
-        //Instantiate(Temp, GG(6, 0), Quaternion.identity);
-        //Instantiate(Temp, GG(8, 0), Quaternion.identity);
-        //Instantiate(Temp, GG(10, 0), Quaternion.identity);
-        //Instantiate(Temp, GG(12, 0), Quaternion.identity);
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        return ListOBJ;
     }
     public static void LoseGame()
     {
