@@ -94,8 +94,6 @@ public class ShipController : MonoBehaviour
     void UpgradeWeapons()
     {
 
-        // We check the upgrade state of the player and add the appropriate additional turret gameobjects to the active turrets List.
-
         if (upgradeState == 0)
         {
             foreach (GameObject turret in tripleShotTurrets)
