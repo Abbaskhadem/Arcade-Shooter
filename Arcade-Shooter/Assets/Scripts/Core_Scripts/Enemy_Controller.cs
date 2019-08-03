@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
+    bool a;
+    [SerializeField]
+    Transform WhereToSpawn;
+    int j = 0;
+    public float TimeBetweenWave;
     [System.Serializable]
     public class Wave
     {
@@ -12,19 +17,68 @@ public class Enemy_Controller : MonoBehaviour
         public List<GameObject> EnemiesList;
         public int MaxEnemies;
     }
+    public int frame;
 
     public Wave[] _Waves;
     private int WaveNumber;
     void Start()
     {
-        for (int i = 0; i < _Waves.Length; i++)
-        {
-            _Waves[i].EnemiesList = GameManager.ObjectPooler(_Waves[i].Objects, _Waves[i].MaxEnemies);
-        }
+        Vector3 spawnPosition = WhereToSpawn.transform.position;
+        StartCoroutine(SpawnEnemyWaves());
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        // Debug.Log(ch());        
+
+        frame = 0;
+        Debug.Log(ch());
+        if (frame <= 1)
+        {
+            if (!ch())
+            {
+
+                Debug.Log("Frame: " + frame);
+                frame++;
+
+            }
+
+        }
+        else
+            return;
+    }
+    IEnumerator SpawnEnemyWaves()
+
+    {
+        float waveType = 0;
+        while (waveType < 1)
+        {
+            waveType++;
+            for (j = 0; j < _Waves.Length; j++)
+            {
+
+                _Waves[j].EnemiesList = GameManager.ObjectPooler(_Waves[j].Objects, _Waves[j].MaxEnemies);
+
+                for (int i = 0; i < _Waves[j].MaxEnemies; i++)
+                {
+                    //  _Waves[i].Objects.transform.position = spawnPosition;
+                    //  _Waves[i].Objects.transform.rotation = spawnRotation;
+                    _Waves[j].EnemiesList[i].SetActive(true);
+                    yield return new WaitForSeconds(_Waves[j].TimeBetweenEnemies);
+
+                }
+
+                yield return new WaitUntil(() => frame >= 1);
+            }
+
+        }
+
+    }
+    public bool ch()
+    {
+        if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            return false;
+        return true;
     }
 }

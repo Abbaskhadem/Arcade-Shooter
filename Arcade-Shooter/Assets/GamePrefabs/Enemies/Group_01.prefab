@@ -201,11 +201,12 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 0
   Target: {fileID: 0}
-  MainVector2:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
   Distance: 0
-  HeaderTeem: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
 --- !u!1 &5906127594694672057
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,9 +348,12 @@ MonoBehaviour:
   Ranged_Melee: 0
   Speed: 0
   Target: {fileID: 0}
-  MainVector2: []
   Distance: 0
-  HeaderTeem: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,11 +363,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6234287681371677512}
-  - component: {fileID: 9209501296206401242}
   - component: {fileID: 313618653}
   m_Layer: 0
   m_Name: Group_01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,22 +388,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9209501296206401242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234287681371677518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580a90f8e9af80d49bb320bf04d81be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  MovementType: 1
-  Speed: 5
-  Distance: 0
 --- !u!95 &313618653
 Animator:
   serializedVersion: 3
@@ -486,16 +473,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4542169110727172029, guid: feff9e766e54b53479e15e3af36d8adb,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263870956034149503, guid: feff9e766e54b53479e15e3af36d8adb,
-        type: 3}
-      propertyPath: MovementType
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feff9e766e54b53479e15e3af36d8adb, type: 3}
