@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
-    bool a;
+    Vector3 spawnPosition;
+    Quaternion spawnRotation;
+
     [SerializeField]
     Transform WhereToSpawn;
     int j = 0;
-    public float TimeBetweenWave;
+    int k = 0;
+    int frame;
     [System.Serializable]
     public class Wave
     {
@@ -17,31 +20,28 @@ public class Enemy_Controller : MonoBehaviour
         public List<GameObject> EnemiesList;
         public int MaxEnemies;
     }
-    public int frame;
 
     public Wave[] _Waves;
     private int WaveNumber;
     void Start()
     {
-        Vector3 spawnPosition = WhereToSpawn.transform.position;
+        spawnPosition = WhereToSpawn.transform.position;
+        spawnRotation = Quaternion.Euler(0, 0, 180);
         StartCoroutine(SpawnEnemyWaves());
 
     }
 
     void FixedUpdate()
     {
-        // Debug.Log(ch());        
 
         frame = 0;
-        Debug.Log(ch());
+
         if (frame <= 1)
         {
-            if (!ch())
+            if (!CheckAlive())
             {
-
                 Debug.Log("Frame: " + frame);
                 frame++;
-
             }
 
         }
@@ -57,13 +57,13 @@ public class Enemy_Controller : MonoBehaviour
             waveType++;
             for (j = 0; j < _Waves.Length; j++)
             {
-
+                
                 _Waves[j].EnemiesList = GameManager.ObjectPooler(_Waves[j].Objects, _Waves[j].MaxEnemies);
 
                 for (int i = 0; i < _Waves[j].MaxEnemies; i++)
                 {
-                    //  _Waves[i].Objects.transform.position = spawnPosition;
-                    //  _Waves[i].Objects.transform.rotation = spawnRotation;
+                    _Waves[i].Objects.transform.position = spawnPosition;
+                    _Waves[i].Objects.transform.rotation = spawnRotation;
                     _Waves[j].EnemiesList[i].SetActive(true);
                     yield return new WaitForSeconds(_Waves[j].TimeBetweenEnemies);
 
@@ -75,7 +75,7 @@ public class Enemy_Controller : MonoBehaviour
         }
 
     }
-    public bool ch()
+     bool CheckAlive()
     {
         if (GameObject.FindGameObjectWithTag("Enemy") == null)
             return false;
