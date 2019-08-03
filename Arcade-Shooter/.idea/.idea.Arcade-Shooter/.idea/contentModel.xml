@@ -20,11 +20,12 @@
           <e p="BezierFallow.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Core_Scripts" t="Include">
-            <e p="Enemy_Controller.cs" t="Include" />
+            <e p="Game_Director.cs" t="Include" />
             <e p="Main_SpaceShip.cs" t="Include" />
             <e p="SpaceShip.cs" t="Include" />
           </e>
           <e p="enemies.cs" t="Include" />
+          <e p="Enemy_Controller.cs" t="Include" />
           <e p="EnemyBullet.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="MainJet.cs" t="Include" />

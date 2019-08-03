@@ -157,7 +157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086090908554036857}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
@@ -172,6 +172,11 @@ MonoBehaviour:
   Speed: 0
   Target: {fileID: 0}
   Distance: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
 --- !u!1 &4282270783541227041
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5434015867589829641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
@@ -374,6 +379,11 @@ MonoBehaviour:
   Speed: 0
   Target: {fileID: 0}
   Distance: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +393,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6234287681371677512}
-  - component: {fileID: 9209501296206401242}
   - component: {fileID: 5250842437410424357}
   m_Layer: 0
   m_Name: Group_04
@@ -410,22 +419,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9209501296206401242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6234287681371677518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580a90f8e9af80d49bb320bf04d81be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  MovementType: 1
-  Speed: 5
-  Distance: 0
 --- !u!95 &5250842437410424357
 Animator:
   serializedVersion: 3
@@ -572,7 +565,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7377484000042648621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
@@ -587,6 +580,11 @@ MonoBehaviour:
   Speed: 0
   Target: {fileID: 0}
   Distance: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
 --- !u!1 &7746064483416107920
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8802138083184964527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
   m_Name: 
@@ -759,3 +757,8 @@ MonoBehaviour:
   Speed: 0
   Target: {fileID: 0}
   Distance: 0
+  Leader: 0
+  routes: []
+  LeaderVector2: []
+  startWeapon: {fileID: 0}
+  activePlayerTurrets: []
