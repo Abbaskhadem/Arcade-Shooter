@@ -12,6 +12,7 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField]
     private int MaximumBullets;
     private int MaxBullets;
+    private float firerate;
     
     
     void Start()
@@ -59,23 +60,27 @@ public class Main_SpaceShip : SpaceShip
     }
     void Shoot()
     {
-        for (int i = 0; i <BulletList.Count; i++)
+        for (int i = 0; i < BulletList.Count; i++)
         {
-            if (BulletList[i]!=null)
+            if (BulletList[i] != null)
             {
-                if (!BulletList[i].activeInHierarchy )
+                if (!BulletList[i].activeInHierarchy)
                 {
                     Timer += Time.deltaTime;
-                    if (Timer>=AttackSpeed)
+                    firerate += Time.deltaTime;
+                    if (firerate > 1)
                     {
-                        Timer = 0;
-                        BulletList[i].transform.position = GunPoints[0].position;
-                        Rigidbody2D Body = BulletList[i].GetComponent<Rigidbody2D>();
+                        firerate = 0;
+                        BulletList[i].transform.position = GunPoints[0].transform.position;
+                        BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
                         BulletList[i].SetActive(true);
-                        Body.velocity = transform.up * 3;
-                        break;
+                        // BulletList[i].transform.position = GunPoints[0].position;
+                        // Rigidbody2D Body = BulletList[i].GetComponent<Rigidbody2D>();
+                        // BulletList[i].SetActive(true);
+                        // Body.velocity = transform.up * 3;
+                        // break;
                     }
-                }  
+                }
             }
         }
     }

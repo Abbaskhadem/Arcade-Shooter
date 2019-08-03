@@ -2160,7 +2160,7 @@ MonoBehaviour:
   bullet:
   - {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   Body: {fileID: 0}
-  AttackSpeed: 1
+  AttackSpeed: 2
   GunPoints:
   - {fileID: 563545055}
   Speed: 0

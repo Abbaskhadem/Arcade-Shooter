@@ -20,6 +20,7 @@
           <e p="BezierFallow.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Core_Scripts" t="Include">
+            <e p="Enemy_Controller.cs" t="Include" />
             <e p="Main_SpaceShip.cs" t="Include" />
             <e p="SpaceShip.cs" t="Include" />
           </e>
@@ -30,7 +31,6 @@
           <e p="Reserved Codes" t="Include">
             <e p="BackupCods.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
-            <e p="Raycast_Toturial.cs" t="Include" />
             <e p="TempDirectory.cs" t="Include" />
             <e p="TestMove.cs" t="Include" />
           </e>

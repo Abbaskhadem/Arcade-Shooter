@@ -11,6 +11,11 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+     
+    }
+
+    void Update()
+    {
         objectRigidbody = transform.GetComponent<Rigidbody2D>();
         objectRigidbody.velocity = transform.up * Speed;
     }
