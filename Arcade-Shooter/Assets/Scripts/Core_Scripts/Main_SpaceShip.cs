@@ -70,10 +70,14 @@ public class Main_SpaceShip : SpaceShip
                     firerate += Time.deltaTime;
                     if (firerate > 1)
                     {
-                        firerate = 0;
-                        BulletList[i].transform.position = GunPoints[0].transform.position;
-                        BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
-                        BulletList[i].SetActive(true);
+                        for (int j = 0; j <GunPoints.Length; j++)
+                        {
+                            firerate = 0;
+                            BulletList[i].transform.position = GunPoints[j].transform.position;
+                            BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
+                            BulletList[i].SetActive(true);
+                        }
+                     
                         // BulletList[i].transform.position = GunPoints[0].position;
                         // Rigidbody2D Body = BulletList[i].GetComponent<Rigidbody2D>();
                         // BulletList[i].SetActive(true);
