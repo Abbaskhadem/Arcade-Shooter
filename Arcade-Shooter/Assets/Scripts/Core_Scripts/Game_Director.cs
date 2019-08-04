@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Game_Director : MonoBehaviour
 {
+    #region Temp Variables
     private bool SpawnAllowed = true;
     private int WaveNumber;
-    private int frame;
     bool firsttime = false;
+    public _Wave[] Waves;
+    #endregion
+    #region MyWave_Class
     [System.Serializable]
     public class _Wave
     {
-        public int MaxEnemies;
         public GameObject[] EnemyTypes;
         public int[] Quantity;
         public float ActiveDly;
         public List<GameObject> EnemyList;
         private int frame;
     }
-
-    public _Wave[] Waves;
-
+    #endregion
+    #region Creating The List
     void Start()
     {
+        var a = Waves[Random.Range(0, Waves.Length)];
         for (int i = 0; i < Waves.Length; i++)
         {
             for (int j = 0; j < Waves[i].EnemyTypes.Length; j++)
@@ -36,42 +38,29 @@ public class Game_Director : MonoBehaviour
             }
         }
     }
-
-    void FixedUpdate()
-    {
-        frame = 0;
-        if (frame <= 1)
-        {
-            if (!CheckAlive())
-            {
-                frame++;
-            }
-        }
-        else
-        {
-            return;
-        }
-    }
+    #endregion#region Check When To Active
+    #region Check When To Active
     void Update()
     {
+        CheckAlive();
         if (SpawnAllowed)
         {
             StartCoroutine(SpawnEnemyWaves());
         }
     }
+    #endregion
+#region Activating Functions
     IEnumerator SpawnEnemyWaves()
     {
         SpawnAllowed = false;
-        for (int i = 0; i < Waves[WaveNumber].MaxEnemies; i++)
+        for (int i = 0; i < Waves[WaveNumber].EnemyList.Count; i++)
             {
                 Waves[WaveNumber].EnemyList[i].transform.position = transform.position;
                 Waves[WaveNumber].EnemyList[i].transform.rotation = transform.rotation;
                 Waves[WaveNumber].EnemyList[i].SetActive(true);
                 yield return new WaitForSeconds(Waves[WaveNumber].ActiveDly);
             }
-
         yield return null;
-
     }
     bool CheckAlive()
     {
@@ -92,5 +81,5 @@ public class Game_Director : MonoBehaviour
         }
   
     }
-    
+    #endregion
 }
