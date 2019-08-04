@@ -787,26 +787,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
-  - MaxEnemies: 6
+  - MaxEnemies: 4
     EnemyTypes:
     - {fileID: 5638854871445977829, guid: d9e17f9aa84040046825546bfa15d7a7, type: 3}
     - {fileID: 6234287681371677518, guid: 7b4a4aa3d4439774f93ff1875f5af196, type: 3}
-    Quantity: 0200000002000000
+    Quantity: 0300000002000000
     ActiveDly: 0.3
-    EnemyList: []
-  - MaxEnemies: 9
-    EnemyTypes:
-    - {fileID: 5638854871445977829, guid: d9e17f9aa84040046825546bfa15d7a7, type: 3}
-    - {fileID: 6234287681371677518, guid: 0e56e89c6e149d744b2dcbbd8a3cdb05, type: 3}
-    Quantity: 0400000003000000
-    ActiveDly: 0.3
-    EnemyList: []
-  - MaxEnemies: 0
-    EnemyTypes:
-    - {fileID: 5638854871445977829, guid: d9e17f9aa84040046825546bfa15d7a7, type: 3}
-    - {fileID: 6234287681371677518, guid: 7b4a4aa3d4439774f93ff1875f5af196, type: 3}
-    Quantity: 030000000a000000
-    ActiveDly: 0
     EnemyList: []
 --- !u!4 &1023789784
 Transform:

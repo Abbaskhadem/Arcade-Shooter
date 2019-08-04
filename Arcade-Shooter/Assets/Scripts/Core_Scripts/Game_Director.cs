@@ -26,7 +26,7 @@ public class Game_Director : MonoBehaviour
         {
             for (int j = 0; j < Waves[i].EnemyTypes.Length; j++)
             {
-                for (int k = 0; k <= Waves[i].Quantity[j]; k++)
+                for (int k = 0; k < Waves[i].Quantity[j]; k++)
                 {
                     GameObject temp = (GameObject) Instantiate(Waves[i].EnemyTypes[j]);
                     temp.SetActive(false);
@@ -35,26 +35,10 @@ public class Game_Director : MonoBehaviour
             }
         }
     }
-    void FixedUpdate()
-    {
-        frame = 0;
-
-        if (frame <= 1)
-        {
-            if (!CheckAlive())
-            {
-                frame++;
-            }
-
-        }
-        else
-            return;
-    }
     void Update()
     {
         if (SpawnAllowed)
         {
-            Debug.Log("Spawning!");
             StartCoroutine(SpawnEnemyWaves());
         }
     }
@@ -79,7 +63,6 @@ public class Game_Director : MonoBehaviour
         {
             if (WaveNumber<Waves.Length && firsttime)
             {
-                Debug.Log("What Up!?");
                 firsttime = false;
                 WaveNumber++;
                 SpawnAllowed = true;
