@@ -16,6 +16,7 @@ public class Game_Director : MonoBehaviour
         public int[] Quantity;
         public float ActiveDly;
         public List<GameObject> EnemyList;
+        private int frame;
     }
 
     public _Wave[] Waves;
@@ -35,6 +36,22 @@ public class Game_Director : MonoBehaviour
             }
         }
     }
+
+    void FixedUpdate()
+    {
+        frame = 0;
+        if (frame <= 1)
+        {
+            if (!CheckAlive())
+            {
+                frame++;
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
     void Update()
     {
         if (SpawnAllowed)
@@ -50,7 +67,6 @@ public class Game_Director : MonoBehaviour
                 Waves[WaveNumber].EnemyList[i].transform.position = transform.position;
                 Waves[WaveNumber].EnemyList[i].transform.rotation = transform.rotation;
                 Waves[WaveNumber].EnemyList[i].SetActive(true);
-  
                 yield return new WaitForSeconds(Waves[WaveNumber].ActiveDly);
             }
 
