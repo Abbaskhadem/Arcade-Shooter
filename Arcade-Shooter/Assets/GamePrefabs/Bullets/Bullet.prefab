@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  Speed: 10
+  Speed: -10
 --- !u!96 &8754593961846633592
 TrailRenderer:
   serializedVersion: 2

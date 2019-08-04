@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        if (!gameObject.activeSelf)
+            this.GetComponent<TrailRenderer>().enabled = false;
         objectRigidbody = transform.GetComponent<Rigidbody2D>();
         objectRigidbody.velocity = transform.up * Speed;
     }

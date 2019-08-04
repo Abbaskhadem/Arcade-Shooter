@@ -75,14 +75,9 @@ public class Main_SpaceShip : SpaceShip
                             firerate = 0;
                             BulletList[i].transform.position = GunPoints[j].transform.position;
                             BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
+                            BulletList[i].GetComponent<TrailRenderer>().Clear();
                             BulletList[i].SetActive(true);
                         }
-                     
-                        // BulletList[i].transform.position = GunPoints[0].position;
-                        // Rigidbody2D Body = BulletList[i].GetComponent<Rigidbody2D>();
-                        // BulletList[i].SetActive(true);
-                        // Body.velocity = transform.up * 3;
-                        // break;
                     }
                 }
             }
