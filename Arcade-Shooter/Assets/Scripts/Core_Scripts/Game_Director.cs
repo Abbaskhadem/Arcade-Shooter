@@ -24,6 +24,7 @@ public class Game_Director : MonoBehaviour
     #region Check When To Active
     void Update()
     {
+        int a = Random.Range(5, 2);
         CheckAlive();
         if (SpawnAllowed)
         {
