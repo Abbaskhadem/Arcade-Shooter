@@ -21,24 +21,6 @@ public class Game_Director : MonoBehaviour
         private int frame;
     }
     #endregion
-    #region Creating The List
-    void Start()
-    {
-        var a = Waves[Random.Range(0, Waves.Length)];
-        for (int i = 0; i < Waves.Length; i++)
-        {
-            for (int j = 0; j < Waves[i].EnemyTypes.Length; j++)
-            {
-                for (int k = 0; k < Waves[i].Quantity[j]; k++)
-                {
-                    GameObject temp = (GameObject) Instantiate(Waves[i].EnemyTypes[j]);
-                    temp.SetActive(false);
-                    Waves[i].EnemyList.Add(temp);
-                }
-            }
-        }
-    }
-    #endregion#region Check When To Active
     #region Check When To Active
     void Update()
     {
@@ -52,6 +34,18 @@ public class Game_Director : MonoBehaviour
 #region Activating Functions
     IEnumerator SpawnEnemyWaves()
     {
+        if (SpawnAllowed)
+        {
+            for (int j = 0; j < Waves[WaveNumber].EnemyTypes.Length; j++)
+        {
+            for (int k = 0; k < Waves[WaveNumber].Quantity[j]; k++)
+            {
+                GameObject temp = (GameObject) Instantiate(Waves[WaveNumber].EnemyTypes[j]);
+                temp.SetActive(false);
+                Waves[WaveNumber].EnemyList.Add(temp);
+            }
+        }
+        }
         SpawnAllowed = false;
         for (int i = 0; i < Waves[WaveNumber].EnemyList.Count; i++)
             {

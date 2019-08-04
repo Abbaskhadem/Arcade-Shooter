@@ -773,7 +773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1023789783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,18 +787,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
-  - MaxEnemies: 5
-    EnemyTypes:
+  - EnemyTypes:
     - {fileID: 5638854871445977829, guid: d9e17f9aa84040046825546bfa15d7a7, type: 3}
     - {fileID: 6234287681371677518, guid: 7b4a4aa3d4439774f93ff1875f5af196, type: 3}
-    Quantity: 0300000002000000
+    Quantity: 0500000002000000
     ActiveDly: 0.3
     EnemyList: []
-  - MaxEnemies: 6
-    EnemyTypes:
+  - EnemyTypes:
     - {fileID: 5638854871445977829, guid: d9e17f9aa84040046825546bfa15d7a7, type: 3}
     - {fileID: 6234287681371677518, guid: 7b4a4aa3d4439774f93ff1875f5af196, type: 3}
-    Quantity: 0300000003000000
+    Quantity: 0300000006000000
     ActiveDly: 5
     EnemyList: []
 --- !u!4 &1023789784
@@ -1103,7 +1101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568548686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -3.68, z: 0}
+  m_LocalPosition: {x: -1.18, y: -3.68, z: 0}
   m_LocalScale: {x: 0.03798, y: 0.03798, z: 0.03798}
   m_Children:
   - {fileID: 563545055}
@@ -1144,15 +1142,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  Damage: 0
+  Damage: 30
   bullet:
   - {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   Body: {fileID: 0}
-  AttackSpeed: 2
+  AttackSpeed: 5
   GunPoints:
   - {fileID: 563545055}
   Speed: 0
-  MaximumBullets: 14
+  MaximumBullets: 10
 --- !u!1 &1597207006
 GameObject:
   m_ObjectHideFlags: 0
@@ -6042,7 +6040,7 @@ PrefabInstance:
     - target: {fileID: 8805684853517118621, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.78
+      value: -1.68
       objectReference: {fileID: 0}
     - target: {fileID: 8805684853517118621, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
         type: 3}
@@ -6104,5 +6102,15 @@ PrefabInstance:
       propertyPath: startWeapon
       value: 
       objectReference: {fileID: 844881386}
+    - target: {fileID: 2185223324087821665, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
+        type: 3}
+      propertyPath: AttackSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185223324087821665, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
+        type: 3}
+      propertyPath: MaximumAmmo
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
