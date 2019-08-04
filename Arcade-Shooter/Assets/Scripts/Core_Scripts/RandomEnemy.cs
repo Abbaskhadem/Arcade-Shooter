@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game_Director : MonoBehaviour
+public class RandomEnemy : MonoBehaviour
 {
     #region Temp Variables
     private bool SpawnAllowed = true;
@@ -21,67 +21,67 @@ public class Game_Director : MonoBehaviour
         private int frame;
     }
     #endregion
+    #region Creating The List
+    void Start()
+    {
+
+
+        for (int i = 0; i < Waves.Length; i++)
+        {
+            for (int j = 0; j < Waves[i].EnemyTypes.Length; j++)
+            {
+                for (int k = 0; k < Waves[i].Quantity[j]; k++)
+                {
+                    GameObject temp = (GameObject)Instantiate(Waves[i].EnemyTypes[j]);
+                    temp.SetActive(false);
+                    Waves[i].EnemyList.Add(temp);
+                }
+            }
+        }
+    }
+    #endregion#region Check When To Active
     #region Check When To Active
     void Update()
     {
         CheckAlive();
         if (SpawnAllowed)
         {
-            StartCoroutine(SpawnEnemyWaves(WaveNumber));
+            StartCoroutine(SpawnEnemyWaves());
         }
-
-
-
-
-
-
-
     }
     #endregion
-#region Activating Functions
-    IEnumerator SpawnEnemyWaves(int a)
+    #region Activating Functions
+    IEnumerator SpawnEnemyWaves()
     {
-        if (SpawnAllowed)
-        {
-            for (int j = 0; j < Waves[a].EnemyTypes.Length; j++)
-        {
-            for (int k = 0; k < Waves[a].Quantity[j]; k++)
-            {
-                GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
-                temp.SetActive(false);
-                Waves[a].EnemyList.Add(temp);
-            }
-        }
-        }
         SpawnAllowed = false;
+        int a = Random.Range(0, Waves.Length);
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
-            {
-                Waves[a].EnemyList[i].transform.position = transform.position;
-                Waves[a].EnemyList[i].transform.rotation = transform.rotation;
-                Waves[a].EnemyList[i].SetActive(true);
-                yield return new WaitForSeconds(Waves[a].ActiveDly);
-            }
+        {
+            Waves[a].EnemyList[i].transform.position = transform.position;
+            Waves[a].EnemyList[i].transform.rotation = transform.rotation;
+            Waves[a].EnemyList[i].SetActive(true);
+            yield return new WaitForSeconds(Waves[a].ActiveDly);
+        }
         yield return null;
     }
     bool CheckAlive()
     {
         if (GameObject.FindGameObjectWithTag("Enemy") == null && !SpawnAllowed)
         {
-            if (WaveNumber<Waves.Length && firsttime)
+            if (WaveNumber < Waves.Length && firsttime)
             {
                 firsttime = false;
                 WaveNumber++;
                 SpawnAllowed = true;
             }
-            return false;   
+            return false;
         }
         else
         {
             firsttime = true;
-            return true;  
+            return true;
         }
-  
+
     }
     #endregion
-
 }
