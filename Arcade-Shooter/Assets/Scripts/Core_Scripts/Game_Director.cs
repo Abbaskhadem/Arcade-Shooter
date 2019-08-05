@@ -5,6 +5,10 @@ using UnityEngine;
 public class Game_Director : MonoBehaviour
 {
     #region Temp Variables
+    public bool Randomize;
+    bool UpgrateWave;
+    int LastRandom = 1;
+    int RandomWave;
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
@@ -22,20 +26,32 @@ public class Game_Director : MonoBehaviour
     }
     #endregion
     #region Check When To Active
-    void Update()
+    void Start()
     {
-        int a = Random.Range(5, 2);
+        UpgrateWave = true;
+
+    }
+        void Update()
+    {
+        
         CheckAlive();
-        if (SpawnAllowed)
+        
+
+        if(Randomize && UpgrateWave)
         {
-            StartCoroutine(SpawnEnemyWaves(WaveNumber));
+            Debug.Log("ok");
+                UpgrateWaveSys();
+           
         }
-
-
-
-
-
-
+        else
+        {
+            if (SpawnAllowed)
+            {
+                Debug.Log("notok");
+                StartCoroutine(SpawnEnemyWaves(WaveNumber));
+            }
+        }
+       
 
     }
     #endregion
@@ -44,6 +60,7 @@ public class Game_Director : MonoBehaviour
     {
         if (SpawnAllowed)
         {
+
             for (int j = 0; j < Waves[a].EnemyTypes.Length; j++)
         {
             for (int k = 0; k < Waves[a].Quantity[j]; k++)
@@ -55,11 +72,17 @@ public class Game_Director : MonoBehaviour
         }
         }
         SpawnAllowed = false;
+       if(a<WaveNumber||a< RandomWave)
+       
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
             {
-                Waves[a].EnemyList[i].transform.position = transform.position;
-                Waves[a].EnemyList[i].transform.rotation = transform.rotation;
-                Waves[a].EnemyList[i].SetActive(true);
+                if (a < WaveNumber || a < RandomWave)
+                {
+                    Waves[a].EnemyList[i].transform.position = transform.position;
+                    Waves[a].EnemyList[i].transform.rotation = transform.rotation;
+                    Waves[a].EnemyList[i].SetActive(true);
+                }
+                   
                 yield return new WaitForSeconds(Waves[a].ActiveDly);
             }
         yield return null;
@@ -72,6 +95,7 @@ public class Game_Director : MonoBehaviour
             {
                 firsttime = false;
                 WaveNumber++;
+                UpgrateWave = true;
                 SpawnAllowed = true;
             }
             return false;   
@@ -84,5 +108,12 @@ public class Game_Director : MonoBehaviour
   
     }
     #endregion
+    void UpgrateWaveSys()
+    {
+         RandomWave = Random.Range(LastRandom-1, LastRandom=2 * LastRandom);
+             StartCoroutine(SpawnEnemyWaves(RandomWave));
+              UpgrateWave = false;
 
+
+    }
 }
