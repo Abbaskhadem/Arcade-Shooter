@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.XR.WSA.Input;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static float Height;
     private static string tag;
     [SerializeField]
+   static Vector2[] Positions;
     Camera Cam;
     public static bool GameLost = false;
     int a, b;
@@ -49,6 +52,26 @@ public class GameManager : MonoBehaviour
         Vector2 natije = new Vector2(aa, bb);
         return natije;
     }
+
+    public static Vector2 []EnemyPositions(int Columns, int Rows,int startcol,int startRow)
+    {
+        int k = 0;
+
+        for (int i = startRow; i >= Rows; i--)
+        {
+            for (int j = startcol; j <= Columns; j++)
+            {
+                Positions[k]=new Vector2(startcol,startRow);
+                k++;
+                
+            }
+        }
+
+        return Positions;
+
+
+    }
+    
 }
 
 

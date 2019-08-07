@@ -43,7 +43,7 @@ public class enemies : MonoBehaviour
     private bool MoveAllowed;
     void Start()
     {
-
+        
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
         RouteToGo = 0;

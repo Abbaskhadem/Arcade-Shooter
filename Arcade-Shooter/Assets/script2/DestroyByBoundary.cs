@@ -19,7 +19,7 @@ public class DestroyByBoundary : MonoBehaviour
     {
         if (other.gameObject.tag == "Boundary")
         {
-            if (gameObject.tag == "Player Bullet")
+            if (gameObject.tag == "Player Bullet" || gameObject.tag=="Enemy Bullet")
             {
                 gameObject.SetActive(false);
             }

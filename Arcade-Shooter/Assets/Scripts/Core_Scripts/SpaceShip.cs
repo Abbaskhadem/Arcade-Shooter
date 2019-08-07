@@ -5,10 +5,10 @@ using UnityEngine;
 public class SpaceShip : MonoBehaviour
 {
     public int health;
-    public float Damage;
+    public int Damage;
     public GameObject[] bullet;
     public Rigidbody2D Body;
-    public float AttackSpeed;
+   [HideInInspector] public float AttackSpeed;
     public Transform[] GunPoints;
     public float Speed;
 }

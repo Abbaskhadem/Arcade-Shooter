@@ -1,39 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    #region Variables
     Rigidbody2D rb;
     public int Damage;
     [SerializeField] float Speed;
     private Rigidbody2D objectRigidbody;
+    [SerializeField] private GameObject BulletEffect;
+#endregion
+#region Bullet Methods
 
-    void Start()
+void Start()
+{
+    
+    BulletEffect = Instantiate(BulletEffect);
+}
+void Update()
     {
-     
-    }
-
-    void Update()
-    {
-        if (!gameObject.activeSelf)
-            this.GetComponent<TrailRenderer>().enabled = false;
         objectRigidbody = transform.GetComponent<Rigidbody2D>();
         objectRigidbody.velocity = transform.up * Speed;
     }
-//    void OnEnable()
-//    {
-//        Invoke("hideBullet",4f);
-//        objectRigidbody = transform.GetComponent<Rigidbody2D>();
-//        objectRigidbody.velocity = transform.up * Speed;
-//    }
-//    void hideBullet()
-//    {
-//        gameObject.SetActive(false);
-//    }
-//    void OnDisable()
-//    {
-//        CancelInvoke();
-//    }
 
+void OnTriggerEnter2D(Collider2D col)
+{
+    if (col.gameObject.tag == "Enemy" && gameObject.tag=="Player Bullet")
+    {
+        BulletEffect.transform.position = col.transform.position;
+        BulletEffect.SetActive(true);
+        gameObject.SetActive(false);
+        col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
+    }
+    if (col.gameObject.tag == "Player" && gameObject.tag=="Enemy Bullet" )
+    {
+       
+        gameObject.SetActive(false);
+        col.GetComponent<Main_SpaceShip>().TakeDamage(Damage);
+    }
+}
+#endregion
 }

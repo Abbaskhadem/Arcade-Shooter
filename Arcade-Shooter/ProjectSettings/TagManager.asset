@@ -12,6 +12,7 @@ TagManager:
   - Boundary
   - Enemy Ship 1
   - Enemy Ship 2
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX

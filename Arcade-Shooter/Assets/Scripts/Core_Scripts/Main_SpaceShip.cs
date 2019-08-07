@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Main_SpaceShip : SpaceShip
 {
+    #region Exclusive Variables
     private List<GameObject> BulletList;
     private bool  moveAllowed;
     private float deltaX;
@@ -12,20 +13,23 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField]
     private int MaximumBullets;
     private int MaxBullets;
-    private float firerate;
-    
-    
+    #endregion
+    #region List Preparing
     void Start()
     {
+        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponent<Bullet>().Damage = Damage;
         BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         Body = this.GetComponent<Rigidbody2D>();
     }
-   void Update()
+    #endregion
+    #region Actions
+    void Update()
     {
-     //   Movement();
+        Movement();
      Shoot();
     }
-
+    #endregion
+    #region Player Ability
     void Movement()
     {
         if (Input.touchCount > 0)
@@ -67,12 +71,11 @@ public class Main_SpaceShip : SpaceShip
                 if (!BulletList[i].activeInHierarchy)
                 {
                     Timer += Time.deltaTime;
-                    firerate += Time.deltaTime;
-                    if (firerate > 1)
+                    if (Timer>=AttackSpeed)
                     {
+                        Timer = 0;
                         for (int j = 0; j <GunPoints.Length; j++)
                         {
-                            firerate = 0;
                             BulletList[i].transform.position = GunPoints[j].transform.position;
                             BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
                             BulletList[i].GetComponent<TrailRenderer>().Clear();
@@ -83,4 +86,16 @@ public class Main_SpaceShip : SpaceShip
             }
         }
     }
+
+    public void TakeDamage(int Damage)
+    {
+        health -= Damage;
+        if (health <= 0)
+        {
+            GameManager.GameLost = true;
+            gameObject.SetActive(false);
+            Debug.Log("You Lost!");
+        }
+    }
+    #endregion
 }

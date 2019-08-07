@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Game_Director : MonoBehaviour
 {
@@ -17,26 +18,23 @@ public class Game_Director : MonoBehaviour
         public GameObject[] EnemyTypes;
         public int[] Quantity;
         public float ActiveDly;
-        public List<GameObject> EnemyList;
+       [HideInInspector]public List<GameObject> EnemyList;
         private int frame;
+        public Transform[] Routes;
     }
     #endregion
     #region Check When To Active
     void Update()
     {
-        int a = Random.Range(5, 2);
-        CheckAlive();
-        if (SpawnAllowed)
+        if (WaveNumber<Waves.Length-1)
         {
-            StartCoroutine(SpawnEnemyWaves(WaveNumber));
+            int a = Random.Range(5, 2);
+            CheckAlive();
+            if (SpawnAllowed)
+            {
+                StartCoroutine(SpawnEnemyWaves(WaveNumber));
+            }
         }
-
-
-
-
-
-
-
     }
     #endregion
 #region Activating Functions
@@ -50,6 +48,11 @@ public class Game_Director : MonoBehaviour
             {
                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                 temp.SetActive(false);
+                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = PositionController.Instance.GetPosition(WaveNumber);
+                for (int i = 0; i < temp.GetComponent<Enemy_SpaceShip>().Routes.Length; i++)
+                {
+                    temp.GetComponent<Enemy_SpaceShip>().Routes[i] = Waves[a].Routes[i];
+                }
                 Waves[a].EnemyList.Add(temp);
             }
         }
@@ -71,6 +74,7 @@ public class Game_Director : MonoBehaviour
             if (WaveNumber<Waves.Length && firsttime)
             {
                 firsttime = false;
+                PositionController.Instance._index = 0;
                 WaveNumber++;
                 SpawnAllowed = true;
             }

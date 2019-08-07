@@ -20,18 +20,22 @@
           <e p="BezierFallow.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Core_Scripts" t="Include">
+            <e p="Enemy_Controller.cs" t="Include" />
+            <e p="Enemy_SpaceShip.cs" t="Include" />
             <e p="Game_Director.cs" t="Include" />
             <e p="Main_SpaceShip.cs" t="Include" />
+            <e p="RandomEnemy.cs" t="Include" />
             <e p="SpaceShip.cs" t="Include" />
           </e>
           <e p="enemies.cs" t="Include" />
-          <e p="Enemy_Controller.cs" t="Include" />
           <e p="EnemyBullet.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="MainJet.cs" t="Include" />
+          <e p="PositionController.cs" t="Include" />
           <e p="Reserved Codes" t="Include">
             <e p="BackupCods.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
+            <e p="EventTest.cs" t="Include" />
             <e p="TempDirectory.cs" t="Include" />
             <e p="TestMove.cs" t="Include" />
           </e>
