@@ -1033,20 +1033,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
-  - StartColumnPos: -2
-    StartRowPos: 4
-    EnemyTypes:
+  - EnemyTypes:
     - {fileID: 1229197052}
     Quantity: 14000000
     ActiveDly: 0.3
     EnemyList: []
-  - StartColumnPos: -2
-    StartRowPos: 4
-    EnemyTypes:
+    Routes:
+    - {fileID: 1682760575}
+    - {fileID: 1682760575}
+  - EnemyTypes:
     - {fileID: 1231336072}
     Quantity: 07000000
     ActiveDly: 0.3
     EnemyList: []
+    Routes:
+    - {fileID: 232959327}
 --- !u!4 &1023789784
 Transform:
   m_ObjectHideFlags: 0
