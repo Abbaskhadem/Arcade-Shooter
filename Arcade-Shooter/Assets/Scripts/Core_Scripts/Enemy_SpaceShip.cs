@@ -6,9 +6,9 @@ using UnityEngine;
 public class Enemy_SpaceShip : SpaceShip
 {
     public Transform FinalDestination;
+    [HideInInspector]public Transform[] Routes;
     private Vector2 EnemyPosition;
     private Vector3 MainTarget;
-   [HideInInspector] public Transform[] Routes;
     private Transform Target;
     private int RoutesToGo;
     private int i;

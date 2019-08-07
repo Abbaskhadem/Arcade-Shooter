@@ -1,17 +1,11 @@
-﻿﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-
-public class PositionController : MonoBehaviour
+﻿using UnityEngine;
+ public class PositionController : MonoBehaviour
 {
     void Start()
     {
         Debug.Log(WavePositions[1].positions.Length);
     }
     public static PositionController Instance;
-    //[SerializeField] private Transform[] positions;
     [System.Serializable]
     public class _WavePositions
     {
@@ -34,19 +28,7 @@ public class PositionController : MonoBehaviour
             Debug.LogError("More SpaceShip Than Final Positions");
             _index = 0;
         }
-//        foreach (var position in WavePositions[i].positions)
-//        {
-//            if (Math.Abs(position.position.z - _index) < 0.5f) return position;
-//        }
         return WavePositions[i].positions[_index++];
     }
-
-//    private void OnDrawGizmos()
-//    {
-//        Gizmos.color = Color.red;
-//        foreach (var Transform in WavePositions)
-//        {
-//            Gizmos.DrawSphere(new Vector3(0,0,0), 0.5f);
-//        }
-//    }
+    
 }

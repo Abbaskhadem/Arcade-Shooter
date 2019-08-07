@@ -1,23 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Rout : MonoBehaviour
 {
     [SerializeField]
     private Transform[] ControlPoints;
     private Vector2 GizmosPosition;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnDrawGizmos()
     {
         for(float t = 0; t <= 1; t += 0.05f)

@@ -1040,6 +1040,7 @@ MonoBehaviour:
     EnemyList: []
     Routes:
     - {fileID: 1682760575}
+    - {fileID: 232959327}
     - {fileID: 1682760575}
   - EnemyTypes:
     - {fileID: 1231336072}
@@ -1048,6 +1049,7 @@ MonoBehaviour:
     EnemyList: []
     Routes:
     - {fileID: 232959327}
+    - {fileID: 1682760575}
 --- !u!4 &1023789784
 Transform:
   m_ObjectHideFlags: 0
@@ -6989,7 +6991,7 @@ PrefabInstance:
     - target: {fileID: 2185223324087821665, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
         type: 3}
       propertyPath: Routes.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2185223324087821665, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
         type: 3}
@@ -7041,7 +7043,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Routes.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 232959327}
     - target: {fileID: 8805684853517118609, guid: 4d2d8d35b3b0cdc458e460e85c87d089,
         type: 3}
       propertyPath: m_Constraints

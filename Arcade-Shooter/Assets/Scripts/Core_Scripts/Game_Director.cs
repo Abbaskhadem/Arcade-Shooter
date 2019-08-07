@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 public class Game_Director : MonoBehaviour
 {
     #region Temp Variables
@@ -49,7 +47,8 @@ public class Game_Director : MonoBehaviour
                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                 temp.SetActive(false);
                 temp.GetComponent<Enemy_SpaceShip>().FinalDestination = PositionController.Instance.GetPosition(WaveNumber);
-                for (int i = 0; i < temp.GetComponent<Enemy_SpaceShip>().Routes.Length; i++)
+                temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length];
+                for (int i = 0; i < Waves[a].Routes.Length; i++)
                 {
                     temp.GetComponent<Enemy_SpaceShip>().Routes[i] = Waves[a].Routes[i];
                 }
@@ -88,5 +87,4 @@ public class Game_Director : MonoBehaviour
   
     }
     #endregion
-
 }
