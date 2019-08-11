@@ -10,12 +10,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private ParticleSystem BulletEffect;
 #endregion
 #region Bullet Methods
-
-void Start()
-{
-//    if(gameObject.tag=="Player Bullet")
-//    BulletEffect = Instantiate(BulletEffect);
-}
 void Update()
     {
         objectRigidbody = transform.GetComponent<Rigidbody2D>();
