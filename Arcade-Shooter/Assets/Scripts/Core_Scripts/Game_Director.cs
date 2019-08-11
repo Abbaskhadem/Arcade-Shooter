@@ -19,6 +19,7 @@ public class Game_Director : MonoBehaviour
        [HideInInspector]public List<GameObject> EnemyList;
         private int frame;
         public Transform[] Routes;
+        public Transform FinalPositions;
     }
     #endregion
     #region Check When To Active
@@ -46,8 +47,8 @@ public class Game_Director : MonoBehaviour
             {
                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                 temp.SetActive(false);
-                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = PositionController.Instance.GetPosition(WaveNumber);
-                temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length];
+                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[a].FinalPositions.GetChild(k);
+                    temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length];
                 for (int i = 0; i < Waves[a].Routes.Length; i++)
                 {
                     temp.GetComponent<Enemy_SpaceShip>().Routes[i] = Waves[a].Routes[i];
@@ -73,7 +74,6 @@ public class Game_Director : MonoBehaviour
             if (WaveNumber<Waves.Length && firsttime)
             {
                 firsttime = false;
-                PositionController.Instance._index = 0;
                 WaveNumber++;
                 SpawnAllowed = true;
             }
