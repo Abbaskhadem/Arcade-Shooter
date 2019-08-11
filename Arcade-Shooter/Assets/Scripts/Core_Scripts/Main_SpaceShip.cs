@@ -5,29 +5,45 @@ using UnityEngine;
 public class Main_SpaceShip : SpaceShip
 {
     #region Exclusive Variables
+
     private List<GameObject> BulletList;
-    private bool  moveAllowed;
+    private bool moveAllowed;
     private float deltaX;
     private float deltaY;
     private float Timer;
-    [SerializeField]
-    private int MaximumBullets;
+    [SerializeField] private int MaximumBullets;
     private int MaxBullets;
+    private Vector2 ScreenBounds;
+
     #endregion
+
     #region List Preparing
+
     void Start()
     {
         bullet[PlayerPrefs.GetInt("GunIndex")].GetComponent<Bullet>().Damage = Damage;
         BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         Body = this.GetComponent<Rigidbody2D>();
     }
+
     #endregion
+
     #region Actions
+
     void Update()
     {
         Movement();
-     Shoot();
+        Shoot();
     }
+
+//    void LateUpdate()
+//         {
+//             Vector3 viewPos = transform.position;
+//             viewPos.x = Mathf.Clamp(viewPos.x, ScreenBounds.x, ScreenBounds.x * -1);
+//             viewPos.y = Mathf.Clamp(viewPos.y, ScreenBounds.y, ScreenBounds.y * -1);
+//             transform.position = viewPos;
+//         }
+
     #endregion
     #region Player Ability
     void Movement()

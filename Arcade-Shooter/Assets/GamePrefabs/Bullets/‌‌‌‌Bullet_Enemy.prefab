@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d27a9152e03f1b4e9f3bbda4b9babd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 20
   Speed: -5
+  BulletEffect: {fileID: 0}
 --- !u!50 &1894032287228352060
 Rigidbody2D:
   serializedVersion: 4
@@ -185,7 +186,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.15
+  m_Time: 0.24
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -246,7 +247,7 @@ TrailRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    shadowBias: 0.5
+    shadowBias: 0.2
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0

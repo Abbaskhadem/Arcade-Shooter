@@ -155,15 +155,49 @@ MonoBehaviour:
   health: 100
   Damage: 20
   bullet:
-  - {fileID: 5655061594256983199, guid: de003c1a42549d046b3ac5343c7913e7, type: 3}
+  - {fileID: 5655061594256983199, guid: b3378d91024c6444d92a5c7ba430f635, type: 3}
   Body: {fileID: 0}
   AttackSpeed: 30
   GunPoints:
   - {fileID: 8805684854555351303}
-  Speed: 0
-  FinalDestination: {x: 0, y: 0}
+  Speed: 5
+  _Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0027503967
+      value: -0.014587402
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 124.82799
+      value: 1.351403
+      inSlope: -0.07792682
+      outSlope: -0.07792682
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 200
+      value: 0.20729828
+      inSlope: 0.06968477
+      outSlope: 0.06968477
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1742004
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
   Routes: []
-  MaximumAmmo: 0
+  Looping: 0
+  MaximumAmmo: 3
 --- !u!1 &8805684854555351296
 GameObject:
   m_ObjectHideFlags: 0

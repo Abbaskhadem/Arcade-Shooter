@@ -7,14 +7,14 @@ public class Bullet : MonoBehaviour
     public int Damage;
     [SerializeField] float Speed;
     private Rigidbody2D objectRigidbody;
-    [SerializeField] private GameObject BulletEffect;
+    [SerializeField] private ParticleSystem BulletEffect;
 #endregion
 #region Bullet Methods
 
 void Start()
 {
-    
-    BulletEffect = Instantiate(BulletEffect);
+//    if(gameObject.tag=="Player Bullet")
+//    BulletEffect = Instantiate(BulletEffect);
 }
 void Update()
     {
@@ -26,10 +26,15 @@ void OnTriggerEnter2D(Collider2D col)
 {
     if (col.gameObject.tag == "Enemy" && gameObject.tag=="Player Bullet")
     {
-        BulletEffect.transform.position = col.transform.position;
-        BulletEffect.SetActive(true);
-        gameObject.SetActive(false);
-        col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
+        col.GetComponent<Animator>().SetTrigger("GotHit");
+        
+       if(ParticleManager._Instance.tempParticle.isPlaying)
+          // ParticleManager._Instance.tempParticle.Stop();
+        ParticleManager._Instance.tempParticle.transform.position = new Vector3(col.transform.position.x,col.transform.position.y,-0.26f);
+        ParticleManager._Instance.tempParticle.Play();
+        
+            gameObject.SetActive(false);
+            col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
     }
     if (col.gameObject.tag == "Player" && gameObject.tag=="Enemy Bullet" )
     {

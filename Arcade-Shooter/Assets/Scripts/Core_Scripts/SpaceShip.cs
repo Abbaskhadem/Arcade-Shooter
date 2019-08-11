@@ -8,7 +8,7 @@ public class SpaceShip : MonoBehaviour
     public int Damage;
     public GameObject[] bullet;
     public Rigidbody2D Body;
-   [HideInInspector] public float AttackSpeed;
+    public float AttackSpeed;
     public Transform[] GunPoints;
     public float Speed;
 }

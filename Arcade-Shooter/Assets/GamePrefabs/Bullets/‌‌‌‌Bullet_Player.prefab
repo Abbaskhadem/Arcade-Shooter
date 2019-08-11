@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4765363785557081731}
   - component: {fileID: 1696605503766319547}
   m_Layer: 0
-  m_Name: "\u200C\u200C\u200C\u200CBullet 1"
+  m_Name: "\u200C\u200C\u200C\u200CBullet_Player"
   m_TagString: Player Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655061594256983199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.142, y: -3.988, z: 0}
+  m_LocalPosition: {x: -0.233, y: -3.988, z: 0}
   m_LocalScale: {x: 0.020686287, y: 0.020686287, z: 0.020686287}
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d27a9152e03f1b4e9f3bbda4b9babd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 25
-  Speed: 10
-  BulletEffect: {fileID: 6570396827767874785, guid: be470345fc8f1e04d89537bf1c6f8482,
+  Damage: 50
+  Speed: 15
+  BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
     type: 3}
 --- !u!50 &1894032287228352060
 Rigidbody2D:
@@ -187,7 +187,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.15
+  m_Time: 0.07
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -225,8 +225,8 @@ TrailRenderer:
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 5397
-      ctime1: 16191
+      ctime0: 7710
+      ctime1: 22359
       ctime2: 65535
       ctime3: 0
       ctime4: 0

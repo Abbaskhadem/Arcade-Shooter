@@ -3,7 +3,7 @@
 {
     void Start()
     {
-        Debug.Log(WavePositions[1].positions.Length);
+       // Debug.Log(WavePositions[1].positions.Length);
     }
     public static PositionController Instance;
     [System.Serializable]
