@@ -14,7 +14,7 @@ public class Random_Director : MonoBehaviour
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
-    public Transform[] Rout;
+   
     public _Wave[] Waves;
     private int RandomRout;
     IEnumerator b;
@@ -38,7 +38,6 @@ public class Random_Director : MonoBehaviour
 
     void Start()
     {
-        RandomRout = Random.Range(0, Rout.Length);
         UpgrateWave = true;
     }
 
@@ -76,14 +75,14 @@ public class Random_Director : MonoBehaviour
         }
 
         SpawnAllowed = false;
-        RandomRout = Random.Range(0, Rout.Length);
+//        RandomRout = Random.Range(0, Rout.Length);
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
         {
             Waves[a].EnemyList[i].transform.position = transform.position;
             Waves[a].EnemyList[i].transform.rotation = transform.rotation;
             Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
             Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
-            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
+//            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
             Waves[a].EnemyList[i].SetActive(true);
             yield return new WaitForSeconds(Waves[a].ActiveDly);
         }

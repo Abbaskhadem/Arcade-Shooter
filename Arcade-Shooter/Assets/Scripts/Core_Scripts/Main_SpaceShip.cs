@@ -21,7 +21,7 @@ public class Main_SpaceShip : SpaceShip
 
     void Start()
     {
-        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponent<Bullet>().Damage = Damage;
+        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
         BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         Body = this.GetComponent<Rigidbody2D>();
     }
@@ -94,7 +94,7 @@ public class Main_SpaceShip : SpaceShip
                         {
                             BulletList[i].transform.position = GunPoints[j].transform.position;
                             BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
-                            BulletList[i].GetComponent<TrailRenderer>().Clear();
+                            BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
                             BulletList[i].SetActive(true);
                         }
                     }
