@@ -14,7 +14,7 @@ public class Random_Director : MonoBehaviour
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
-    public Transform[] Rout;
+   
     public _Wave[] Waves;
     private int RandomRout;
     IEnumerator b;
@@ -38,7 +38,6 @@ public class Random_Director : MonoBehaviour
 
     void Start()
     {
-       // RandomRout = 0;
         UpgrateWave = true;
     }
 
@@ -60,36 +59,31 @@ public class Random_Director : MonoBehaviour
             {
                 for (int j = 0; j < Waves[a].EnemyTypes.Length; ++j)
                 {
-                   
                     for (int k = 0; k < Waves[a].Quantity[j]; k++)
                     {
-                        
                         int RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
+
                         GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
+
                         temp.SetActive(false);
                         Waves[a].EnemyList.Add(temp);
-                        temp.GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
-                       //temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
-                       //temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
                         temp.GetComponent<Enemy_SpaceShip>().FinalDestination =
                             Waves[a].FinalPositions[RandomFinalPositions].GetChild(temp1++);
                     }
                 }
             }
         }
+
         SpawnAllowed = false;
-        RandomRout = Random.Range(0, Rout.Length);
+//        RandomRout = Random.Range(0, Rout.Length);
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
         {
-            //Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
             Waves[a].EnemyList[i].transform.position = transform.position;
             Waves[a].EnemyList[i].transform.rotation = transform.rotation;
             Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
             Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
-            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
-            Debug.Log(Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed+""+RandomRout);
+//            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
             Waves[a].EnemyList[i].SetActive(true);
-            //Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
             yield return new WaitForSeconds(Waves[a].ActiveDly);
         }
 
