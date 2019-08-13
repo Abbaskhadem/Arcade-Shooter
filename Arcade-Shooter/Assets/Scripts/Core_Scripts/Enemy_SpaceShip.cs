@@ -26,7 +26,7 @@ public class Enemy_SpaceShip : SpaceShip
     private float Timer;
     private float tparam;
     private float SpeedModifier;
-    private bool MoveAllowed;
+   [HideInInspector] public bool MoveAllowed;
     private bool coroutineAllowed;
     private bool check;
     private bool ShootAllowed = false;
@@ -49,13 +49,12 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Update()
     {
-        ManageEnemyMovement();
-        if (ShootAllowed)
+        if (!gameObject.activeSelf)
         {
-            Shoot();
-            IdleMovement();
+            RoutesToGo = 0;
         }
-  
+      ManageEnemyMovement();
+     
     }
     private IEnumerator GoByTheRoute(int RouteNumber)
     {

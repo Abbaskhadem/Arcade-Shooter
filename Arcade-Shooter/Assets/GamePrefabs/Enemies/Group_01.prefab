@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 1761200997353349604}
   - component: {fileID: 4734964282554099107}
   - component: {fileID: 394719321492836907}
+  - component: {fileID: 5105623029091960244}
   m_Layer: 0
   m_Name: Test_Enemy01 (1)
   m_TagString: Enemy
@@ -120,6 +121,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -207,6 +209,35 @@ MonoBehaviour:
   LeaderVector2: []
   startWeapon: {fileID: 0}
   activePlayerTurrets: []
+--- !u!114 &5105623029091960244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434015867589829641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  Damage: 0
+  bullet: []
+  Body: {fileID: 0}
+  AttackSpeed: 0
+  GunPoints: []
+  Speed: 0
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
+  Routes: []
+  Looping: 0
+  MaximumAmmo: 0
 --- !u!1 &5906127594694672057
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +251,7 @@ GameObject:
   - component: {fileID: 8201678066258651493}
   - component: {fileID: 7971875754904518403}
   - component: {fileID: 4910703593042015622}
+  - component: {fileID: 2358406458796414351}
   m_Layer: 0
   m_Name: Test_Enemy01 (2)
   m_TagString: Enemy
@@ -267,6 +299,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -354,6 +387,35 @@ MonoBehaviour:
   LeaderVector2: []
   startWeapon: {fileID: 0}
   activePlayerTurrets: []
+--- !u!114 &2358406458796414351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906127594694672057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  Damage: 0
+  bullet: []
+  Body: {fileID: 0}
+  AttackSpeed: 0
+  GunPoints: []
+  Speed: 0
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
+  Routes: []
+  Looping: 0
+  MaximumAmmo: 0
 --- !u!1 &6234287681371677518
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6234287681371677512}
   - component: {fileID: 313618653}
+  - component: {fileID: 1218035005539214691}
   m_Layer: 0
   m_Name: Group_01
   m_TagString: Enemy
@@ -407,6 +470,64 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1218035005539214691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234287681371677518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  Damage: 0
+  bullet: []
+  Body: {fileID: 0}
+  AttackSpeed: 0
+  GunPoints: []
+  Speed: 0
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
+  Routes: []
+  Looping: 0
+  MaximumAmmo: 0
+--- !u!114 &2563586624888792400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988704176535055567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  Damage: 0
+  bullet: []
+  Body: {fileID: 0}
+  AttackSpeed: 0
+  GunPoints: []
+  Speed: 0
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
+  Routes: []
+  Looping: 0
+  MaximumAmmo: 0
 --- !u!1001 &2349938640962557482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -481,6 +602,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feff9e766e54b53479e15e3af36d8adb, type: 3}
+--- !u!1 &7988704176535055567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5638854871445977829, guid: feff9e766e54b53479e15e3af36d8adb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2349938640962557482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2666524777647633279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404706685693683029, guid: feff9e766e54b53479e15e3af36d8adb,

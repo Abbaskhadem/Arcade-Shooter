@@ -5,23 +5,24 @@ using UnityEngine;
 public class Random_Director : MonoBehaviour
 {
     #region Temp Variables
-    public int i;
-    int t;
-    int che;
-    [SerializeField]
-    bool Randomize;
+
+    private int temp1;
     bool UpgrateWave = false;
-    public int LastRandom = 0;
-    public int FirstRandom = 0;
-    public int RandomWave = 0;
+    int LastRandom = 0;
+    int FirstRandom = 0;
+    int RandomWave = 0;
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
+    public Transform[] Rout;
     public _Wave[] Waves;
+    private int RandomRout;
     IEnumerator b;
 
     #endregion
+
     #region MyWave_Class
+
     [System.Serializable]
     public class _Wave
     {
@@ -29,44 +30,28 @@ public class Random_Director : MonoBehaviour
         public int[] Quantity;
         public float ActiveDly;
         public List<GameObject> EnemyList;
-        private int frame;
+        public Transform[] FinalPositions;
     }
+
     #endregion
     #region Check When To Active
+
     void Start()
     {
-        t = 100;
+        RandomRout = Random.Range(0, Rout.Length);
         UpgrateWave = true;
-
     }
+
     void Update()
     {
         CheckAlive();
-
-
-        if (Randomize && UpgrateWave)
-        {
-
-            Debug.Log(UpgrateWave + "ok");
-            GetRandomWaveIndex();
-
-
-        }
-        else
-        {
-            if (SpawnAllowed)
-            {
-                Debug.Log("notok");
-                StartCoroutine(SpawnEnemyWaves(WaveNumber));
-            }
-        }
-
-
-
-
+        if (UpgrateWave) GetRandomWaveIndex();
     }
+
     #endregion
+
     #region Activating Functions
+
     IEnumerator SpawnEnemyWaves(int a)
     {
         if (SpawnAllowed)
@@ -77,43 +62,53 @@ public class Random_Director : MonoBehaviour
                 {
                     for (int k = 0; k < Waves[a].Quantity[j]; k++)
                     {
-                        GameObject temp = (GameObject)Instantiate(Waves[a].EnemyTypes[j]);
+                        int RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
+
+                        GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
+
                         temp.SetActive(false);
                         Waves[a].EnemyList.Add(temp);
-                        Debug.Log(che + "----------" + a);
+                        temp.GetComponent<Enemy_SpaceShip>().FinalDestination =
+                            Waves[a].FinalPositions[RandomFinalPositions].GetChild(temp1++);
                     }
                 }
-
             }
-
-
-
         }
+
         SpawnAllowed = false;
+        RandomRout = Random.Range(0, Rout.Length);
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
         {
             Waves[a].EnemyList[i].transform.position = transform.position;
             Waves[a].EnemyList[i].transform.rotation = transform.rotation;
+            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
+            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
+            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
             Waves[a].EnemyList[i].SetActive(true);
             yield return new WaitForSeconds(Waves[a].ActiveDly);
         }
+
         yield return null;
     }
+
     bool CheckAlive()
     {
         if (GameObject.FindGameObjectWithTag("Enemy") == null && !SpawnAllowed)
         {
+            //RandomRout = Random.Range(0, Rout.Length);
             if (WaveNumber <= Waves.Length && firsttime)
             {
                 firsttime = false;
                 WaveNumber++;
                 UpgrateWave = true;
+                temp1 = 0;
                 SpawnAllowed = true;
             }
             else
             {
                 WaveNumber = Waves.Length - 4;
             }
+
             return false;
         }
         else
@@ -121,65 +116,21 @@ public class Random_Director : MonoBehaviour
             firsttime = true;
             return true;
         }
-
     }
-
-
-    void UpgrateWaveSys()
-    {
-
-
-
-        //  if (b == null) StopCoroutine(b);
-        //  b = SpawnEnemyWaves(RandomWave);
-        //  if (i == 6)
-        //      Debug.Log("66666666666");
-        //  StartCoroutine(b);
-        //  RandomWave = Random.Range(0, Waves.Length);
-
-
-
-        //  if (LastRandom < Waves.Length - 1)
-        //  {
-        //      FirstRandom = LastRandom;
-        //      LastRandom += 2;
-        //      RandomWave = Random.Range(FirstRandom, LastRandom);
-        //      StartCoroutine(SpawnEnemyWaves(RandomWave));
-        //      Debug.Log("ToelseNist");
-        //      UpgrateWave = false;
-        //
-        //  }
-        //  else
-        //  {
-        //      RandomWave = Random.Range(FirstRandom, LastRandom);
-        //      StartCoroutine(SpawnEnemyWaves(RandomWave));
-        //      Debug.Log("Toelse");
-        //      UpgrateWave = false;
-        //     
-        //
-        //  }
-    }
-
 
     void GetRandomWaveIndex()
     {
-
         FirstRandom = WaveNumber - 1;
         LastRandom = WaveNumber + 2;
-        if (FirstRandom < 0)
-            FirstRandom = 0;
-        if (FirstRandom >= Waves.Length)
-            FirstRandom = Waves.Length - 3;
-        if (LastRandom > Waves.Length)
-            LastRandom = Waves.Length;
+        if (FirstRandom < 0) FirstRandom = 0;
+        if (FirstRandom >= Waves.Length) FirstRandom = Waves.Length - 3;
+        if (LastRandom > Waves.Length) LastRandom = Waves.Length;
         UpgrateWave = false;
-
-        i++;
         if (b != null) StopCoroutine(b);
         b = SpawnEnemyWaves(RandomWave);
         StartCoroutine(b);
         RandomWave = Random.Range(FirstRandom, LastRandom);
     }
-    #endregion
 
+    #endregion
 }

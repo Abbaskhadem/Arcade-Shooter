@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7932320246199770082}
   - component: {fileID: 1024502080714828214}
   - component: {fileID: 4542169110727172029}
-  - component: {fileID: 6263870956034149503}
+  - component: {fileID: 3691273952902462953}
   m_Layer: 0
   m_Name: Test_Enemy01
   m_TagString: Enemy
@@ -60,6 +60,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -120,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0.00000023841858, y: 0}
   serializedVersion: 2
   m_Radius: 1.125
---- !u!114 &6263870956034149503
+--- !u!114 &3691273952902462953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,26 +130,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5638854871445977829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4492ab0752316bd4daf9bc97768516f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementType: 1
-  FireRate: 1.5
-  Gun: {fileID: 3121577293678989055}
-  Bullet: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
-  HP: 200
-  RandomItemDrop: 
-  Ranged_Melee: 0
+  health: 0
+  Damage: 0
+  bullet: []
+  Body: {fileID: 0}
+  AttackSpeed: 0
+  GunPoints: []
   Speed: 0
-  Target: {fileID: 0}
-  Distance: 0
-  Leader: 1
-  routes:
-  - {fileID: 0}
-  - {fileID: 0}
-  LeaderVector2: []
-  startWeapon: {fileID: 8476721878528653271}
-  activePlayerTurrets: []
+  _Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FinalDestination: {fileID: 0}
+  Routes: []
+  Looping: 0
+  MaximumAmmo: 0
 --- !u!1 &8476721878528653271
 GameObject:
   m_ObjectHideFlags: 0
