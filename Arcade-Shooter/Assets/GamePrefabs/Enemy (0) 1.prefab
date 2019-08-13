@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8805684853517118609}
   - component: {fileID: 2185223324087821665}
   m_Layer: 0
-  m_Name: Enemy (0)
+  m_Name: Enemy (0) 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -196,8 +197,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   FinalDestination: {fileID: 0}
   Routes: []
+  MoveAllowed: 0
   Looping: 0
-  MaximumAmmo: 3
+  MaximumAmmo: 0
 --- !u!1 &8805684854555351296
 GameObject:
   m_ObjectHideFlags: 0
