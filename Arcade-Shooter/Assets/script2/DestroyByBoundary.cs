@@ -21,6 +21,7 @@ public class DestroyByBoundary : MonoBehaviour
         {
             if (gameObject.tag == "Player Bullet" || gameObject.tag=="Enemy Bullet")
             {
+                if(!gameObject.GetComponent<Bullet>().Child)
                 gameObject.SetActive(false);
             }
             else

@@ -3,6 +3,8 @@
 public class Bullet : MonoBehaviour
 {
     #region Variables
+
+     public bool Child;
     Rigidbody2D rb;
     public int Damage;
     [SerializeField] float Speed;
@@ -32,13 +34,14 @@ void OnTriggerEnter2D(Collider2D col)
           // ParticleManager._Instance.tempParticle.Stop();
         ParticleManager._Instance.tempParticle.transform.position = new Vector3(col.transform.position.x,col.transform.position.y,-0.26f);
         ParticleManager._Instance.tempParticle.Play();
-        
-            gameObject.SetActive(false);
-            col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
+        if (!Child)
+        {
+            gameObject.SetActive(false);  
+        }
+        col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
     }
     if (col.gameObject.tag == "Player" && gameObject.tag=="Enemy Bullet" )
     {
-       
         gameObject.SetActive(false);
         col.GetComponent<Main_SpaceShip>().TakeDamage(Damage);
     }

@@ -6,9 +6,11 @@ using Debug = UnityEngine.Debug;
 
 public class Enemy_SpaceShip : SpaceShip
 {
+    float min =- 0.06f;
+    float max = 0.06f;
     private float Starttime;
     public AnimationCurve _Curve;
-    private float ShakeIntensity = 4f;
+    private float ShakeIntensity = 12f;
     private Vector3 ShakePos;
     private bool firsttime=true;
     private Vector2 p0;
@@ -54,7 +56,13 @@ public class Enemy_SpaceShip : SpaceShip
             RoutesToGo = 0;
         }
       ManageEnemyMovement();
-     
+      if (ShootAllowed)
+      {
+          IdleMovement();
+          Shoot();
+      }
+
+
     }
     private IEnumerator GoByTheRoute(int RouteNumber)
     {
@@ -129,21 +137,33 @@ public class Enemy_SpaceShip : SpaceShip
 
     void IdleMovement()
     {
-        Debug.Log("WHAT?!");
-        Starttime = Time.time;
-        var xPos = (Time.time) * ShakeIntensity+10;
-        var Ypos = (Time.time) * ShakeIntensity + 100;
-        ShakePos = new Vector3((Mathf.PerlinNoise(xPos, 1) - 0.5f) * ShakeIntensity,
-                       (Mathf.PerlinNoise(Ypos, 1) - 0.5f) * ShakeIntensity, 0)*_Curve.Evaluate(Time.time-Starttime);
-        transform.position = transform.position + ShakePos;
+
+        transform.position+=new Vector3(Mathf.Lerp(min,max,Starttime),Mathf.Lerp(min,max,Starttime),0);
+        Starttime += 0.8f * Time.deltaTime;
+        if (Starttime > 1)
+        {
+            float temp = max;
+            max = min;
+            min = temp;
+            Starttime = 0;
+        }
+        
+//        Starttime = Time.time;
+//        var xPos = (Time.time) * ShakeIntensity+10;
+//        var Ypos = (Time.time) * ShakeIntensity + 100;
+//        ShakePos = new Vector3((Mathf.PerlinNoise(xPos, 1) - 0.5f) * ShakeIntensity,
+//                       (Mathf.PerlinNoise(1, Ypos) - 0.5f) * ShakeIntensity, 0)*_Curve.Evaluate(Time.time-Starttime);
+//        transform.position = transform.position + ShakePos;
     }
     void Death()
     {
-        if (health<=0)
+
+        for (int j = 0; j < BulletList.Count; j++)
         {
-            BulletList.Clear();
-            Destroy(gameObject);
+            Destroy(BulletList[j]);
         }
+            Destroy(gameObject);
+        
     }
 
     void Shoot()

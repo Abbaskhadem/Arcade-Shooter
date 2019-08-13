@@ -4,6 +4,8 @@ using UnityEngine;
 public class Game_Director : MonoBehaviour
 {
     #region Temp Variables
+
+    private int _index;
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
@@ -47,12 +49,11 @@ public class Game_Director : MonoBehaviour
             {
                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                 temp.SetActive(false);
-                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[a].FinalPositions.GetChild(k);
-                    temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length];
-                for (int i = 0; i < Waves[a].Routes.Length; i++)
-                {
-                    temp.GetComponent<Enemy_SpaceShip>().Routes[i] = Waves[a].Routes[i];
-                }
+                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[a].FinalPositions.GetChild(_index++);
+                temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length]; 
+                temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
+                temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[a].Routes[j];
+                
                 Waves[a].EnemyList.Add(temp);
             }
         }
@@ -73,6 +74,7 @@ public class Game_Director : MonoBehaviour
         {
             if (WaveNumber<Waves.Length && firsttime)
             {
+                _index = 0;
                 firsttime = false;
                 WaveNumber++;
                 SpawnAllowed = true;
