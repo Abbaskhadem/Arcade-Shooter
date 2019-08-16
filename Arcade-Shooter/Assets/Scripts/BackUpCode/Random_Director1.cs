@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Random_Director : MonoBehaviour
+public class Random_Director1 : MonoBehaviour
 {
     #region Temp Variables
 
@@ -43,12 +43,15 @@ public class Random_Director : MonoBehaviour
        // RandomRout = 0;
         UpgrateWave = true;
     }
+
     void Update()
     {
         CheckAlive();
         if (UpgrateWave) GetRandomWaveIndex();
     }
+
     #endregion
+
     #region Activating Functions
 
     IEnumerator SpawnEnemyWaves(int a)
@@ -67,6 +70,8 @@ public class Random_Director : MonoBehaviour
                         temp.SetActive(false);
                         Waves[a].EnemyList.Add(temp);
                         temp.GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
+                       //temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
+                       //temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
                         temp.GetComponent<Enemy_SpaceShip>().FinalDestination =
                             Waves[a].FinalPositions[RandomFinalPositions].GetChild(temp1++);
                     }
@@ -112,6 +117,7 @@ public class Random_Director : MonoBehaviour
             {
                 WaveNumber = Waves.Length - 4;
             }
+
             return false;
         }
         else
@@ -120,6 +126,7 @@ public class Random_Director : MonoBehaviour
             return true;
         }
     }
+
     void GetRandomWaveIndex()
     {
         FirstRandom = WaveNumber - 1;
@@ -133,5 +140,6 @@ public class Random_Director : MonoBehaviour
         StartCoroutine(b);
         RandomWave = Random.Range(FirstRandom, LastRandom);
     }
+
     #endregion
 }
