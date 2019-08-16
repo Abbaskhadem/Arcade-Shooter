@@ -19,7 +19,8 @@ public class Game_Director : MonoBehaviour
     private float WaveTimer;
     private int _index;
     private bool SpawnAllowed = true;
-    private int WaveNumber;
+    public int WaveNumber;
+    private float AttackTimer=1.5f;
     bool firsttime = false;
     public _Wave[] Waves;
     #endregion
@@ -30,7 +31,7 @@ public class Game_Director : MonoBehaviour
         public GameObject[] EnemyTypes;
         public int[] Quantity;
         public float ActiveDly;
-       [HideInInspector]public List<GameObject> EnemyList;
+        public List<GameObject> EnemyList;
         private int frame;
         public Transform[] Routes;
         public Transform FinalPositions;
@@ -63,8 +64,23 @@ public class Game_Director : MonoBehaviour
                     }
                 }
             }
-       
 
+            if (!SpawnAllowed)
+            {
+                AttackTimer -= Time.deltaTime;
+                if (AttackTimer <= 0)
+                {
+                    AttackTimer = 1.5f;
+                    int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
+                   Debug.Log(temp);
+                   if (Waves[WaveNumber].EnemyList[temp] != null)
+                   {
+                       if(Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().ShootAllowed) 
+                           Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
+                   }
+                }
+
+            }
         }
         else
         {

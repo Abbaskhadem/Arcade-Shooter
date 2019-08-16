@@ -33,7 +33,7 @@ public class Enemy_SpaceShip : SpaceShip
    [HideInInspector] public bool MoveAllowed;
     [HideInInspector]public bool coroutineAllowed;
     private bool check;
-    private bool ShootAllowed = false;
+    [HideInInspector]public bool ShootAllowed = false;
     private bool ShootBool;
     [SerializeField]private bool Looping;
     [SerializeField]int MaximumAmmo;
@@ -56,7 +56,7 @@ public class Enemy_SpaceShip : SpaceShip
       if (ShootAllowed)
       {
           IdleMovement();
-          Shoot();
+     //     Shoot();
       }
     }
     private IEnumerator GoByTheRoute(int RouteNumber)
@@ -145,7 +145,7 @@ public class Enemy_SpaceShip : SpaceShip
     }
     void Death()
     {
-
+       FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList.Remove(this.gameObject);
         for (int j = 0; j < BulletList.Count; j++)
         {
             Destroy(BulletList[j]);
@@ -155,19 +155,19 @@ public class Enemy_SpaceShip : SpaceShip
         Destroy(gameObject);
     }
 
-    void Shoot()
+    public void Shoot()
     {
-        AttackSpeed = Random.Range(10, 15);
+       // AttackSpeed = Random.Range(10, 15);
         for (int i = 0; i < BulletList.Count; i++)
         {
             if (BulletList[i] != null)
             {
                 if (!BulletList[i].activeInHierarchy)
                 {
-                    Timer += Time.deltaTime;
-                    if (Timer>=AttackSpeed)
-                    {
-                        Timer = 0;
+           //         Timer += Time.deltaTime;
+              //      if (Timer>=AttackSpeed)
+                   // {
+                  //      Timer = 0;
                         for (int j = 0; j <GunPoints.Length; j++)
                         {
                             BulletList[i].transform.position = GunPoints[0].transform.position;
@@ -175,7 +175,7 @@ public class Enemy_SpaceShip : SpaceShip
                             BulletList[i].GetComponent<TrailRenderer>().Clear();
                             BulletList[i].SetActive(true);
                         }
-                    }
+                  //  }
                 }
             }
         }
