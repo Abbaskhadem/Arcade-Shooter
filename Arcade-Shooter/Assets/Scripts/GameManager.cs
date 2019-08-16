@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
+    public static GameManager _Instance;
+    public bool GameEnded = false;
     [SerializeField]
     GameObject Temp;
     public static float Width;
@@ -15,6 +18,10 @@ public class GameManager : MonoBehaviour
     public static bool GameLost = false;
     int a, b;
 
+    private void Awake()
+    {
+        _Instance = this;
+    }
     public static List<GameObject> ObjectPooler(GameObject Obj, int MaxObj)
     {
         List<GameObject> ListOBJ = new List<GameObject>();
@@ -66,8 +73,20 @@ public class GameManager : MonoBehaviour
         }
 
         return Positions;
+    }
 
+    public void LoadScence(int Level)
+    {
+        SceneManager.LoadScene(Level);
+    }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
     
 }

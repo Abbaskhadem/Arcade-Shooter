@@ -1,10 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
 public class Game_Director : MonoBehaviour
 {
-    #region Temp Variables
+    #region UI Elements
 
+    [SerializeField] private GameObject WaveText;
+    [SerializeField] private GameObject EndGameUI;
+    
+
+    #endregion
+    #region Temp Variables
+    private bool StartTimer=true;
+    private float WaveTimer;
     private int _index;
     private bool SpawnAllowed = true;
     private int WaveNumber;
@@ -25,16 +37,40 @@ public class Game_Director : MonoBehaviour
     }
     #endregion
     #region Check When To Active
+
+    void Start()
+    {
+        int temp = WaveNumber + 1;
+        WaveText.GetComponent<Text>().text = "Wave" + " " + temp;
+        WaveText.SetActive(true);
+    }
     void Update()
     {
-        if (WaveNumber<Waves.Length-1)
+        if (WaveNumber<Waves.Length)
         {
             int a = Random.Range(5, 2);
             CheckAlive();
-            if (SpawnAllowed)
+            if (StartTimer)
             {
-                StartCoroutine(SpawnEnemyWaves(WaveNumber));
+                WaveTimer += Time.deltaTime;
+                if (WaveTimer>=2f)
+                {
+                    if (SpawnAllowed)
+                    {
+                        WaveTimer = 0;
+                        StartTimer = false;
+                        StartCoroutine(SpawnEnemyWaves(WaveNumber));
+                    }
+                }
             }
+       
+
+        }
+        else
+        {
+            GameManager._Instance.GameEnded = true;
+            EndGameUI.SetActive(true);
+            Debug.Log("Game Ended!");
         }
     }
     #endregion
@@ -50,10 +86,8 @@ public class Game_Director : MonoBehaviour
                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                 temp.SetActive(false);
                 temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[a].FinalPositions.GetChild(_index++);
-                temp.GetComponent<Enemy_SpaceShip>().Routes=new Transform[Waves[a].Routes.Length]; 
                 temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
                 temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[a].Routes[j];
-                
                 Waves[a].EnemyList.Add(temp);
             }
         }
@@ -74,9 +108,17 @@ public class Game_Director : MonoBehaviour
         {
             if (WaveNumber<Waves.Length && firsttime)
             {
+   
                 _index = 0;
                 firsttime = false;
                 WaveNumber++;
+                if (WaveNumber < Waves.Length)
+                {
+                    int temp = WaveNumber+1;
+                    WaveText.GetComponent<Text>().text = "Wave" + " "+ temp;
+                    WaveText.SetActive(true); 
+                }
+                StartTimer = true;
                 SpawnAllowed = true;
             }
             return false;   

@@ -1,11 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Main_SpaceShip : SpaceShip
 {
+    #region UIElements
+
+    [SerializeField] private Slider PowerBar;
+
+
+    #endregion
     #region Exclusive Variables
 
+    float min =- 0.0022f;
+    float max = 0.0022f;
+    private float Starttime;
+    private float SuperPowerTimer;
     private List<GameObject> BulletList;
     private bool moveAllowed;
     private float deltaX;
@@ -32,20 +43,54 @@ public class Main_SpaceShip : SpaceShip
 
     void Update()
     {
-        Movement();
-        Shoot();
+        if (!GameManager._Instance.GameEnded)
+        {
+            if (health<=100)
+            {
+                float temp;
+                temp = Mathf.Round(health * 100f) / 100f;
+                PowerBar.GetComponentInChildren<Text>().text=temp+"%";
+                PowerBar.value = health;   
+            }
+            else
+            {
+                PowerBar.GetComponentInChildren<Text>().text=100+"%";
+            }
+            if (health>=100)
+            {
+                Debug.Log("TIMER STARTED!");
+                SuperPowerTimer += Time.deltaTime;
+                if (SuperPowerTimer >= Random.Range(3f, 5f))
+                {
+                    SuperPowerTimer = 0;
+                    health = 50;
+                    Debug.Log("ACTIVE SUPERPOWER!");
+                }
+            }
+            Movement();
+            Shoot();
+        }
+        if (!moveAllowed)
+        {
+            IdleMovement();  
+        }
     }
-
-//    void LateUpdate()
-//         {
-//             Vector3 viewPos = transform.position;
-//             viewPos.x = Mathf.Clamp(viewPos.x, ScreenBounds.x, ScreenBounds.x * -1);
-//             viewPos.y = Mathf.Clamp(viewPos.y, ScreenBounds.y, ScreenBounds.y * -1);
-//             transform.position = viewPos;
-//         }
-
     #endregion
     #region Player Ability
+
+    void IdleMovement()
+    {
+        transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), 0, 0);
+        Starttime += 1.2f * Time.deltaTime;
+        if (Starttime > 1)
+        {
+            float temp = max;
+            max = min;
+            min = temp;
+            Starttime = 0;
+        }
+    }
+
     void Movement()
     {
         if (Input.touchCount > 0)
@@ -103,14 +148,13 @@ public class Main_SpaceShip : SpaceShip
         }
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage()
     {
-        health -= Damage;
-        if (health <= 0)
+        health -= 50;
+        if (health < 0)
         {
             GameManager.GameLost = true;
             gameObject.SetActive(false);
-            Debug.Log("You Lost!");
         }
     }
     #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int Damage;
     public GameObject[] bullet;
     public Rigidbody2D Body;

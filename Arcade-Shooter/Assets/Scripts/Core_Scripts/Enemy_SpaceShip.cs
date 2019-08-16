@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 public class Enemy_SpaceShip : SpaceShip
 {
@@ -29,7 +31,7 @@ public class Enemy_SpaceShip : SpaceShip
     private float tparam;
     private float SpeedModifier;
    [HideInInspector] public bool MoveAllowed;
-    private bool coroutineAllowed;
+    [HideInInspector]public bool coroutineAllowed;
     private bool check;
     private bool ShootAllowed = false;
     private bool ShootBool;
@@ -48,21 +50,14 @@ public class Enemy_SpaceShip : SpaceShip
         MoveAllowed = true;
         check = false;
     }
-
     void Update()
     {
-        if (!gameObject.activeSelf)
-        {
-            RoutesToGo = 0;
-        }
-      ManageEnemyMovement();
+        ManageEnemyMovement();
       if (ShootAllowed)
       {
           IdleMovement();
           Shoot();
       }
-
-
     }
     private IEnumerator GoByTheRoute(int RouteNumber)
     {
@@ -147,13 +142,6 @@ public class Enemy_SpaceShip : SpaceShip
             min = temp;
             Starttime = 0;
         }
-        
-//        Starttime = Time.time;
-//        var xPos = (Time.time) * ShakeIntensity+10;
-//        var Ypos = (Time.time) * ShakeIntensity + 100;
-//        ShakePos = new Vector3((Mathf.PerlinNoise(xPos, 1) - 0.5f) * ShakeIntensity,
-//                       (Mathf.PerlinNoise(1, Ypos) - 0.5f) * ShakeIntensity, 0)*_Curve.Evaluate(Time.time-Starttime);
-//        transform.position = transform.position + ShakePos;
     }
     void Death()
     {
@@ -162,8 +150,9 @@ public class Enemy_SpaceShip : SpaceShip
         {
             Destroy(BulletList[j]);
         }
-            Destroy(gameObject);
-        
+        ParticleManager._Instance.tempParticle2.transform.position = transform.position;
+        ParticleManager._Instance.tempParticle2.Play(); 
+        Destroy(gameObject);
     }
 
     void Shoot()
