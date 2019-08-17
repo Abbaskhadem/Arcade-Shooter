@@ -70,13 +70,12 @@ public class Game_Director : MonoBehaviour
                 AttackTimer -= Time.deltaTime;
                 if (AttackTimer <= 0)
                 {
-                    AttackTimer = 1.5f;
+                    AttackTimer = Random.Range(1.5f, 2f);
                     int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
                    Debug.Log(temp);
                    if (Waves[WaveNumber].EnemyList[temp] != null)
                    {
-                       if(Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().ShootAllowed) 
-                           Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
+                       Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
                    }
                 }
 

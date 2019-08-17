@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Child: 1
-  Damage: 50
+  Damage: 20
   Speed: 15
   BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
     type: 3}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Child: 0
-  Damage: 50
+  Damage: 20
   Speed: 15
   BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
     type: 3}
