@@ -160,7 +160,10 @@ public class Enemy_SpaceShip : SpaceShip
         }
         ParticleManager._Instance.tempParticle2.transform.position = transform.position;
         ParticleManager._Instance.tempParticle2.Play(); 
+        
         gameObject.SetActive(false);
+        tparam = 0;
+        GetComponent<Animator>().ResetTrigger("GotHit");
         //Destroy(gameObject);
     }
 

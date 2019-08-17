@@ -36,19 +36,23 @@ public class Random_Director : MonoBehaviour
     }
 
     #endregion
+
     #region Check When To Active
 
     void Start()
     {
-       // RandomRout = 0;
+        // RandomRout = 0;
         UpgrateWave = true;
     }
+
     void Update()
     {
         CheckAlive();
         if (UpgrateWave) GetRandomWaveIndex();
     }
+
     #endregion
+
     #region Activating Functions
 
     IEnumerator SpawnEnemyWaves(int a)
@@ -59,7 +63,6 @@ public class Random_Director : MonoBehaviour
             {
                 for (int j = 0; j < Waves[a].EnemyTypes.Length; ++j)
                 {
-                   
                     for (int k = 0; k < Waves[a].Quantity[j]; k++)
                     {
                         RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
@@ -73,26 +76,28 @@ public class Random_Director : MonoBehaviour
                 }
             }
         }
+
         SpawnAllowed = false;
+        
         RandomRout = Random.Range(0, Rout.Length);
-      
         for (i = 0; i < Waves[a].EnemyList.Count; i++)
         {
             var Local = Waves[a].EnemyList[i];
             var localSecend = Local.GetComponent<Enemy_SpaceShip>();
             localSecend.coroutineAllowed = true;
             localSecend.MoveAllowed = true;
-           // localSecend.tparam = 0;
+            //localSecend.tparam = 0;
+            Local.GetComponent<Animator>().ResetTrigger("GotHit");
             Local.transform.position = transform.position;
             Local.transform.rotation = transform.rotation;
-           localSecend.MoveAllowed = true;
+            localSecend.MoveAllowed = true;
             localSecend.Routes = new Transform[1];
             localSecend.Routes[0] = Rout[RandomRout];
             Waves[a].EnemyList[i].SetActive(true);
             yield return new WaitForSeconds(Waves[a].ActiveDly);
         }
+
         yield return null;
-       
     }
 
     bool CheckAlive()
@@ -112,6 +117,7 @@ public class Random_Director : MonoBehaviour
             {
                 WaveNumber = Waves.Length - 4;
             }
+
             return false;
         }
         else
@@ -120,6 +126,7 @@ public class Random_Director : MonoBehaviour
             return true;
         }
     }
+
     void GetRandomWaveIndex()
     {
         FirstRandom = WaveNumber - 1;
@@ -133,5 +140,6 @@ public class Random_Director : MonoBehaviour
         StartCoroutine(b);
         RandomWave = Random.Range(FirstRandom, LastRandom);
     }
+
     #endregion
 }
