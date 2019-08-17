@@ -9,11 +9,12 @@ public class Main_SpaceShip : SpaceShip
 
     [SerializeField] private Slider PowerBar;
 
-
     #endregion
+
     #region Exclusive Variables
 
-    float min =- 0.0022f;
+    public float scatterShotTurretReloadTime = 2.0f;
+    float min = -0.0022f;
     float max = 0.0022f;
     private float Starttime;
     private float SuperPowerTimer;
@@ -21,10 +22,19 @@ public class Main_SpaceShip : SpaceShip
     private bool moveAllowed;
     private float deltaX;
     private float deltaY;
-    private float Timer;
+    public float Timer;
+    public float Timer1;
     [SerializeField] private int MaximumBullets;
     private int MaxBullets;
     private Vector2 ScreenBounds;
+
+    public int upgradeState = 0;
+    public GameObject startWeapon;
+    public List<GameObject> tripleShotTurrets; //
+    public List<GameObject> scatterShotTurrets;
+    public List<GameObject> wideShotTurrets;
+    public List<GameObject> activePlayerTurrets;
+    
 
     #endregion
 
@@ -32,6 +42,9 @@ public class Main_SpaceShip : SpaceShip
 
     void Start()
     {
+        upgradeState = 0;
+        activePlayerTurrets = new List<GameObject>();
+        activePlayerTurrets.Add(startWeapon);
         bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
         BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         Body = this.GetComponent<Rigidbody2D>();
@@ -45,18 +58,19 @@ public class Main_SpaceShip : SpaceShip
     {
         if (!GameManager._Instance.GameEnded)
         {
-            if (health<=100)
+            if (health <= 100)
             {
                 float temp;
                 temp = Mathf.Round(health * 100f) / 100f;
-                PowerBar.GetComponentInChildren<Text>().text=temp+"%";
-                PowerBar.value = health;   
+                PowerBar.GetComponentInChildren<Text>().text = temp + "%";
+                PowerBar.value = health;
             }
             else
             {
-                PowerBar.GetComponentInChildren<Text>().text=100+"%";
+                PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
             }
-            if (health>=100)
+
+            if (health >= 100)
             {
                 Debug.Log("TIMER STARTED!");
                 SuperPowerTimer += Time.deltaTime;
@@ -67,15 +81,32 @@ public class Main_SpaceShip : SpaceShip
                     Debug.Log("ACTIVE SUPERPOWER!");
                 }
             }
+
             Movement();
-            Shoot();
+            Timer += Time.deltaTime;
+            if (Timer >= AttackSpeed)
+            {
+                Timer = 0;
+                Shoot();
+            }
+
+            Timer1 += Time.deltaTime;
+
+            if (Timer1 >= 5)
+            {
+                Timer1 = -100000;
+                UpgradeWeapons();
+            }
         }
+
         if (!moveAllowed)
         {
-            IdleMovement();  
+            IdleMovement();
         }
     }
+
     #endregion
+
     #region Player Ability
 
     void IdleMovement()
@@ -99,6 +130,7 @@ public class Main_SpaceShip : SpaceShip
             {
                 moveAllowed = false;
             }
+
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             switch (touch.phase)
@@ -106,7 +138,7 @@ public class Main_SpaceShip : SpaceShip
                 case TouchPhase.Began:
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
-                   Body.freezeRotation = true;
+                    Body.freezeRotation = true;
                     Body.velocity = new Vector2(0, 0);
                     Body.gravityScale = 0;
                     moveAllowed = true;
@@ -123,28 +155,101 @@ public class Main_SpaceShip : SpaceShip
             }
         }
     }
+
     void Shoot()
     {
-        for (int i = 0; i < BulletList.Count; i++)
+        foreach (GameObject turret in activePlayerTurrets)
         {
-            if (BulletList[i] != null)
+            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Player Bullet");
+
+            if (bullet != null)
             {
-                if (!BulletList[i].activeInHierarchy)
+                bullet.transform.position = turret.transform.position;
+                bullet.transform.rotation = turret.transform.rotation;
+                bullet.GetComponent<TrailRenderer>().Clear();
+                bullet.SetActive(true);
+            }
+        }
+
+        // BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
+        // for (int i = 0; i < BulletList.Count; i++)
+        // {
+        //     //BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
+        //     if (BulletList[i] != null)
+        //     {
+        //         if (!BulletList[i].activeInHierarchy)
+        //         {
+        //             Timer += Time.deltaTime;
+        //             if (Timer >= AttackSpeed)
+        //             {
+        //                 Timer = 0;
+        //                 //for (int j = 0; j < GunPoints.Length; j++)
+        //                // 
+        //                 foreach (GameObject turret in activePlayerTurrets)
+        //                 {
+        //                     BulletList[i].transform.position = turret.transform.position;
+        //                     BulletList[i].transform.rotation = turret.transform.rotation;
+        //                     BulletList[i].SetActive(true);
+        //                    // BulletList[i + 1].transform.position = tripleShotTurrets[1].transform.position;
+        //                    // BulletList[i + 1].transform.rotation = tripleShotTurrets[1].transform.rotation;
+        //                    // BulletList[i+1].SetActive(true);
+        //                 }
+        //               
+        //             }
+        //         }
+        //     }
+        // }
+    }
+
+    public void UpgradeWeapons()
+    {
+        if (upgradeState == 0)
+        {
+            foreach (GameObject turret in tripleShotTurrets)
+            {
+                activePlayerTurrets.Add(turret);
+            }
+        }
+        else if (upgradeState == 1)
+        {
+            foreach (GameObject turret in wideShotTurrets)
+            {
+                activePlayerTurrets.Add(turret);
+            }
+        }
+        else if (upgradeState == 2)
+        {
+            StartCoroutine("ActivateScatterShotTurret");
+        }
+        else
+        {
+            return;
+        }
+
+        upgradeState++;
+    }
+
+    IEnumerator ActivateScatterShotTurret()
+    {
+        // The ScatterShot turret is shot independantly of the spacebar
+        // This Coroutine shoots the scatteshot at a reload interval
+
+        while (true)
+        {
+            foreach (GameObject turret in scatterShotTurrets)
+            {
+                for (int i = 0; i < BulletList.Count; i++)
                 {
-                    Timer += Time.deltaTime;
-                    if (Timer>=AttackSpeed)
+                    if (BulletList[i] != null)
                     {
-                        Timer = 0;
-                        for (int j = 0; j <GunPoints.Length; j++)
-                        {
-                            BulletList[i].transform.position = GunPoints[j].transform.position;
-                            BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
-                            BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
-                            BulletList[i].SetActive(true);
-                        }
+                        BulletList[i].transform.position = turret.transform.position;
+                        BulletList[i].transform.rotation = turret.transform.rotation;
+                        BulletList[i].SetActive(true);
                     }
                 }
             }
+
+            yield return new WaitForSeconds(scatterShotTurretReloadTime);
         }
     }
 
@@ -157,5 +262,6 @@ public class Main_SpaceShip : SpaceShip
             gameObject.SetActive(false);
         }
     }
+
     #endregion
 }
