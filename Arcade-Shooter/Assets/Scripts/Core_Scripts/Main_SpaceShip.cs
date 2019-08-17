@@ -1,19 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Quaternion = System.Numerics.Quaternion;
+using Random = UnityEngine.Random;
 
 public class Main_SpaceShip : SpaceShip
 {
     #region UIElements
 
+    [SerializeField] private GameObject LoseUI;
     [SerializeField] private Slider PowerBar;
 
     #endregion
 
     #region Exclusive Variables
 
-    public float scatterShotTurretReloadTime = 2.0f;
+    [SerializeField]private GameObject PowerText;
+    [SerializeField] private ParticleSystem DeathEffect;
     float min = -0.0022f;
     float max = 0.0022f;
     private float Starttime;
@@ -23,30 +28,22 @@ public class Main_SpaceShip : SpaceShip
     private float deltaX;
     private float deltaY;
     public float Timer;
-    public float Timer1;
     [SerializeField] private int MaximumBullets;
     private int MaxBullets;
     private Vector2 ScreenBounds;
-
-    public int upgradeState = 0;
     public GameObject startWeapon;
-    public List<GameObject> tripleShotTurrets; //
-    public List<GameObject> scatterShotTurrets;
-    public List<GameObject> wideShotTurrets;
+    private int index;
+   [SerializeField] List<GameObject> UpgradableTurrets;
     public List<GameObject> activePlayerTurrets;
-    
-
     #endregion
 
     #region List Preparing
 
     void Start()
     {
-        upgradeState = 0;
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
         bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
-        BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         Body = this.GetComponent<Rigidbody2D>();
     }
 
@@ -56,6 +53,14 @@ public class Main_SpaceShip : SpaceShip
 
     void Update()
     {
+        if (health<0)
+        {
+            LoseUI.SetActive(true);
+            PowerBar.GetComponentInChildren<Text>().text = "FAILED!";
+            GameManager._Instance.GameEnded = true;
+            Instantiate(DeathEffect,gameObject.transform.position,UnityEngine.Quaternion.identity);
+            gameObject.SetActive(false);
+        }
         if (!GameManager._Instance.GameEnded)
         {
             if (health <= 100)
@@ -65,7 +70,7 @@ public class Main_SpaceShip : SpaceShip
                 PowerBar.GetComponentInChildren<Text>().text = temp + "%";
                 PowerBar.value = health;
             }
-            else
+            else if(health>=100)
             {
                 PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
             }
@@ -81,7 +86,6 @@ public class Main_SpaceShip : SpaceShip
                     Debug.Log("ACTIVE SUPERPOWER!");
                 }
             }
-
             Movement();
             Timer += Time.deltaTime;
             if (Timer >= AttackSpeed)
@@ -89,16 +93,7 @@ public class Main_SpaceShip : SpaceShip
                 Timer = 0;
                 Shoot();
             }
-
-            Timer1 += Time.deltaTime;
-
-            if (Timer1 >= 5)
-            {
-                Timer1 = -100000;
-                UpgradeWeapons();
-            }
         }
-
         if (!moveAllowed)
         {
             IdleMovement();
@@ -161,7 +156,6 @@ public class Main_SpaceShip : SpaceShip
         foreach (GameObject turret in activePlayerTurrets)
         {
             GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Player Bullet");
-
             if (bullet != null)
             {
                 bullet.transform.position = turret.transform.position;
@@ -171,7 +165,31 @@ public class Main_SpaceShip : SpaceShip
             }
         }
 
-        // BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
+    }
+    public void UpgradeWeapons()
+    {
+        if (index < UpgradableTurrets.Count)
+        {
+            activePlayerTurrets.Add(UpgradableTurrets[index++]);
+            foreach (var a in ObjectPooler.SharedInstance.pooledObjects)
+            {
+                a.GetComponent<Bullet>().Damage -= 10;
+            }
+        }
+        else
+        {
+            AttackSpeed -= 0.02f;
+        }
+    }
+    public void TakeDamage()
+    {
+        Debug.Log(health);
+        health -= 50;
+
+    }
+    #endregion
+    #region HistoryCodes
+    // BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
         // for (int i = 0; i < BulletList.Count; i++)
         // {
         //     //BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
@@ -199,69 +217,28 @@ public class Main_SpaceShip : SpaceShip
         //         }
         //     }
         // }
-    }
-
-    public void UpgradeWeapons()
-    {
-        if (upgradeState == 0)
-        {
-            foreach (GameObject turret in tripleShotTurrets)
-            {
-                activePlayerTurrets.Add(turret);
-            }
-        }
-        else if (upgradeState == 1)
-        {
-            foreach (GameObject turret in wideShotTurrets)
-            {
-                activePlayerTurrets.Add(turret);
-            }
-        }
-        else if (upgradeState == 2)
-        {
-            StartCoroutine("ActivateScatterShotTurret");
-        }
-        else
-        {
-            return;
-        }
-
-        upgradeState++;
-    }
-
-    IEnumerator ActivateScatterShotTurret()
-    {
-        // The ScatterShot turret is shot independantly of the spacebar
-        // This Coroutine shoots the scatteshot at a reload interval
-
-        while (true)
-        {
-            foreach (GameObject turret in scatterShotTurrets)
-            {
-                for (int i = 0; i < BulletList.Count; i++)
-                {
-                    if (BulletList[i] != null)
-                    {
-                        BulletList[i].transform.position = turret.transform.position;
-                        BulletList[i].transform.rotation = turret.transform.rotation;
-                        BulletList[i].SetActive(true);
-                    }
-                }
-            }
-
-            yield return new WaitForSeconds(scatterShotTurretReloadTime);
-        }
-    }
-
-    public void TakeDamage()
-    {
-        health -= 50;
-        if (health < 0)
-        {
-            GameManager.GameLost = true;
-            gameObject.SetActive(false);
-        }
-    }
-
-    #endregion
+        
+//    IEnumerator ActivateScatterShotTurret()
+//    {
+//        // The ScatterShot turret is shot independantly of the spacebar
+//        // This Coroutine shoots the scatteshot at a reload interval
+//
+//        while (true)
+//        {
+//            foreach (GameObject turret in scatterShotTurrets)
+//            {
+//                for (int i = 0; i < BulletList.Count; i++)
+//                {
+//                    if (BulletList[i] != null)
+//                    {
+//                        BulletList[i].transform.position = turret.transform.position;
+//                        BulletList[i].transform.rotation = turret.transform.rotation;
+//                        BulletList[i].SetActive(true);
+//                    }
+//                }
+//            }
+//            yield return new WaitForSeconds(scatterShotTurretReloadTime);
+//        }
+//    }
+        #endregion
 }

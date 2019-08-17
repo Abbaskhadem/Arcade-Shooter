@@ -73,7 +73,7 @@ public class MainJet : MonoBehaviour
         HP -= Damage;
         if (HP <= 0)
         {
-            GameManager.LoseGame();
+         //   GameManager.LoseGame();
         }
     }
     

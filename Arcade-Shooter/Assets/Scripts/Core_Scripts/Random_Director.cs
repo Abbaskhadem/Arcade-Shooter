@@ -11,12 +11,14 @@ public class Random_Director : MonoBehaviour
     int LastRandom = 0;
     int FirstRandom = 0;
     int RandomWave = 0;
+    int i = 0;
     private bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
     public Transform[] Rout;
     public _Wave[] Waves;
     private int RandomRout;
+    private int RandomFinalPositions;
     IEnumerator b;
 
     #endregion
@@ -41,15 +43,12 @@ public class Random_Director : MonoBehaviour
        // RandomRout = 0;
         UpgrateWave = true;
     }
-
     void Update()
     {
         CheckAlive();
         if (UpgrateWave) GetRandomWaveIndex();
     }
-
     #endregion
-
     #region Activating Functions
 
     IEnumerator SpawnEnemyWaves(int a)
@@ -63,14 +62,11 @@ public class Random_Director : MonoBehaviour
                    
                     for (int k = 0; k < Waves[a].Quantity[j]; k++)
                     {
-                        
-                        int RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
+                        RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
                         GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
                         temp.SetActive(false);
                         Waves[a].EnemyList.Add(temp);
                         temp.GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
-                       //temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
-                       //temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
                         temp.GetComponent<Enemy_SpaceShip>().FinalDestination =
                             Waves[a].FinalPositions[RandomFinalPositions].GetChild(temp1++);
                     }
@@ -79,21 +75,24 @@ public class Random_Director : MonoBehaviour
         }
         SpawnAllowed = false;
         RandomRout = Random.Range(0, Rout.Length);
-        for (int i = 0; i < Waves[a].EnemyList.Count; i++)
+      
+        for (i = 0; i < Waves[a].EnemyList.Count; i++)
         {
-            //Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
-            Waves[a].EnemyList[i].transform.position = transform.position;
-            Waves[a].EnemyList[i].transform.rotation = transform.rotation;
-            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
-            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
-            Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().Routes[0] = Rout[RandomRout];
-            Debug.Log(Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed+""+RandomRout);
+            var Local = Waves[a].EnemyList[i];
+            var localSecend = Local.GetComponent<Enemy_SpaceShip>();
+            localSecend.coroutineAllowed = true;
+            localSecend.MoveAllowed = true;
+           // localSecend.tparam = 0;
+            Local.transform.position = transform.position;
+            Local.transform.rotation = transform.rotation;
+           localSecend.MoveAllowed = true;
+            localSecend.Routes = new Transform[1];
+            localSecend.Routes[0] = Rout[RandomRout];
             Waves[a].EnemyList[i].SetActive(true);
-            //Waves[a].EnemyList[i].GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
             yield return new WaitForSeconds(Waves[a].ActiveDly);
         }
-
         yield return null;
+       
     }
 
     bool CheckAlive()
@@ -113,7 +112,6 @@ public class Random_Director : MonoBehaviour
             {
                 WaveNumber = Waves.Length - 4;
             }
-
             return false;
         }
         else
@@ -122,7 +120,6 @@ public class Random_Director : MonoBehaviour
             return true;
         }
     }
-
     void GetRandomWaveIndex()
     {
         FirstRandom = WaveNumber - 1;
@@ -136,6 +133,5 @@ public class Random_Director : MonoBehaviour
         StartCoroutine(b);
         RandomWave = Random.Range(FirstRandom, LastRandom);
     }
-
     #endregion
 }

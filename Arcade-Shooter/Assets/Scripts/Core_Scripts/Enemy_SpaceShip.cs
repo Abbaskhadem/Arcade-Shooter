@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Enemy_SpaceShip : SpaceShip
 {
+
     float min =- 0.06f;
     float max = 0.06f;
     private float Starttime;
@@ -37,6 +38,7 @@ public class Enemy_SpaceShip : SpaceShip
     private bool ShootBool;
     [SerializeField]private bool Looping;
     [SerializeField]int MaximumAmmo;
+    [SerializeField] private GameObject[] RandomItems;
     void Start()
     {
         RoutesToGo = 0;
@@ -146,13 +148,20 @@ public class Enemy_SpaceShip : SpaceShip
     void Death()
     {
        FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList.Remove(this.gameObject);
-        for (int j = 0; j < BulletList.Count; j++)
+//        for (int j = 0; j < BulletList.Count; j++)
+//        {
+//            Destroy(BulletList[j]);
+//        }
+        int i = Random.Range(0, 100);
+        if (i>90)
         {
-            Destroy(BulletList[j]);
+            Instantiate(RandomItems[Random.Range(0, RandomItems.Length)],transform.position,
+                Quaternion.identity);
         }
         ParticleManager._Instance.tempParticle2.transform.position = transform.position;
         ParticleManager._Instance.tempParticle2.Play(); 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     public void Shoot()
@@ -164,20 +173,23 @@ public class Enemy_SpaceShip : SpaceShip
             {
                 if (!BulletList[i].activeInHierarchy)
                 {
-           //         Timer += Time.deltaTime;
-              //      if (Timer>=AttackSpeed)
-                   // {
-                  //      Timer = 0;
-                        for (int j = 0; j <GunPoints.Length; j++)
+                    for (int j = 0; j <GunPoints.Length; j++)
                         {
                             BulletList[i].transform.position = GunPoints[0].transform.position;
                             BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
                             BulletList[i].GetComponent<TrailRenderer>().Clear();
                             BulletList[i].SetActive(true);
                         }
-                  //  }
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.GetComponent<Main_SpaceShip>().health -= 101;
         }
     }
 

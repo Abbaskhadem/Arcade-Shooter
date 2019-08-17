@@ -64,7 +64,6 @@ public class Game_Director : MonoBehaviour
                     }
                 }
             }
-
             if (!SpawnAllowed)
             {
                 AttackTimer -= Time.deltaTime;
@@ -72,8 +71,7 @@ public class Game_Director : MonoBehaviour
                 {
                     AttackTimer = Random.Range(1.5f, 2f);
                     int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
-                   Debug.Log(temp);
-                   if (Waves[WaveNumber].EnemyList[temp] != null)
+                    if (Waves[WaveNumber].EnemyList[temp] != null)
                    {
                        Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
                    }
@@ -85,7 +83,6 @@ public class Game_Director : MonoBehaviour
         {
             GameManager._Instance.GameEnded = true;
             EndGameUI.SetActive(true);
-            Debug.Log("Game Ended!");
         }
     }
     #endregion

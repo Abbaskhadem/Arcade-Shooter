@@ -28,16 +28,14 @@ void OnTriggerEnter2D(Collider2D col)
 {
     if (col.gameObject.tag == "Enemy" && gameObject.tag=="Player Bullet")
     {
-        FindObjectOfType<Main_SpaceShip>().health += Random.Range(1f,3f);
+        if(FindObjectOfType<Main_SpaceShip>()!=null)
+        FindObjectOfType<Main_SpaceShip>().health += Random.Range(0.5f,2f);
         col.GetComponent<Animator>().SetTrigger("GotHit");
         if(ParticleManager._Instance.tempParticle.isPlaying)
           // ParticleManager._Instance.tempParticle.Stop();
         ParticleManager._Instance.tempParticle.transform.position = new Vector3(col.transform.position.x,col.transform.position.y,-0.26f);
         ParticleManager._Instance.tempParticle.Play();
-        if (!Child)
-        {
-            gameObject.SetActive(false);  
-        }
+        gameObject.SetActive(false);
         col.GetComponent<Enemy_SpaceShip>().TakeDamage(Damage);
     }
     if (col.gameObject.tag == "Player" && gameObject.tag=="Enemy Bullet" )
