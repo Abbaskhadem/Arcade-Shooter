@@ -9,11 +9,11 @@ public class Main_SpaceShip : SpaceShip
 
     [SerializeField] private Slider PowerBar;
 
-    #endregion
 
+    #endregion
     #region Exclusive Variables
 
-    float min = -0.0022f;
+    float min =- 0.0022f;
     float max = 0.0022f;
     private float Starttime;
     private float SuperPowerTimer;
@@ -45,19 +45,18 @@ public class Main_SpaceShip : SpaceShip
     {
         if (!GameManager._Instance.GameEnded)
         {
-            if (health <= 100)
+            if (health<=100)
             {
                 float temp;
                 temp = Mathf.Round(health * 100f) / 100f;
-                PowerBar.GetComponentInChildren<Text>().text = temp + "%";
-                PowerBar.value = health;
+                PowerBar.GetComponentInChildren<Text>().text=temp+"%";
+                PowerBar.value = health;   
             }
             else
             {
-                PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
+                PowerBar.GetComponentInChildren<Text>().text=100+"%";
             }
-
-            if (health >= 100)
+            if (health>=100)
             {
                 Debug.Log("TIMER STARTED!");
                 SuperPowerTimer += Time.deltaTime;
@@ -68,20 +67,15 @@ public class Main_SpaceShip : SpaceShip
                     Debug.Log("ACTIVE SUPERPOWER!");
                 }
             }
-
             Movement();
             Shoot();
-            Shoot1();
         }
-
         if (!moveAllowed)
         {
-            IdleMovement();
+            IdleMovement();  
         }
     }
-
     #endregion
-
     #region Player Ability
 
     void IdleMovement()
@@ -105,7 +99,6 @@ public class Main_SpaceShip : SpaceShip
             {
                 moveAllowed = false;
             }
-
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             switch (touch.phase)
@@ -113,7 +106,7 @@ public class Main_SpaceShip : SpaceShip
                 case TouchPhase.Began:
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
-                    Body.freezeRotation = true;
+                   Body.freezeRotation = true;
                     Body.velocity = new Vector2(0, 0);
                     Body.gravityScale = 0;
                     moveAllowed = true;
@@ -130,7 +123,6 @@ public class Main_SpaceShip : SpaceShip
             }
         }
     }
-
     void Shoot()
     {
         for (int i = 0; i < BulletList.Count; i++)
@@ -140,50 +132,14 @@ public class Main_SpaceShip : SpaceShip
                 if (!BulletList[i].activeInHierarchy)
                 {
                     Timer += Time.deltaTime;
-                    if (Timer >= AttackSpeed)
+                    if (Timer>=AttackSpeed)
                     {
                         Timer = 0;
-                      //  for (int j = 0; j < GunPoints.Length; j++)
+                        for (int j = 0; j <GunPoints.Length; j++)
                         {
-                            BulletList[i].transform.position = GunPoints[0].transform.position;
-                            BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
-                           // BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
-                            //BulletList[i].SetActive(true);
-                            BulletList[i].SetActive(true);
-                        }
-                        {
-                            BulletList[i].transform.position = GunPoints[1].transform.position;
-                            BulletList[i].transform.rotation = GunPoints[1].transform.rotation;
-                            // BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
-                            //BulletList[i].SetActive(true);
-                            BulletList[i].SetActive(true);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    
-    void Shoot1()
-    {
-        for (int i = 0; i < BulletList.Count; i++)
-        {
-            if (BulletList[i] != null)
-            {
-                if (!BulletList[i].activeInHierarchy)
-                {
-                    Timer += Time.deltaTime;
-                    if (Timer >= AttackSpeed)
-                    {
-                        Timer = 0;
-                        //  for (int j = 0; j < GunPoints.Length; j++)
-                        {
-                            BulletList[i].transform.position = GunPoints[1].transform.position;
-                            BulletList[i].transform.rotation = GunPoints[1].transform.rotation;
-                            // BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
-                            //BulletList[i].SetActive(true);
+                            BulletList[i].transform.position = GunPoints[j].transform.position;
+                            BulletList[i].transform.rotation = GunPoints[j].transform.rotation;
+                            BulletList[i].GetComponentInChildren<TrailRenderer>().Clear();
                             BulletList[i].SetActive(true);
                         }
                     }
@@ -201,6 +157,5 @@ public class Main_SpaceShip : SpaceShip
             gameObject.SetActive(false);
         }
     }
-
     #endregion
 }

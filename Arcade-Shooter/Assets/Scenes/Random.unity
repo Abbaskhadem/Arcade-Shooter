@@ -94,8 +94,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-    m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -551,7 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2864b5edf6335e49a2582e2d01eb50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameEnded: 0
   Temp: {fileID: 1568548686}
 --- !u!114 &844881389
 MonoBehaviour:
@@ -733,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023789784}
-  - component: {fileID: 1023789786}
+  - component: {fileID: 1023789783}
   m_Layer: 0
   m_Name: Game_Director
   m_TagString: Untagged
@@ -741,6 +740,58 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1023789783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023789782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41c0cdccfa01d347ae6f6e942366d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Waves:
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 0200000003000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 7246642555969863188, guid: 0c7bb07cd5fc25b4ab5acb3cc9ea671f, type: 3}
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    FinalPositions: {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 08000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    FinalPositions: {fileID: 3866936199449835735, guid: bcad8269113b69a46937e2c24688eed8,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 07000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
+    FinalPositions: {fileID: 7733214137702013629, guid: 180095af0dca23947b00f8431c09cb5a,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 14000000
+    ActiveDly: 0.2
+    EnemyList: []
+    Routes:
+    - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
+    FinalPositions: {fileID: 540312724464109266, guid: 87271f38348c3d848990a75436bfae38,
+      type: 3}
 --- !u!4 &1023789784
 Transform:
   m_ObjectHideFlags: 0
@@ -755,54 +806,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1023789786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023789782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9290ab363df1d4499659f3da2447d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rout:
-  - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
-  - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
-  Waves:
-  - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 893a3cb5a90469c4c820c83e1c27ad96, type: 3}
-    Quantity: 0400000001000000
-    ActiveDly: 0.3
-    EnemyList: []
-    FinalPositions:
-    - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
-  - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 893a3cb5a90469c4c820c83e1c27ad96, type: 3}
-    Quantity: 0300000002000000
-    ActiveDly: 0.3
-    EnemyList: []
-    FinalPositions:
-    - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
-  - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 893a3cb5a90469c4c820c83e1c27ad96, type: 3}
-    Quantity: 0200000003000000
-    ActiveDly: 0.3
-    EnemyList: []
-    FinalPositions:
-    - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
-  - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 893a3cb5a90469c4c820c83e1c27ad96, type: 3}
-    Quantity: 0100000004000000
-    ActiveDly: 0.3
-    EnemyList: []
-    FinalPositions:
-    - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
 --- !u!1 &1380359970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1040,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1171,7 +1173,6 @@ MonoBehaviour:
   GunPoints:
   - {fileID: 563545055}
   Speed: 5
-  PowerBar: {fileID: 0}
   MaximumBullets: 10
 --- !u!1 &1577379064
 GameObject:
@@ -1350,7 +1351,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1460,7 +1460,6 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
