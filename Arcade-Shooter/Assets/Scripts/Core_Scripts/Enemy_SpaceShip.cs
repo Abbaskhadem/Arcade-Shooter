@@ -8,20 +8,19 @@ using Random = UnityEngine.Random;
 
 public class Enemy_SpaceShip : SpaceShip
 {
-
-    float min =- 0.06f;
+    float min = -0.06f;
     float max = 0.06f;
     private float Starttime;
     public AnimationCurve _Curve;
     private float ShakeIntensity = 12f;
     private Vector3 ShakePos;
-    private bool firsttime=true;
+    private bool firsttime = true;
     private Vector2 p0;
     private Vector2 p1;
     private Vector2 p2;
     private Vector2 p3;
     public Transform FinalDestination;
-    [HideInInspector]public Transform[] Routes;
+    [HideInInspector] public Transform[] Routes;
     private Vector2 EnemyPosition;
     private Vector3 MainTarget;
     private Transform Target;
@@ -31,14 +30,15 @@ public class Enemy_SpaceShip : SpaceShip
     private float Timer;
     private float tparam;
     private float SpeedModifier;
-   [HideInInspector] public bool MoveAllowed;
-    [HideInInspector]public bool coroutineAllowed;
+    [HideInInspector] public bool MoveAllowed;
+    [HideInInspector] public bool coroutineAllowed;
     private bool check;
-    [HideInInspector]public bool ShootAllowed = false;
+    [HideInInspector] public bool ShootAllowed = false;
     private bool ShootBool;
-    [SerializeField]private bool Looping;
-    [SerializeField]int MaximumAmmo;
+    [SerializeField] private bool Looping;
+    [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
+
     void Start()
     {
         RoutesToGo = 0;
@@ -52,15 +52,17 @@ public class Enemy_SpaceShip : SpaceShip
         MoveAllowed = true;
         check = false;
     }
+
     void Update()
     {
         ManageEnemyMovement();
-      if (ShootAllowed)
-      {
-          IdleMovement();
-     //     Shoot();
-      }
+        if (ShootAllowed)
+        {
+            IdleMovement();
+            //     Shoot();
+        }
     }
+
     private IEnumerator GoByTheRoute(int RouteNumber)
     {
         coroutineAllowed = false;
@@ -69,8 +71,9 @@ public class Enemy_SpaceShip : SpaceShip
             p0 = Routes[RouteNumber].GetChild(0).position;
             p1 = Routes[RouteNumber].GetChild(1).position;
             p2 = Routes[RouteNumber].GetChild(2).position;
-            p3 = Routes[RouteNumber].GetChild(3).position;   
+            p3 = Routes[RouteNumber].GetChild(3).position;
         }
+
         while (tparam < 1)
         {
             tparam += Time.deltaTime * SpeedModifier;
@@ -80,10 +83,11 @@ public class Enemy_SpaceShip : SpaceShip
                             Mathf.Pow(tparam, 3) * p3;
             Vector3 dir = MainTarget - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-         //   transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+            //   transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
             transform.position = EnemyPosition;
             yield return new WaitForEndOfFrame();
         }
+
         tparam = 0f;
         RoutesToGo += 1;
         if (RoutesToGo > Routes.Length - 1)
@@ -92,50 +96,50 @@ public class Enemy_SpaceShip : SpaceShip
             {
                 tparam = 0;
                 RoutesToGo = 0;
-                 p0 = Routes[RouteNumber].GetChild(3).position;
-                 p1 = Routes[RouteNumber].GetChild(2).position;
-                 p2 = Routes[RouteNumber].GetChild(1).position;
-                 p3 = Routes[RouteNumber].GetChild(0).position;
-                 if(firsttime)
-                 firsttime = false;
-                 else
-                 {
-                     firsttime = true;
-                 }
+                p0 = Routes[RouteNumber].GetChild(3).position;
+                p1 = Routes[RouteNumber].GetChild(2).position;
+                p2 = Routes[RouteNumber].GetChild(1).position;
+                p3 = Routes[RouteNumber].GetChild(0).position;
+                if (firsttime)
+                    firsttime = false;
+                else
+                {
+                    firsttime = true;
+                }
             }
             else
             {
                 RoutesToGo = 0;
-                MoveAllowed = false;     
+                MoveAllowed = false;
             }
         }
+
         coroutineAllowed = true;
     }
+
     void ManageEnemyMovement()
     {
         if (MoveAllowed)
-            {
-                if (coroutineAllowed)
-                    StartCoroutine(GoByTheRoute(RoutesToGo));
-            }
+        {
+            if (coroutineAllowed)
+                StartCoroutine(GoByTheRoute(RoutesToGo));
+        }
         else
+        {
+            MainTarget = FinalDestination.position;
+            transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
             {
-                MainTarget = FinalDestination.position;
-                transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
-                {
-                    ShootAllowed = true;
-                }
+                ShootAllowed = true;
             }
-      
-            //rotation();
-        
+        }
+
+        //rotation();
     }
 
     void IdleMovement()
     {
-
-        transform.position+=new Vector3(Mathf.Lerp(min,max,Starttime),Mathf.Lerp(min,max,Starttime),0);
+        transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), Mathf.Lerp(min, max, Starttime), 0);
         Starttime += 0.8f * Time.deltaTime;
         if (Starttime > 1)
         {
@@ -145,22 +149,25 @@ public class Enemy_SpaceShip : SpaceShip
             Starttime = 0;
         }
     }
+
     void Death()
     {
-       FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList.Remove(this.gameObject);
+        FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
+            .Remove(this.gameObject);
 //        for (int j = 0; j < BulletList.Count; j++)
 //        {
 //            Destroy(BulletList[j]);
 //        }
         int i = Random.Range(0, 100);
-        if (i>70)
+        if (i > 70)
         {
-            Instantiate(RandomItems[Random.Range(0, RandomItems.Length)],transform.position,
+            Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
                 Quaternion.identity);
         }
+
         ParticleManager._Instance.tempParticle2.transform.position = transform.position;
-        ParticleManager._Instance.tempParticle2.Play(); 
-        
+        ParticleManager._Instance.tempParticle2.Play();
+
         gameObject.SetActive(false);
         tparam = 0;
         GetComponent<Animator>().ResetTrigger("GotHit");
@@ -169,20 +176,20 @@ public class Enemy_SpaceShip : SpaceShip
 
     public void Shoot()
     {
-       // AttackSpeed = Random.Range(10, 15);
+        // AttackSpeed = Random.Range(10, 15);
         for (int i = 0; i < BulletList.Count; i++)
         {
             if (BulletList[i] != null)
             {
                 if (!BulletList[i].activeInHierarchy)
                 {
-                    for (int j = 0; j <GunPoints.Length; j++)
-                        {
-                            BulletList[i].transform.position = GunPoints[0].transform.position;
-                            BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
-                            BulletList[i].GetComponent<TrailRenderer>().Clear();
-                            BulletList[i].SetActive(true);
-                        }
+                    for (int j = 0; j < GunPoints.Length; j++)
+                    {
+                        BulletList[i].transform.position = GunPoints[0].transform.position;
+                        BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
+                        BulletList[i].GetComponent<TrailRenderer>().Clear();
+                        BulletList[i].SetActive(true);
+                    }
                 }
             }
         }
@@ -199,7 +206,7 @@ public class Enemy_SpaceShip : SpaceShip
     public void TakeDamage(int Damage)
     {
         health -= Damage;
-        if (health<=0)
+        if (health <= 0)
         {
             Death();
         }

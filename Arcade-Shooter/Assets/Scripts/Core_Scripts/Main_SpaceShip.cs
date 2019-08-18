@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Quaternion = System.Numerics.Quaternion;
-using Random = UnityEngine.Random;
-
 public class Main_SpaceShip : SpaceShip
 {
     #region UIElements
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private Slider PowerBar;
-
     #endregion
-
     #region Exclusive Variables
-
     [SerializeField] private ParticleSystem[] Jetpack;
     [SerializeField]private GameObject PowerText;
     [SerializeField] private ParticleSystem DeathEffect;
@@ -37,9 +29,7 @@ public class Main_SpaceShip : SpaceShip
    [SerializeField] List<GameObject> UpgradableTurrets;
     public List<GameObject> activePlayerTurrets;
     #endregion
-
     #region List Preparing
-
     void Start()
     {
         activePlayerTurrets = new List<GameObject>();
@@ -47,11 +37,8 @@ public class Main_SpaceShip : SpaceShip
         bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
         Body = this.GetComponent<Rigidbody2D>();
     }
-
     #endregion
-
     #region Actions
-
     void Update()
     {
         if (health<0)
@@ -75,7 +62,6 @@ public class Main_SpaceShip : SpaceShip
             {
                 PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
             }
-
             if (health >= 100)
             {
                 Debug.Log("TIMER STARTED!");
@@ -100,11 +86,8 @@ public class Main_SpaceShip : SpaceShip
             IdleMovement();
         }
     }
-
     #endregion
-
     #region Player Ability
-
     void IdleMovement()
     {
         transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), 0, 0);
@@ -117,7 +100,6 @@ public class Main_SpaceShip : SpaceShip
             Starttime = 0;
         }
     }
-
     void Movement()
     {
         if (Input.touchCount > 0)
@@ -126,7 +108,6 @@ public class Main_SpaceShip : SpaceShip
             {
                 moveAllowed = false;
             }
-
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             switch (touch.phase)
@@ -159,7 +140,6 @@ public class Main_SpaceShip : SpaceShip
             }
         }
     }
-
     void Shoot()
     {
         foreach (GameObject turret in activePlayerTurrets)
@@ -173,7 +153,6 @@ public class Main_SpaceShip : SpaceShip
                 bullet.SetActive(true);
             }
         }
-
     }
     public void UpgradeWeapons()
     {
@@ -185,7 +164,6 @@ public class Main_SpaceShip : SpaceShip
                 Debug.Log("Fard");
                 activePlayerTurrets.Remove(startWeapon);
                 activePlayerTurrets.Add(UpgradableTurrets[index]);
-          
             }
            else
             {
@@ -195,7 +173,6 @@ public class Main_SpaceShip : SpaceShip
             }
             foreach (var a in ObjectPooler.SharedInstance.pooledObjects)
             {
-              
                 a.GetComponent<Bullet>().Damage -= DamageCost;
             }
             DamageCost -= 2;
@@ -209,7 +186,6 @@ public class Main_SpaceShip : SpaceShip
     {
         Debug.Log(health);
         health -= 50;
-
     }
     #endregion
     #region HistoryCodes

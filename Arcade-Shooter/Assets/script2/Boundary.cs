@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class Boundary : MonoBehaviour
 {
     public enum BoundaryLocation
@@ -11,13 +8,11 @@ public class Boundary : MonoBehaviour
     public BoundaryLocation direction;
     private BoxCollider2D barrier;
     public float boundaryWidth = 0.8f;
-    public float overhang = 1.0f; // We add this to the length of the boundaries to ensure there are no gaps at the corners of the screen
-                                  // If we lose any object pooled bullets they will never be returned to the pool. 
+    public float overhang = 1.0f; 
+                                  
     void Start()
     {
-
         // Get the the world coordinates of the corners of the camera viewport.
-
         Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, 0));
         Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0));
         Vector3 lowerLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));

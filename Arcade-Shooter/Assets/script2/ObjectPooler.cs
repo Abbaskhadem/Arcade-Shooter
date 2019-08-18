@@ -1,29 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-
 [System.Serializable]
-
 public class ObjectPoolItem
 {
     public GameObject objectToPool;
     public int amountToPool;
     public bool shouldExpand;
 }
-
 public class ObjectPooler : MonoBehaviour
 {
-    
     public static ObjectPooler SharedInstance;
     public List<ObjectPoolItem> itemsToPool;
     public List<GameObject> pooledObjects;
-
     void Awake()
     {
         SharedInstance = this;
-    }
-
-    // Use this for initialization
+    } // Use this for initialization
     void Start()
     {
         pooledObjects = new List<GameObject>();
@@ -37,7 +29,6 @@ public class ObjectPooler : MonoBehaviour
             }
         }
     }
-
     public GameObject GetPooledObject(string tag)
     {
         for (int i = 0; i < pooledObjects.Count; i++)
@@ -60,7 +51,6 @@ public class ObjectPooler : MonoBehaviour
                 }
             }
         }
-
         return null;
     }
 }
