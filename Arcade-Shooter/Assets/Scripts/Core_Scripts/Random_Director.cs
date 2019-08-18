@@ -112,6 +112,7 @@ public class Random_Director : MonoBehaviour
                 UpgrateWave = true;
                 temp1 = 0;
                 SpawnAllowed = true;
+                RandomRout = Random.Range(0, Rout.Length);
             }
             else
             {
