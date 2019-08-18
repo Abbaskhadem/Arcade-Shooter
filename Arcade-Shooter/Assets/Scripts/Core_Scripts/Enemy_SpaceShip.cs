@@ -153,7 +153,7 @@ public class Enemy_SpaceShip : SpaceShip
 //            Destroy(BulletList[j]);
 //        }
         int i = Random.Range(0, 100);
-        if (i>90)
+        if (i>70)
         {
             Instantiate(RandomItems[Random.Range(0, RandomItems.Length)],transform.position,
                 Quaternion.identity);

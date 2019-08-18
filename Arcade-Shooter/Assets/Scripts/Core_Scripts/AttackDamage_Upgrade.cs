@@ -9,7 +9,7 @@ public class AttackDamage_Upgrade : MonoBehaviour
     [SerializeField] private GameObject PowerText;
     private void Start()
     {
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-8));
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-18));
         Destroy(gameObject,5f);
     }
 

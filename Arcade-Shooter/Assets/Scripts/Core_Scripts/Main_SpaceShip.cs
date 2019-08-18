@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class Main_SpaceShip : SpaceShip
 {
     #region UIElements
-
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private Slider PowerBar;
 
@@ -17,10 +16,12 @@ public class Main_SpaceShip : SpaceShip
 
     #region Exclusive Variables
 
+    [SerializeField] private ParticleSystem[] Jetpack;
     [SerializeField]private GameObject PowerText;
     [SerializeField] private ParticleSystem DeathEffect;
     float min = -0.0022f;
     float max = 0.0022f;
+    private int DamageCost=10;
     private float Starttime;
     private float SuperPowerTimer;
     private List<GameObject> BulletList;
@@ -131,6 +132,10 @@ public class Main_SpaceShip : SpaceShip
             switch (touch.phase)
             {
                 case TouchPhase.Began:
+                    for (int i = 0; i < Jetpack.Length; i++)
+                    {
+                        Jetpack[i].Play();
+                    }
                     deltaX = touchPos.x - transform.position.x;
                     deltaY = touchPos.y - transform.position.y;
                     Body.freezeRotation = true;
@@ -143,6 +148,10 @@ public class Main_SpaceShip : SpaceShip
                         Body.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
                     break;
                 case TouchPhase.Ended:
+                    for (int i = 0; i < Jetpack.Length; i++)
+                    {
+                        Jetpack[i].Stop();
+                    }
                     moveAllowed = false;
                     Body.freezeRotation = false;
                     Body.velocity = Vector2.zero;
@@ -171,10 +180,25 @@ public class Main_SpaceShip : SpaceShip
         if (index < UpgradableTurrets.Count)
         {
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
+            if (index % 2 == 1)
+            {
+                Debug.Log("Fard");
+                activePlayerTurrets.Remove(startWeapon);
+                activePlayerTurrets.Add(UpgradableTurrets[index]);
+          
+            }
+           else
+            {
+                activePlayerTurrets.Remove(UpgradableTurrets[--index]);
+                index++;
+                activePlayerTurrets.Add(startWeapon);
+            }
             foreach (var a in ObjectPooler.SharedInstance.pooledObjects)
             {
-                a.GetComponent<Bullet>().Damage -= 10;
+              
+                a.GetComponent<Bullet>().Damage -= DamageCost;
             }
+            DamageCost -= 2;
         }
         else
         {
