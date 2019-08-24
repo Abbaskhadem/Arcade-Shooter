@@ -7,15 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _Instance;
     public bool GameEnded = false;
-    [SerializeField]
-    GameObject Temp;
-    public static float Width;
-    public static float Height;
     private static string tag;
-    [SerializeField]
-   static Vector2[] Positions;
-    Camera Cam;
-    int a, b;
 
     private void Awake()
     {

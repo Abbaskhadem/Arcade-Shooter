@@ -8,20 +8,22 @@ using Random = UnityEngine.Random;
 public class Game_Director : MonoBehaviour
 {
     #region UI Elements
-
+    [Header("UI Stuff")]
     [SerializeField] private GameObject WaveText;
     [SerializeField] private GameObject EndGameUI;
-    
-
+    [SerializeField] private GameObject EndWaveText;
+    [SerializeField] private string[] InnovativeMessages;
     #endregion
     #region Temp Variables
+    public int ItemDropChance;
     private bool StartTimer=true;
     private float WaveTimer;
     private int _index;
     private bool SpawnAllowed = true;
-    public int WaveNumber;
+    [HideInInspector]public int WaveNumber;
     private float AttackTimer=1.5f;
     bool firsttime = false;
+    [Header("Enemy Waves")]
     public _Wave[] Waves;
     #endregion
     #region MyWave_Class
@@ -31,7 +33,7 @@ public class Game_Director : MonoBehaviour
         public GameObject[] EnemyTypes;
         public int[] Quantity;
         public float ActiveDly;
-        public List<GameObject> EnemyList;
+        [HideInInspector]public List<GameObject> EnemyList;
         private int frame;
         public Transform[] Routes;
         public Transform FinalPositions;
@@ -54,7 +56,7 @@ public class Game_Director : MonoBehaviour
             if (StartTimer)
             {
                 WaveTimer += Time.deltaTime;
-                if (WaveTimer>=2f)
+                if (WaveTimer>=3f)
                 {
                     if (SpawnAllowed)
                     {
@@ -123,12 +125,18 @@ public class Game_Director : MonoBehaviour
    
                 _index = 0;
                 firsttime = false;
+                if (ItemDropChance < 95)
+                {
+                    ItemDropChance += 5;
+                }
                 WaveNumber++;
                 if (WaveNumber < Waves.Length)
                 {
                     int temp = WaveNumber+1;
                     WaveText.GetComponent<Text>().text = "Wave" + " "+ temp;
-                    WaveText.SetActive(true); 
+                    EndWaveText.GetComponent<Text>().text =
+                        InnovativeMessages[Random.Range(0, InnovativeMessages.Length)];
+                    EndWaveText.SetActive(true); 
                 }
                 StartTimer = true;
                 SpawnAllowed = true;

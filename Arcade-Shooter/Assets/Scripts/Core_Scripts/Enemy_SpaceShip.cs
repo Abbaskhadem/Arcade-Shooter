@@ -11,7 +11,6 @@ public class Enemy_SpaceShip : SpaceShip
     float min = -0.06f;
     float max = 0.06f;
     private float Starttime;
-    public AnimationCurve _Curve;
     private float ShakeIntensity = 12f;
     private Vector3 ShakePos;
     private bool firsttime = true;
@@ -133,7 +132,6 @@ public class Enemy_SpaceShip : SpaceShip
                 ShootAllowed = true;
             }
         }
-
         //rotation();
     }
 
@@ -154,17 +152,17 @@ public class Enemy_SpaceShip : SpaceShip
     {
         FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
             .Remove(this.gameObject);
-//        for (int j = 0; j < BulletList.Count; j++)
-//        {
-//            Destroy(BulletList[j]);
-//        }
         int i = Random.Range(0, 100);
-        if (i > 70)
+        if (i > FindObjectOfType<Game_Director>().ItemDropChance)
         {
             Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
                 Quaternion.identity);
         }
-
+        for (int j = 0; j < BulletList.Count; j++)
+        {
+            if(!BulletList[j].activeInHierarchy)
+                Destroy(BulletList[j]);
+        }
         ParticleManager._Instance.tempParticle2.transform.position = transform.position;
         ParticleManager._Instance.tempParticle2.Play();
 

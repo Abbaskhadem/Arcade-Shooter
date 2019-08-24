@@ -9,7 +9,6 @@ public class Main_SpaceShip : SpaceShip
     #endregion
     #region Exclusive Variables
     [SerializeField] private ParticleSystem[] Jetpack;
-    [SerializeField]private GameObject PowerText;
     [SerializeField] private ParticleSystem DeathEffect;
     float min = -0.0022f;
     float max = 0.0022f;
@@ -20,14 +19,13 @@ public class Main_SpaceShip : SpaceShip
     private bool moveAllowed;
     private float deltaX;
     private float deltaY;
-    public float Timer;
-    [SerializeField] private int MaximumBullets;
+ [HideInInspector] public float Timer;
     private int MaxBullets;
     private Vector2 ScreenBounds;
     public GameObject startWeapon;
     private int index;
    [SerializeField] List<GameObject> UpgradableTurrets;
-    public List<GameObject> activePlayerTurrets;
+   [HideInInspector] public List<GameObject> activePlayerTurrets;
     #endregion
     #region List Preparing
     void Start()
@@ -41,12 +39,13 @@ public class Main_SpaceShip : SpaceShip
     #region Actions
     void Update()
     {
+        
         if (health<0)
         {
             LoseUI.SetActive(true);
             PowerBar.GetComponentInChildren<Text>().text = "FAILED!";
             GameManager._Instance.GameEnded = true;
-            Instantiate(DeathEffect,gameObject.transform.position,UnityEngine.Quaternion.identity);
+            Instantiate(DeathEffect,gameObject.transform.position, Quaternion.identity);
             gameObject.SetActive(false);
         }
         if (!GameManager._Instance.GameEnded)
@@ -55,7 +54,7 @@ public class Main_SpaceShip : SpaceShip
             {
                 float temp;
                 temp = Mathf.Round(health * 100f) / 100f;
-                PowerBar.GetComponentInChildren<Text>().text = temp + "%";
+                PowerBar.GetComponentInChildren<Text>().text = temp.ToString("0") + "%";
                 PowerBar.value = health;
             }
             else if(health>=100)
@@ -64,13 +63,13 @@ public class Main_SpaceShip : SpaceShip
             }
             if (health >= 100)
             {
-                Debug.Log("TIMER STARTED!");
+              // Timer Starts
                 SuperPowerTimer += Time.deltaTime;
                 if (SuperPowerTimer >= Random.Range(3f, 5f))
                 {
                     SuperPowerTimer = 0;
                     health = 50;
-                    Debug.Log("ACTIVE SUPERPOWER!");
+              // Super Power Activates!
                 }
             }
             Movement();
@@ -161,7 +160,6 @@ public class Main_SpaceShip : SpaceShip
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
-                Debug.Log("Fard");
                 activePlayerTurrets.Remove(startWeapon);
                 activePlayerTurrets.Add(UpgradableTurrets[index]);
             }
