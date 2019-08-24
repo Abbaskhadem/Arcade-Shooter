@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -153,15 +154,30 @@ public class Enemy_SpaceShip : SpaceShip
         FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
             .Remove(this.gameObject);
         int i = Random.Range(0, 100);
-        if (i > FindObjectOfType<Game_Director>().ItemDropChance)
+        if (SceneManager.GetActiveScene().name != "Random")
         {
-            Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
-                Quaternion.identity);
+            if (i > FindObjectOfType<Game_Director>().ItemDropChance)
+            {
+                Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
+                    Quaternion.identity);
+            }
         }
-        for (int j = 0; j < BulletList.Count; j++)
+        else
         {
-            if(!BulletList[j].activeInHierarchy)
-                Destroy(BulletList[j]);
+            if (i > 85)
+            {
+                Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
+                    Quaternion.identity); 
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name!="Random")
+        {
+            for (int j = 0; j < BulletList.Count; j++)
+            {
+                if(!BulletList[j].activeInHierarchy)
+                    Destroy(BulletList[j]);
+            } 
         }
         ParticleManager._Instance.tempParticle2.transform.position = transform.position;
         ParticleManager._Instance.tempParticle2.Play();
