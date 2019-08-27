@@ -179,8 +179,12 @@ public class Enemy_SpaceShip : SpaceShip
                     Destroy(BulletList[j]);
             } 
         }
-        ParticleManager._Instance.tempParticle2.transform.position = transform.position;
-        ParticleManager._Instance.tempParticle2.Play();
+
+        ParticleSystem temp = ParticleManager._Instance.GetExplosionParticle();
+        temp.transform.position = transform.position;
+        temp.Play();
+        //    ParticleManager._Instance.tempParticle2.transform.position = transform.position;
+     //   ParticleManager._Instance.tempParticle2.Play();
 
         gameObject.SetActive(false);
         tparam = 0;
