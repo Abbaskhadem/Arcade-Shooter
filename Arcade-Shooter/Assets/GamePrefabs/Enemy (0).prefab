@@ -162,46 +162,13 @@ MonoBehaviour:
   GunPoints:
   - {fileID: 8805684854555351303}
   Speed: 5
-  _Curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0027503967
-      value: -0.014587402
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 124.82799
-      value: 1.351403
-      inSlope: -0.07792682
-      outSlope: -0.07792682
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 200
-      value: 0.20729828
-      inSlope: 0.06968477
-      outSlope: 0.06968477
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.1742004
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   FinalDestination: {fileID: 0}
   Routes: []
   MoveAllowed: 0
   coroutineAllowed: 0
   ShootAllowed: 0
   Looping: 0
-  MaximumAmmo: 1
+  MaximumAmmo: 3
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
 --- !u!1 &8805684854555351296
