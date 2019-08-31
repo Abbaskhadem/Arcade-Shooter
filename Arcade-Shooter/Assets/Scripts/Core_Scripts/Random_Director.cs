@@ -85,15 +85,10 @@ public class Random_Director : MonoBehaviour
                         }
                     }
                 }
-
-                SpawnAllowed = false;
-
                 RandomRout = Random.Range(0, Rout.Length);
                 for (i = 0; i < Waves[a].EnemyList.Count; i++)
                 {
-                    if (!Pause)
-                    {
-                        var Local = Waves[a].EnemyList[i];
+                    var Local = Waves[a].EnemyList[i];
                         var localSecend = Local.GetComponent<Enemy_SpaceShip>();
                         localSecend.coroutineAllowed = true;
                         localSecend.MoveAllowed = true;
@@ -108,8 +103,11 @@ public class Random_Director : MonoBehaviour
                         Debug.Log("InToshNis:)");
                         dd = false;
                         this.a = i;
+                        if (i==Waves[a].EnemyList.Count-1)
+                        {
+                            SpawnAllowed = false;
+                        }
                         yield return new WaitForSeconds(Waves[a].ActiveDly);
-                    }
                 }
 
                 Debug.Log("InToshNisoooooooooo:)");

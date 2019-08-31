@@ -57,53 +57,56 @@ public class Main_SpaceShip : SpaceShip
 
     void Update()
     {
-        if (health < 0)
+        if (!GameManager._Instance.GamePause)
         {
-            LoseUI.SetActive(true);
-            PowerBar.GetComponentInChildren<Text>().text = "FAILED!";
-            GameManager._Instance.GameEnded = true;
-            Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
-            gameObject.SetActive(false);
-        }
-
-        if (!GameManager._Instance.GameEnded)
-        {
-            if (health <= 100)
+            if (health < 0)
             {
-                float temp;
-                temp = Mathf.Round(health * 100f) / 100f;
-                PowerBar.GetComponentInChildren<Text>().text = temp.ToString("0") + "%";
-                PowerBar.value = health;
-            }
-            else if (health >= 100)
-            {
-                PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
+                LoseUI.SetActive(true);
+                PowerBar.GetComponentInChildren<Text>().text = "FAILED!";
+                GameManager._Instance.GameEnded = true;
+                Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
+                gameObject.SetActive(false);
             }
 
-            if (health >= 100)
+            if (!GameManager._Instance.GameEnded)
             {
-                // Timer Starts
-                SuperPowerTimer += Time.deltaTime;
-                if (SuperPowerTimer >= Random.Range(3f, 5f))
+                if (health <= 100)
                 {
-                    SuperPowerTimer = 0;
-                    health = 50;
-                    // Super Power Activates!
+                    float temp;
+                    temp = Mathf.Round(health * 100f) / 100f;
+                    PowerBar.GetComponentInChildren<Text>().text = temp.ToString("0") + "%";
+                    PowerBar.value = health;
+                }
+                else if (health >= 100)
+                {
+                    PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
+                }
+
+                if (health >= 100)
+                {
+                    // Timer Starts
+                    SuperPowerTimer += Time.deltaTime;
+                    if (SuperPowerTimer >= Random.Range(3f, 5f))
+                    {
+                        SuperPowerTimer = 0;
+                        health = 50;
+                        // Super Power Activates!
+                    }
+                }
+
+                Movement();
+                Timer += Time.deltaTime;
+                if (Timer >= AttackSpeed)
+                {
+                    Timer = 0;
+                    Shoot();
                 }
             }
 
-            Movement();
-            Timer += Time.deltaTime;
-            if (Timer >= AttackSpeed)
+            if (!moveAllowed)
             {
-                Timer = 0;
-                Shoot();
-            }
-        }
-
-        if (!moveAllowed)
-        {
-            IdleMovement();
+                IdleMovement();
+            } 
         }
     }
 
@@ -189,7 +192,6 @@ public class Main_SpaceShip : SpaceShip
     {
         if (index < UpgradableTurrets.Count)
         {
-            Debug.Log("tosh");
             Instantiate(PowerText, transform.position,Quaternion.identity);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
@@ -219,7 +221,6 @@ public class Main_SpaceShip : SpaceShip
 
     public void TakeDamage()
     {
-        Debug.Log(health);
         health -= 50;
     }
 

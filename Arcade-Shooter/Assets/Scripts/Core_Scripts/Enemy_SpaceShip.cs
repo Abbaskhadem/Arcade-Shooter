@@ -74,7 +74,7 @@ public class Enemy_SpaceShip : SpaceShip
             p3 = Routes[RouteNumber].GetChild(3).position;
         }
 
-        while (tparam < 1)
+        while (tparam < 1 && !GameManager._Instance.GamePause)
         {
             tparam += Time.deltaTime * SpeedModifier;
             EnemyPosition = Mathf.Pow(1 - tparam, 3) * p0 +
@@ -88,8 +88,15 @@ public class Enemy_SpaceShip : SpaceShip
             yield return new WaitForEndOfFrame();
         }
 
-        tparam = 0f;
-        RoutesToGo += 1;
+        if (!GameManager._Instance.GamePause)
+        {
+            tparam = 0f;
+            RoutesToGo += 1; 
+        }
+        else
+        {
+            yield return null;
+        }
         if (RoutesToGo > Routes.Length - 1)
         {
             if (Looping)
@@ -119,33 +126,44 @@ public class Enemy_SpaceShip : SpaceShip
 
     void ManageEnemyMovement()
     {
-        if (MoveAllowed)
+        if (!GameManager._Instance.GamePause)
         {
-            if (coroutineAllowed)
-                StartCoroutine(GoByTheRoute(RoutesToGo));
+            if (MoveAllowed)
+            {
+                if (coroutineAllowed)
+                    StartCoroutine(GoByTheRoute(RoutesToGo));
+            }
+            else
+            {
+                MainTarget = FinalDestination.position;
+                transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
+                {
+                    ShootAllowed = true;
+                }
+            }
+            //rotation(); 
         }
         else
         {
-            MainTarget = FinalDestination.position;
-            transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
-            {
-                ShootAllowed = true;
-            }
+          //  StopAllCoroutines();
         }
-        //rotation();
+      
     }
 
     void IdleMovement()
     {
-        transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), Mathf.Lerp(min, max, Starttime), 0);
-        Starttime += 0.8f * Time.deltaTime;
-        if (Starttime > 1)
+        if (!GameManager._Instance.GamePause)
         {
-            float temp = max;
-            max = min;
-            min = temp;
-            Starttime = 0;
+            transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), Mathf.Lerp(min, max, Starttime), 0);
+            Starttime += 0.8f * Time.deltaTime;
+            if (Starttime > 1)
+            {
+                float temp = max;
+                max = min;
+                min = temp;
+                Starttime = 0;
+            }
         }
     }
 

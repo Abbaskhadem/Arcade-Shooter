@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -49,42 +50,49 @@ public class Game_Director : MonoBehaviour
     }
     void Update()
     {
-        if (WaveNumber<Waves.Length)
+        if (!GameManager._Instance.GamePause)
         {
-            int a = Random.Range(5, 2);
-            CheckAlive();
-            if (StartTimer)
+            if (WaveNumber<Waves.Length)
             {
-                WaveTimer += Time.deltaTime;
-                if (WaveTimer>=3f)
+                int a = Random.Range(5, 2);
+                CheckAlive();
+                if (StartTimer)
                 {
-                    if (SpawnAllowed)
+                    WaveTimer += Time.deltaTime;
+                    if (WaveTimer>=3f)
                     {
-                        WaveTimer = 0;
-                        StartTimer = false;
-                        StartCoroutine(SpawnEnemyWaves(WaveNumber));
+                        if (SpawnAllowed)
+                        {
+                            WaveTimer = 0;
+                            StartTimer = false;
+                            StartCoroutine(SpawnEnemyWaves(WaveNumber));
+                        }
                     }
                 }
-            }
-            if (!SpawnAllowed)
-            {
-                AttackTimer -= Time.deltaTime;
-                if (AttackTimer <= 0)
+                if (!SpawnAllowed)
                 {
-                    AttackTimer = Random.Range(1.5f, 2f);
-                    int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
-                    if (Waves[WaveNumber].EnemyList[temp] != null)
-                   {
-                       Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
-                   }
-                }
+                    AttackTimer -= Time.deltaTime;
+                    if (AttackTimer <= 0)
+                    {
+                        AttackTimer = Random.Range(1.5f, 2f);
+                        int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
+                        if (Waves[WaveNumber].EnemyList[temp] != null)
+                        {
+                            Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
+                        }
+                    }
 
+                }
             }
+            else
+            {
+                GameManager._Instance.GameEnded = true;
+                EndGameUI.SetActive(true);
+            } 
         }
         else
         {
-            GameManager._Instance.GameEnded = true;
-            EndGameUI.SetActive(true);
+          //  StopAllCoroutines();
         }
     }
     #endregion
@@ -106,14 +114,27 @@ public class Game_Director : MonoBehaviour
             }
         }
         }
-        SpawnAllowed = false;
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
             {
-                Waves[a].EnemyList[i].transform.position = transform.position;
-                Waves[a].EnemyList[i].transform.rotation = transform.rotation;
-                Waves[a].EnemyList[i].SetActive(true);
-                yield return new WaitForSeconds(Waves[a].ActiveDly);
+                if (!GameManager._Instance.GamePause)
+                {
+                    Waves[a].EnemyList[i].transform.position = transform.position;
+                    Waves[a].EnemyList[i].transform.rotation = transform.rotation;
+                    Waves[a].EnemyList[i].SetActive(true);
+                    if (i == Waves[a].EnemyList.Count - 1)
+                    {
+                        Debug.Log("WHAT?");
+           
+                    }
+                    yield return new WaitForSeconds(Waves[a].ActiveDly);     
+                }
+                else
+                {
+                    Debug.Log("OMG!");
+                    yield return i;
+                }
             }
+        SpawnAllowed = false;
         yield return null;
     }
     bool CheckAlive()

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _Instance;
     public bool GameEnded = false;
+    public bool GamePause = false;
     private static string tag;
 
     private void Awake()
@@ -38,7 +39,17 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        GamePause = true;
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        GamePause = false;
+    }
 }
 
 
