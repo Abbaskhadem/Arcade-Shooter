@@ -213,22 +213,21 @@ public class Enemy_SpaceShip : SpaceShip
     public void Shoot()
     {
         // AttackSpeed = Random.Range(10, 15);
-        for (int i = 0; i < BulletList.Count; i++)
-        {
-            if (BulletList[i] != null)
+        
+            if (BulletList[1] != null)
             {
-                if (!BulletList[i].activeInHierarchy)
+                if (!BulletList[1].activeInHierarchy)
                 {
                     for (int j = 0; j < GunPoints.Length; j++)
                     {
-                        BulletList[i].transform.position = GunPoints[0].transform.position;
-                        BulletList[i].transform.rotation = GunPoints[0].transform.rotation;
-                        BulletList[i].GetComponent<TrailRenderer>().Clear();
-                        BulletList[i].SetActive(true);
+                        BulletList[1].transform.position = GunPoints[0].transform.position;
+                        BulletList[1].transform.rotation = GunPoints[0].transform.rotation;
+                        BulletList[1].GetComponent<TrailRenderer>().Clear();
+                        BulletList[1].SetActive(true);
                     }
                 }
             }
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

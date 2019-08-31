@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 4765363785557081731}
   - component: {fileID: 1696605503766319547}
   m_Layer: 0
-  m_Name: "\u200C\u200C\u200C\u200CBullet_Enemy"
-  m_TagString: Enemy Bullet
+  m_Name: Bullet_navigait
+  m_TagString: Bullet_navigait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655061594256983199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.142, y: -3.988, z: 0}
+  m_LocalPosition: {x: -0.233, y: -3.988, z: 0}
   m_LocalScale: {x: 0.020686287, y: 0.020686287, z: 0.020686287}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3226f61cd882c824dad9c8fde14f114e, type: 3}
-  m_Color: {r: 0.25833035, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -114,10 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Child: 0
-  NavigatPlayer: 1
-  Damage: 20
-  Speed: 7
-  BulletEffect: {fileID: 0}
+  NavigatPlayer: 0
+  Damage: 30
+  Speed: 15
+  BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
+    type: 3}
 --- !u!50 &1894032287228352060
 Rigidbody2D:
   serializedVersion: 4
@@ -190,7 +191,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.24
+  m_Time: 0.07
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -220,16 +221,16 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.26675177, b: 1, a: 1}
-      key1: {r: 0.8251756, g: 0.24705881, b: 1, a: 0}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0.5322514, b: 0.24705881, a: 0}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 5397
-      ctime1: 16191
+      ctime0: 7710
+      ctime1: 22359
       ctime2: 65535
       ctime3: 0
       ctime4: 0
@@ -251,7 +252,7 @@ TrailRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    shadowBias: 0.2
+    shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
