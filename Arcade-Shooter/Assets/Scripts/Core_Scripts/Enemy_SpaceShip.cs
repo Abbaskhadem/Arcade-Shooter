@@ -213,7 +213,8 @@ public class Enemy_SpaceShip : SpaceShip
     public void Shoot()
     {
         // AttackSpeed = Random.Range(10, 15);
-        
+        if (gameObject.activeInHierarchy)
+        {
             if (BulletList[1] != null)
             {
                 if (!BulletList[1].activeInHierarchy)
@@ -227,6 +228,7 @@ public class Enemy_SpaceShip : SpaceShip
                     }
                 }
             }
+        }
         
     }
 

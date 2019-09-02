@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        GamePause = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ExitGame()
@@ -49,6 +51,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         GamePause = false;
+    }
+
+    public void Quit()
+    {
+        Time.timeScale = 1;
+        GamePause = false;
+        SceneManager.LoadScene(0);
     }
 }
 

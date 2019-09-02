@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class Bullet : MonoBehaviour
 {
     #region Variables
-    Transform Target;
+    [SerializeField]GameObject Target;
     float Timer;
     public bool Child; 
     [SerializeField] bool NavigatPlayer;
@@ -22,7 +22,7 @@ void Start()
 //    if(gameObject.tag=="Player Bullet")
 //    BulletEffect = Instantiate(BulletEffect);
     objectRigidbody = transform.GetComponent<Rigidbody2D>();
-    Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+//    Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 }
 
 private void OnEnable()
@@ -32,22 +32,25 @@ private void OnEnable()
 
 void Update()
     {
-        if (NavigatPlayer)
+        if (!GameManager._Instance.GamePause)
         {
-            Timer += Time.deltaTime;
-           if (Timer <= 1)
-           {
-               var forceDirection = (Target.position - transform.position).normalized;
-               if (forceDirection.y > 0)return;
-               objectRigidbody.AddForce(forceDirection * Speed);
-           }
-        }
-        else
-        {
+            if (NavigatPlayer)
+            {
+                Timer += Time.deltaTime;
+                if (Timer <= 1)
+                {
+                    var forceDirection = (Target.transform.position - transform.position).normalized;
+                    if (forceDirection.y > 0)return;
+                    objectRigidbody.AddForce(forceDirection * Speed);
+                }
+            }
+            else
+            {
             
-            objectRigidbody.velocity = transform.up * Speed;
+                objectRigidbody.velocity = transform.up * Speed;
+            } 
         }
-       
+
     }
 
 void OnTriggerEnter2D(Collider2D col)

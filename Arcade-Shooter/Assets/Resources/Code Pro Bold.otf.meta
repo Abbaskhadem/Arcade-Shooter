@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c6359169c93a2104dbf9ec49a81e0844
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Code Pro Bold
+  fontNames:
+  - Code Pro Bold
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4007eb53d08cdc043b244e3f0b0a3704, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

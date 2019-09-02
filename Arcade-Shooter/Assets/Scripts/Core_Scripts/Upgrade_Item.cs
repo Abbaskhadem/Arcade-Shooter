@@ -4,7 +4,7 @@ using UnityEngine;
 public class Upgrade_Item : MonoBehaviour
 {
     private GameObject temp;
-    //[SerializeField] private GameObject PowerText;
+    [SerializeField] private GameObject PowerText;
     private void Start()
     {
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-28));
@@ -21,7 +21,7 @@ public class Upgrade_Item : MonoBehaviour
            // temp.transform.position = other.transform.position;
            // temp.transform.rotation = other.transform.rotation;
            // temp.SetActive(true);
-           // Instantiate(PowerText, other.transform.position,Quaternion.identity);
+            Instantiate(PowerText, other.transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -61,7 +61,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -113,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d27a9152e03f1b4e9f3bbda4b9babd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 5273252662669027000, guid: a678894678fb81b45b02e18d8f10737c, type: 3}
   Child: 0
   NavigatPlayer: 1
   Damage: 20
@@ -177,7 +177,6 @@ TrailRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

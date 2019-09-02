@@ -20,7 +20,7 @@ public class Game_Director : MonoBehaviour
     private bool StartTimer=true;
     private float WaveTimer;
     private int _index;
-    private bool SpawnAllowed = true;
+   [HideInInspector] public bool SpawnAllowed = true;
     [HideInInspector]public int WaveNumber;
     private float AttackTimer=1.5f;
     bool firsttime = false;
@@ -121,11 +121,6 @@ public class Game_Director : MonoBehaviour
                     Waves[a].EnemyList[i].transform.position = transform.position;
                     Waves[a].EnemyList[i].transform.rotation = transform.rotation;
                     Waves[a].EnemyList[i].SetActive(true);
-                    if (i == Waves[a].EnemyList.Count - 1)
-                    {
-                        Debug.Log("WHAT?");
-           
-                    }
                     yield return new WaitForSeconds(Waves[a].ActiveDly);     
                 }
                 else

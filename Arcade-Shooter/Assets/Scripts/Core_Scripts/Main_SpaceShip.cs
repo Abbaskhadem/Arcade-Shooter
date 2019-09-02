@@ -15,6 +15,7 @@ public class Main_SpaceShip : SpaceShip
 
     [SerializeField] private ParticleSystem[] Jetpack;
     [SerializeField] private ParticleSystem DeathEffect;
+    [SerializeField] private ParticleSystem SuperPower;
     float min = -0.0022f;
     float max = 0.0022f;
     private int DamageCost = 10;
@@ -32,6 +33,7 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField] private GameObject PowerText;
     [SerializeField] List<GameObject> UpgradableTurrets;
     [HideInInspector] public List<GameObject> activePlayerTurrets;
+    private bool damagedone = false;
 
     #endregion
 
@@ -46,9 +48,9 @@ public class Main_SpaceShip : SpaceShip
     {
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
-        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
+//        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
         Body = this.GetComponent<Rigidbody2D>();
-        Shoot();
+       // Shoot();
     }
 
     #endregion
@@ -57,8 +59,37 @@ public class Main_SpaceShip : SpaceShip
 
     void Update()
     {
+        
         if (!GameManager._Instance.GamePause)
         {
+           if (SuperPower.isPlaying)
+            {
+                SuperPower.transform.parent = GameObject.Find("Main Camera").transform;
+            }
+            else
+            {
+                SuperPower.transform.parent = this.transform;
+                SuperPower.transform.position = this.transform.position;
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                transform.Translate(-1f,0,0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                
+               transform.Translate(1f,0,0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                transform.Translate(0,1,0);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+               transform.Translate(0,-1,0);
+            }
             if (health < 0)
             {
                 LoseUI.SetActive(true);
@@ -88,8 +119,16 @@ public class Main_SpaceShip : SpaceShip
                     SuperPowerTimer += Time.deltaTime;
                     if (SuperPowerTimer >= Random.Range(3f, 5f))
                     {
-                        SuperPowerTimer = 0;
-                        health = 50;
+                        if (!FindObjectOfType<Game_Director>().SpawnAllowed)
+                        {
+                            foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                            {
+                                VARIABLE.TakeDamage(50);
+                            }
+                            SuperPowerTimer = 0;
+                            health = 50;
+                            SuperPower.Play();
+                        }
                         // Super Power Activates!
                     }
                 }
