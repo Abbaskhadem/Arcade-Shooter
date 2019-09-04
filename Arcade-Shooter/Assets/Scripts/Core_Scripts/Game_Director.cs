@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -13,9 +13,10 @@ public class Game_Director : MonoBehaviour
     [SerializeField] private GameObject WaveText;
     [SerializeField] private GameObject EndGameUI;
     [SerializeField] private GameObject EndWaveText;
-    [SerializeField] private string[] InnovativeMessages;
+    [SerializeField] private Dictionary<string,string> InnovativeMessages;
     #endregion
     #region Temp Variables
+    [Header(("LeveL Info"))]
     public int ItemDropChance;
     private bool StartTimer=true;
     private float WaveTimer;
@@ -45,7 +46,7 @@ public class Game_Director : MonoBehaviour
     void Start()
     {
         int temp = WaveNumber + 1;
-        WaveText.GetComponent<Text>().text = "Wave" + " " + temp;
+        WaveText.GetComponent<Text>().text =Farsi.multiLanguageText( "Wave " +temp,"موج"+temp);
         WaveText.SetActive(true);
     }
     void Update()
@@ -75,11 +76,14 @@ public class Game_Director : MonoBehaviour
                     if (AttackTimer <= 0)
                     {
                         AttackTimer = Random.Range(1.5f, 2f);
-                        int temp= Random.Range(0, Waves[WaveNumber].EnemyList.Count);
-                        if (Waves[WaveNumber].EnemyList[temp] != null)
+                        for (int i = 0; i < Random.Range(1,3); i++)
                         {
-                            Waves[WaveNumber].EnemyList[temp].GetComponent<Enemy_SpaceShip>().Shoot();
+                            if (Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null)
+                            {
+                                Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
+                            } 
                         }
+
                     }
 
                 }
@@ -149,9 +153,9 @@ public class Game_Director : MonoBehaviour
                 if (WaveNumber < Waves.Length)
                 {
                     int temp = WaveNumber+1;
-                    WaveText.GetComponent<Text>().text = "Wave" + " "+ temp;
-                    EndWaveText.GetComponent<Text>().text =
-                        InnovativeMessages[Random.Range(0, InnovativeMessages.Length)];
+                    WaveText.GetComponent<Text>().text =Farsi.multiLanguageText( "Wave " +temp,"موج"+temp);
+                    EndWaveText.GetComponent<Text>().text = Farsi.multiLanguageText("Great!", "عالی!");
+                       // InnovativeMessages[Random.Range(0, InnovativeMessages.Length)];
                     EndWaveText.SetActive(true); 
                 }
                 StartTimer = true;

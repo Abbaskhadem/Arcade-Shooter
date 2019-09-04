@@ -112,7 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d27a9152e03f1b4e9f3bbda4b9babd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   Child: 0
+  NavigatPlayer: 0
   Damage: 30
   Speed: 15
   BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,

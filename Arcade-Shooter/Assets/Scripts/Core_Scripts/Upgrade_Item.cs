@@ -1,4 +1,5 @@
 ﻿
+using TMPro;
 using UnityEngine;
 
 public class Upgrade_Item : MonoBehaviour
@@ -7,6 +8,7 @@ public class Upgrade_Item : MonoBehaviour
     [SerializeField] private GameObject PowerText;
     private void Start()
     {
+        
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-28));
         Destroy(gameObject,5f);
        // temp= Instantiate(PowerText, transform.position,Quaternion.identity);

@@ -61,7 +61,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -171,6 +170,7 @@ MonoBehaviour:
   MaximumAmmo: 3
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
+  ExEffect: Effect_0
 --- !u!1 &8805684854555351296
 GameObject:
   m_ObjectHideFlags: 0

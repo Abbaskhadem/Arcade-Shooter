@@ -12,12 +12,22 @@ public class ParticleManager : MonoBehaviour
 
    public List<ParticleSystem> ShotList;
    public List<ParticleSystem> ExplosionList;
+   ParticleSystem temp2;
 //    public ParticleSystem [] ShotEffects;
 //    public ParticleSystem EnemyParticles;
 //    public ParticleSystem tempParticle;
 //    public ParticleSystem tempParticle2;
     void Start()
     {
+        for (int j = 0; j < ExplosionEffects.Length; j++)
+        {
+            for (int k = 0; k < 1; k++)
+            {
+                ParticleSystem temp;
+                temp = Instantiate(ExplosionEffects[j]);
+                ExplosionList.Add(temp);
+            }  
+        }
         for (int i = 0; i < 3; i++)
         {
             ParticleSystem temp;
@@ -25,12 +35,7 @@ public class ParticleManager : MonoBehaviour
             ShotList.Add(temp);
         }
 
-        for (int i = 0; i < 1; i++)
-        {
-            ParticleSystem temp;
-            temp = Instantiate(ExplosionEffects[PlayerPrefs.GetInt("GunIndex")]);
-           ExplosionList.Add(temp);
-        }
+
        // Instantiate(ShotEffects[0]);
       //  ShotList.Add(ShotEffects[0]);
         //  tempParticle = Instantiate(ShotEffects[PlayerPrefs.GetInt("GunIndex")]);
@@ -59,18 +64,28 @@ public class ParticleManager : MonoBehaviour
         return temp;
     }
 
-    public ParticleSystem GetExplosionParticle()
+    public ParticleSystem GetExplosionParticle(string ExName)
     {
-        ParticleSystem temp;
+
         for (int i = 0; i < ExplosionList.Count; i++)
         {
             if (!ExplosionList[i].isPlaying)
             {
+                if(ExplosionList[i].CompareTag(ExName))
                 return ExplosionList[i];
             }
         }
-        temp = Instantiate(ExplosionEffects[PlayerPrefs.GetInt("GunIndex")]);
-        ExplosionList.Add(temp);
-        return temp; 
+
+        for (int i = 0; i < ExplosionEffects.Length; i++)
+        {
+            Debug.Log("NEWITEM!");
+            if (ExplosionEffects[i].CompareTag(ExName))
+            {
+                temp2 =  Instantiate(ExplosionEffects[i]);
+            }
+        }
+        Instantiate(temp2);
+        ExplosionList.Add(temp2);
+        return temp2; 
     }
 }

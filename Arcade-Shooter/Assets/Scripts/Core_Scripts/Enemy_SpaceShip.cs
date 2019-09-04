@@ -38,6 +38,7 @@ public class Enemy_SpaceShip : SpaceShip
     [SerializeField] private bool Looping;
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
+    public string ExEffect;
 
     void Start()
     {
@@ -144,11 +145,7 @@ public class Enemy_SpaceShip : SpaceShip
             }
             //rotation(); 
         }
-        else
-        {
-          //  StopAllCoroutines();
-        }
-      
+
     }
 
     void IdleMovement()
@@ -197,34 +194,28 @@ public class Enemy_SpaceShip : SpaceShip
                     Destroy(BulletList[j]);
             } 
         }
-
-        ParticleSystem temp = ParticleManager._Instance.GetExplosionParticle();
+        ParticleSystem temp = ParticleManager._Instance.GetExplosionParticle(ExEffect);
         temp.transform.position = transform.position;
         temp.Play();
-        //    ParticleManager._Instance.tempParticle2.transform.position = transform.position;
-     //   ParticleManager._Instance.tempParticle2.Play();
-
         gameObject.SetActive(false);
         tparam = 0;
         GetComponent<Animator>().ResetTrigger("GotHit");
-        //Destroy(gameObject);
     }
 
     public void Shoot()
     {
-        // AttackSpeed = Random.Range(10, 15);
         if (gameObject.activeInHierarchy)
         {
-            if (BulletList[1] != null)
+            if (BulletList[0] != null)
             {
-                if (!BulletList[1].activeInHierarchy)
+                if (!BulletList[0].activeInHierarchy)
                 {
                     for (int j = 0; j < GunPoints.Length; j++)
                     {
-                        BulletList[1].transform.position = GunPoints[0].transform.position;
-                        BulletList[1].transform.rotation = GunPoints[0].transform.rotation;
-                        BulletList[1].GetComponent<TrailRenderer>().Clear();
-                        BulletList[1].SetActive(true);
+                        BulletList[0].transform.position = GunPoints[0].transform.position;
+                        BulletList[0].transform.rotation = GunPoints[0].transform.rotation;
+                        BulletList[0].GetComponent<TrailRenderer>().Clear();
+                        BulletList[0].SetActive(true);
                     }
                 }
             }

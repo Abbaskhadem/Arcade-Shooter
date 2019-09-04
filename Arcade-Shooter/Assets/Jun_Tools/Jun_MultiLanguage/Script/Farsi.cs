@@ -168,5 +168,27 @@ namespace System.Collections
 			
 			return false;
 		}
+        public static string multiLanguageText(string englishText, string persianText)
+        {
+            if (startLanguage.language == sysLang.Persian)
+            {
+                return Farsi.faConvert(persianText);
+            }
+            else
+            {
+                return englishText;
+            }
+        }
+        public static string multiLanguageNumber(int num)
+        {
+            if (startLanguage.language == sysLang.Persian)
+            {
+                return Farsi.faConvert(num.ToString());
+            }
+            else
+            {
+                return num.ToString();
+            }
+        }
 	}
 }

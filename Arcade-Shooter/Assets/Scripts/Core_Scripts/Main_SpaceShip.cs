@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class Main_SpaceShip : SpaceShip
 
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private Slider PowerBar;
+    [SerializeField] private GameObject DamageEffect;
 
     #endregion
 
@@ -62,7 +64,7 @@ public class Main_SpaceShip : SpaceShip
         
         if (!GameManager._Instance.GamePause)
         {
-           if (SuperPower.isPlaying)
+            if (SuperPower.isPlaying)
             {
                 SuperPower.transform.parent = GameObject.Find("Main Camera").transform;
             }
@@ -71,6 +73,7 @@ public class Main_SpaceShip : SpaceShip
                 SuperPower.transform.parent = this.transform;
                 SuperPower.transform.position = this.transform.position;
             }
+            #region PC Buttons
             if (Input.GetKeyDown(KeyCode.A))
             {
                 transform.Translate(-1f,0,0);
@@ -90,21 +93,20 @@ public class Main_SpaceShip : SpaceShip
             {
                transform.Translate(0,-1,0);
             }
+            #endregion
             if (health < 0)
             {
                 LoseUI.SetActive(true);
-                PowerBar.GetComponentInChildren<Text>().text = "FAILED!";
+                PowerBar.GetComponentInChildren<Text>().text = Farsi.multiLanguageText("FAILED!", "نا موفق!");
                 GameManager._Instance.GameEnded = true;
                 Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
-
             if (!GameManager._Instance.GameEnded)
             {
                 if (health <= 100)
                 {
-                    float temp;
-                    temp = Mathf.Round(health * 100f) / 100f;
+                    float  temp = Mathf.Round(health * 100f) / 100f;
                     PowerBar.GetComponentInChildren<Text>().text = temp.ToString("0") + "%";
                     PowerBar.value = health;
                 }
@@ -260,7 +262,12 @@ public class Main_SpaceShip : SpaceShip
 
     public void TakeDamage()
     {
+        if (health >= 50)
+        {
+            DamageEffect.SetActive(true);  
+        }
         health -= 50;
+
     }
 
     #endregion
