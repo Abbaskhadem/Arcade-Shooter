@@ -78,7 +78,6 @@ public class ParticleManager : MonoBehaviour
 
         for (int i = 0; i < ExplosionEffects.Length; i++)
         {
-            Debug.Log("NEWITEM!");
             if (ExplosionEffects[i].CompareTag(ExName))
             {
                 temp2 =  Instantiate(ExplosionEffects[i]);

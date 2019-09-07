@@ -48,6 +48,7 @@ public class Main_SpaceShip : SpaceShip
 
     void Start()
     {
+      //  PowerUpTextController.instance.Creat("Power Up", transform.position);
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
 //        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
@@ -233,7 +234,8 @@ public class Main_SpaceShip : SpaceShip
     {
         if (index < UpgradableTurrets.Count)
         {
-            Instantiate(PowerText, transform.position,Quaternion.identity);
+          //  Instantiate(PowerText, transform.position,Quaternion.identity);
+          PowerUpTextController.Instance.Creat("Power Up", transform.position);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
@@ -252,7 +254,7 @@ public class Main_SpaceShip : SpaceShip
                 a.GetComponent<Bullet>().Damage -= DamageCost;
             }
 
-            DamageCost -= 2;
+            DamageCost -= 4;
         }
         else
         {

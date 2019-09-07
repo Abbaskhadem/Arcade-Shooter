@@ -6,9 +6,20 @@ using UnityEngine;
 
 public class Text_Effect : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        StartCoroutine(DelayForDeactivate(gameObject));
+    }
+
     private void Update()
     {
-        transform.Translate(0, 0.03f, 0);
-        Destroy(gameObject,2f);
+        var a=  GetComponent<RectTransform>();
+      a.transform.Translate(0,0.06f,0);
+    }
+
+    private IEnumerator DelayForDeactivate(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(4);
+        gameObject.SetActive(false);
     }
 }

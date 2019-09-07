@@ -20,10 +20,9 @@ public class Upgrade_Item : MonoBehaviour
         if (gameObject.CompareTag("Damage")&&other.gameObject.CompareTag("Player"))
         {
             c.UpgradeWeapons();
-           // temp.transform.position = other.transform.position;
-           // temp.transform.rotation = other.transform.rotation;
-           // temp.SetActive(true);
-            Instantiate(PowerText, other.transform.position,Quaternion.identity);
+         //   PowerUpTextController.instance.Creat("Power Up", other.transform.position);
+            //Instantiate(PowerText, other.transform.position,Quaternion.identity);
+
             Destroy(gameObject);
         }
     }

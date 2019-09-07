@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8805684853517118609}
   - component: {fileID: 2185223324087821665}
   m_Layer: 0
-  m_Name: Enemy (0)
+  m_Name: Enemy (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 100
   Damage: 20
   bullet:
   - {fileID: 5655061594256983199, guid: b3378d91024c6444d92a5c7ba430f635, type: 3}
@@ -163,6 +163,7 @@ MonoBehaviour:
   - {fileID: 8805684854555351303}
   Speed: 5
   FinalDestination: {fileID: 0}
+  Melee: 1
   Routes: []
   MoveAllowed: 0
   coroutineAllowed: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   MaximumAmmo: 3
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
-  ExEffect: Effect_0
+  ExEffect: Effect_1
 --- !u!1 &8805684854555351296
 GameObject:
   m_ObjectHideFlags: 0
