@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 33361145}
   - component: {fileID: 33361144}
   - component: {fileID: 33361143}
+  - component: {fileID: 33361146}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -276,6 +277,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33361146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33361142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaad3b555be6e9e4baa40b19b7d45d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.23809683
+      value: 0.8387193
+      inSlope: 1.2224627
+      outSlope: 1.2224627
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: -0.006072998
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShakeIndensity: 3.8
+  ShakeImplitiude: 0
+  _startTime: 10
 --- !u!1 &96733137
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,13 +507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdacef9940c8b24e991d80ae9a65226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotEffects:
-  - {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482, type: 3}
-  ExplosionEffects:
-  - {fileID: 7854059295339088531, guid: a67f30a00024c4b41b28b9332aba7452, type: 3}
-  - {fileID: 7854059295339088531, guid: 643ad0ccf1b0f44478e363db0ab3cc9b, type: 3}
-  ShotList: []
-  ExplosionList: []
+  PlayerParticles: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
+    type: 3}
+  EnemyParticles: {fileID: 7854059295339088531, guid: a67f30a00024c4b41b28b9332aba7452,
+    type: 3}
+  tempParticle: {fileID: 0}
+  tempParticle2: {fileID: 0}
 --- !u!4 &216190640
 Transform:
   m_ObjectHideFlags: 0
@@ -589,12 +637,12 @@ PrefabInstance:
     - target: {fileID: 5273252662669026983, guid: a678894678fb81b45b02e18d8f10737c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5273252662669026983, guid: a678894678fb81b45b02e18d8f10737c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.35
+      value: -2.98
       objectReference: {fileID: 0}
     - target: {fileID: 5273252662669026983, guid: a678894678fb81b45b02e18d8f10737c,
         type: 3}
@@ -6202,7 +6250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameEnded: 0
-  GamePause: 0
 --- !u!1 &958091243
 GameObject:
   m_ObjectHideFlags: 0
@@ -6491,6 +6538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1023789784}
+  - component: {fileID: 1023789783}
   - component: {fileID: 1023789785}
   - component: {fileID: 1023789786}
   m_Layer: 0
@@ -6500,6 +6548,64 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1023789783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023789782}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41c0cdccfa01d347ae6f6e942366d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveText: {fileID: 0}
+  EndGameUI: {fileID: 0}
+  EndWaveText: {fileID: 0}
+  InnovativeMessages: []
+  ItemDropChance: 0
+  WaveNumber: 0
+  Waves:
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 0200000003000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 7246642555969863188, guid: 0c7bb07cd5fc25b4ab5acb3cc9ea671f, type: 3}
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    FinalPositions: {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 08000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    FinalPositions: {fileID: 3866936199449835735, guid: bcad8269113b69a46937e2c24688eed8,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 07000000
+    ActiveDly: 0.3
+    EnemyList: []
+    Routes:
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
+    - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
+    FinalPositions: {fileID: 7733214137702013629, guid: 180095af0dca23947b00f8431c09cb5a,
+      type: 3}
+  - EnemyTypes:
+    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    Quantity: 14000000
+    ActiveDly: 0.2
+    EnemyList: []
+    Routes:
+    - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
+    FinalPositions: {fileID: 540312724464109266, guid: 87271f38348c3d848990a75436bfae38,
+      type: 3}
 --- !u!4 &1023789784
 Transform:
   m_ObjectHideFlags: 0
@@ -6526,22 +6632,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9290ab363df1d4499659f3da2447d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pause: 0
   Rout:
   - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
   - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
-  - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
   Waves:
   - EnemyTypes:
     - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 4dc2bfd646cf29f449bb837daa5f1206, type: 3}
+    - {fileID: 8805684853517118623, guid: 893a3cb5a90469c4c820c83e1c27ad96, type: 3}
     Quantity: 0400000001000000
     ActiveDly: 0.3
     EnemyList: []
-    spetiallRout: 0
-    Routes:
-    - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
-    - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
     FinalPositions:
     - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - EnemyTypes:
@@ -6550,10 +6650,6 @@ MonoBehaviour:
     Quantity: 0300000002000000
     ActiveDly: 0.3
     EnemyList: []
-    spetiallRout: 1
-    Routes:
-    - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
-    - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
     FinalPositions:
     - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - EnemyTypes:
@@ -6562,8 +6658,6 @@ MonoBehaviour:
     Quantity: 0200000003000000
     ActiveDly: 0.3
     EnemyList: []
-    spetiallRout: 0
-    Routes: []
     FinalPositions:
     - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - EnemyTypes:
@@ -6572,8 +6666,6 @@ MonoBehaviour:
     Quantity: 0100000004000000
     ActiveDly: 0.3
     EnemyList: []
-    spetiallRout: 0
-    Routes: []
     FinalPositions:
     - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
 --- !u!95 &1023789786

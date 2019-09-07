@@ -61,7 +61,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -168,7 +167,7 @@ MonoBehaviour:
   coroutineAllowed: 0
   ShootAllowed: 0
   Looping: 0
-  MaximumAmmo: 1
+  MaximumAmmo: 3
   RandomItems: []
   ExEffect: 
 --- !u!1 &8805684854555351296
