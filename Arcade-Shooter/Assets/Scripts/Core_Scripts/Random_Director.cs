@@ -209,7 +209,7 @@ public class Random_Director : MonoBehaviour
             if (FirstRandom < 0) FirstRandom = 0;
             if (FirstRandom >= Waves.Length) FirstRandom = Waves.Length - 3;
             if (LastRandom > Waves.Length) LastRandom = Waves.Length;
-            RandomWave = Random.Range(0, 2);
+            RandomWave = Random.Range(FirstRandom, LastRandom);
             UpgrateWave = false;
             if (b != null) StopCoroutine(b);
             b = SpawnEnemyWaves(RandomWave);
