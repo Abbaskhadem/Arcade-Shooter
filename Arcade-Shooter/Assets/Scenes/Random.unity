@@ -6586,7 +6586,7 @@ MonoBehaviour:
     spetiallRout: 1
     Routes:
     - {fileID: 6809488895863275993, guid: 4215d9456582e9849bad05444b7553e8, type: 3}
-    - {fileID: 4666881746108180470, guid: 205fa19f1f0aa6d4bb5c312626c9ee29, type: 3}
+    - {fileID: 5899585245735444372, guid: 58e489d7ca0e6124d802f7c3cb573b6e, type: 3}
     FinalPositions:
     - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - EnemyTypes:

@@ -25,5 +25,9 @@ public class Upgrade_Item : MonoBehaviour
 
             Destroy(gameObject);
         }
+        if (gameObject.CompareTag("Shield") && other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<Main_SpaceShip>().Shild = true;
+        }
     }
 }

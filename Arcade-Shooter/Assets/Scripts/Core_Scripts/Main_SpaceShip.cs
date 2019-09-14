@@ -18,6 +18,8 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField] private ParticleSystem[] Jetpack;
     [SerializeField] private ParticleSystem DeathEffect;
     [SerializeField] private ParticleSystem SuperPower;
+    [HideInInspector] public float TimeShild;
+    [HideInInspector]public bool Shild;
     float min = -0.0022f;
     float max = 0.0022f;
     private int DamageCost = 10;
@@ -235,7 +237,7 @@ public class Main_SpaceShip : SpaceShip
         if (index < UpgradableTurrets.Count)
         {
           //  Instantiate(PowerText, transform.position,Quaternion.identity);
-          PowerUpTextController.Instance.Creat("Power Up", transform.position);
+            PowerUpTextController.Instance.Creat("Power Up", transform.position);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
@@ -264,12 +266,14 @@ public class Main_SpaceShip : SpaceShip
 
     public void TakeDamage()
     {
-        if (health >= 50)
+        if (!Shild)
         {
-            DamageEffect.SetActive(true);  
+            if (health >= 50)
+            {
+                DamageEffect.SetActive(true);  
+            }
+            health -= 50;
         }
-        health -= 50;
-
     }
 
     #endregion
