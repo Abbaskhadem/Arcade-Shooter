@@ -10,8 +10,8 @@ public class ParticleManager : MonoBehaviour
    public ParticleSystem[] ShotEffects;
    public ParticleSystem[] ExplosionEffects;
 
-   public List<ParticleSystem> ShotList;
-   public List<ParticleSystem> ExplosionList;
+ [HideInInspector]  public List<ParticleSystem> ShotList;
+ [HideInInspector]  public List<ParticleSystem> ExplosionList;
    ParticleSystem temp2;
 //    public ParticleSystem [] ShotEffects;
 //    public ParticleSystem EnemyParticles;

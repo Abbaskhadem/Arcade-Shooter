@@ -17,6 +17,7 @@ TagManager:
   - Bullet_navigait
   - Effect_0
   - Effect_1
+  - Shield
   layers:
   - Default
   - TransparentFX

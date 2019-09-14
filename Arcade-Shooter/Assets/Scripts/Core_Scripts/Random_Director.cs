@@ -13,12 +13,11 @@ public class Random_Director : MonoBehaviour
     int LastRandom = 0;
     int FirstRandom = 0;
     int RandomWave = 0;
-    
     int i = 0;
     private bool dd = false;
     private int temp;
     private List<GameObject> activEnemy;
-    private bool SpawnAllowed = true;
+    [HideInInspector]public bool SpawnAllowed = true;
     private int WaveNumber;
     bool firsttime = false;
     public Transform[] Rout;
@@ -26,7 +25,7 @@ public class Random_Director : MonoBehaviour
     private int RandomRout;
     private int RandomFinalPositions;
     IEnumerator b;
-
+    
     #endregion
 
     #region MyWave_Class

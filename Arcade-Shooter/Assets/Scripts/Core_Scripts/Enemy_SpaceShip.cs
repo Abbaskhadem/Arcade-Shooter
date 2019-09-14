@@ -39,10 +39,24 @@ public class Enemy_SpaceShip : SpaceShip
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
     public string ExEffect;
+
     public bool Melee;
-   // private float DropTime;
-   [HideInInspector]public bool GoDrop;
-    [HideInInspector]public bool Droping;
+
+    // private float DropTime;
+    [HideInInspector] public bool GoDrop;
+    [HideInInspector] public bool Droping;
+    private float EnemyBaseHealth;
+
+    private void Awake()
+    {
+        EnemyBaseHealth = health;
+    }
+
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().name == "Random")
+            health = EnemyBaseHealth;
+    }
 
     void Start()
     {
@@ -68,8 +82,8 @@ public class Enemy_SpaceShip : SpaceShip
 
         if (ShootAllowed && Melee)
         {
-            if(!Droping) 
-               IdleMovement();
+            if (!Droping)
+                IdleMovement();
             if (GoDrop)
             {
                 DropAttack();
@@ -105,12 +119,13 @@ public class Enemy_SpaceShip : SpaceShip
         if (!GameManager._Instance.GamePause)
         {
             tparam = 0f;
-            RoutesToGo += 1; 
+            RoutesToGo += 1;
         }
         else
         {
             yield return null;
         }
+
         if (RoutesToGo > Routes.Length - 1)
         {
             if (Looping)
@@ -156,12 +171,12 @@ public class Enemy_SpaceShip : SpaceShip
                     if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
                     {
                         ShootAllowed = true;
-                    }   
+                    }
                 }
             }
+
             //rotation(); 
         }
-
     }
 
     void IdleMovement()
@@ -182,8 +197,9 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Death()
     {
-        FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
-            .Remove(this.gameObject);
+        if (SceneManager.GetActiveScene().name != "Random")
+            FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
+                .Remove(this.gameObject);
         int i = Random.Range(0, 100);
         if (SceneManager.GetActiveScene().name != "Random")
         {
@@ -198,18 +214,19 @@ public class Enemy_SpaceShip : SpaceShip
             if (i > 85)
             {
                 Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
-                    Quaternion.identity); 
+                    Quaternion.identity);
             }
         }
 
-        if (SceneManager.GetActiveScene().name!="Random")
+        if (SceneManager.GetActiveScene().name != "Random")
         {
             for (int j = 0; j < BulletList.Count; j++)
             {
-                if(!BulletList[j].activeInHierarchy)
+                if (!BulletList[j].activeInHierarchy)
                     Destroy(BulletList[j]);
-            } 
+            }
         }
+
         ParticleSystem temp = ParticleManager._Instance.GetExplosionParticle(ExEffect);
         temp.transform.position = transform.position;
         temp.Play();
@@ -236,7 +253,6 @@ public class Enemy_SpaceShip : SpaceShip
                 }
             }
         }
-        
     }
 
     public void DropAttack()
@@ -245,15 +261,17 @@ public class Enemy_SpaceShip : SpaceShip
         {
             Droping = true;
         }
-        Body.AddForce(new Vector2(0,-8));
+
+        Body.AddForce(new Vector2(0, -8));
         if (transform.position.y <= -6.25f)
         {
             Body.velocity = Vector3.zero;
-            transform.position=new Vector3(transform.position.x,6.25f,transform.position.z);
+            transform.position = new Vector3(transform.position.x, 6.25f, transform.position.z);
             GoDrop = false;
             Droping = false;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

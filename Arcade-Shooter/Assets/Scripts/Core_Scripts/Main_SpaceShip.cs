@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Main_SpaceShip : SpaceShip
@@ -124,15 +125,31 @@ public class Main_SpaceShip : SpaceShip
                     SuperPowerTimer += Time.deltaTime;
                     if (SuperPowerTimer >= Random.Range(3f, 5f))
                     {
-                        if (!FindObjectOfType<Game_Director>().SpawnAllowed)
+                        if (SceneManager.GetActiveScene().name != "Random")
                         {
-                            foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                            if (!FindObjectOfType<Game_Director>().SpawnAllowed)
                             {
-                                VARIABLE.TakeDamage(50);
+                                foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                                {
+                                    VARIABLE.TakeDamage(50);
+                                }
+                                SuperPowerTimer = 0;
+                                health = 50;
+                                SuperPower.Play();
                             }
-                            SuperPowerTimer = 0;
-                            health = 50;
-                            SuperPower.Play();
+                        }
+                        else
+                        {
+                            if (!FindObjectOfType<Random_Director>().SpawnAllowed )
+                            {
+                                foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                                {
+                                    VARIABLE.TakeDamage(50);
+                                }
+                                SuperPowerTimer = 0;
+                                health = 50;
+                                SuperPower.Play();
+                            }
                         }
                         // Super Power Activates!
                     }

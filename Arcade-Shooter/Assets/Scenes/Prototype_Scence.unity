@@ -45946,6 +45946,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.8962264
       objectReference: {fileID: 0}
+    - target: {fileID: 5273252662669027001, guid: a678894678fb81b45b02e18d8f10737c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5273252662669026982, guid: a678894678fb81b45b02e18d8f10737c,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
