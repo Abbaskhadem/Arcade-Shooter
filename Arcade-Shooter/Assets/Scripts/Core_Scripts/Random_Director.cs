@@ -7,7 +7,6 @@ public class Random_Director : MonoBehaviour
     #region Temp Variables
 
     private float AttackTimer;
-    public bool Pause = false;
     private int temp1;
     bool UpgrateWave = false;
     int LastRandom = 0;
@@ -82,8 +81,7 @@ public class Random_Director : MonoBehaviour
 
     IEnumerator SpawnEnemyWaves(int a)
     {
-        if (!Pause)
-        {
+        
             if (SpawnAllowed)
             {
                 if (Waves[a].EnemyList.Count == 0)
@@ -92,8 +90,7 @@ public class Random_Director : MonoBehaviour
                     {
                         for (int k = 0; k < Waves[a].Quantity[j]; k++)
                         {
-                            if (!Pause)
-                            {
+                            
                                
                                 RandomFinalPositions = Random.Range(0, Waves[a].FinalPositions.Length);
                                 GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
@@ -107,12 +104,11 @@ public class Random_Director : MonoBehaviour
                                     temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1];
                                     temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[a].Routes[j];
                                 }
-                            }
+                            
                         }
                     }
                 }
-            }
-
+            
             for (int j = 0; j < Waves[a].EnemyList.Count; j++)
             {
                 if (Waves[a].EnemyList[j].activeInHierarchy)
