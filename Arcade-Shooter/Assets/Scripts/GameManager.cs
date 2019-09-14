@@ -6,14 +6,28 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _Instance;
-    public bool GameEnded = false;
-    public bool GamePause = false;
+   [HideInInspector] public bool GameEnded = false;
+   [HideInInspector] public bool GamePause = false;
     private static string tag;
-
+    public _ShopItems[] ShopItems;
+    [System.Serializable]
+    public class _ShopItems
+    {
+        public string Item;
+        public int PriceValue;
+        public int PriceCost;
+        public int ValuePlus;
+    }
     private void Awake()
     {
         _Instance = this;
     }
+
+    void Start()
+    {
+        PlayerPrefs.SetInt("Coins",10000);
+    }
+
     public static List<GameObject> ObjectPooler(GameObject Obj, int MaxObj)
     {
         List<GameObject> ListOBJ = new List<GameObject>();
@@ -58,6 +72,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         GamePause = false;
         SceneManager.LoadScene(0);
+    }
+
+    public void Shop(int ID)
+    {
+        if (PlayerPrefs.GetInt("Coins") >= ShopItems[ID].PriceValue)
+        {
+            int temp = PlayerPrefs.GetInt(ShopItems[ID].Item);
+            PlayerPrefs.SetInt(ShopItems[ID].Item,temp+ShopItems[ID].PriceCost);
+           ShopItems[ID].PriceValue += ShopItems[ID].ValuePlus;
+        }
     }
 }
 

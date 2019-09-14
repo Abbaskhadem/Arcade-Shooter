@@ -39,6 +39,10 @@ public class Enemy_SpaceShip : SpaceShip
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
     public string ExEffect;
+    public bool Melee;
+   // private float DropTime;
+   [HideInInspector]public bool GoDrop;
+    [HideInInspector]public bool Droping;
 
     void Start()
     {
@@ -57,10 +61,19 @@ public class Enemy_SpaceShip : SpaceShip
     void Update()
     {
         ManageEnemyMovement();
-        if (ShootAllowed)
+        if (ShootAllowed && !Melee)
         {
             IdleMovement();
-            //     Shoot();
+        }
+
+        if (ShootAllowed && Melee)
+        {
+            if(!Droping) 
+               IdleMovement();
+            if (GoDrop)
+            {
+                DropAttack();
+            }
         }
     }
 
@@ -136,11 +149,14 @@ public class Enemy_SpaceShip : SpaceShip
             }
             else
             {
-                MainTarget = FinalDestination.position;
-                transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
+                if (!Droping)
                 {
-                    ShootAllowed = true;
+                    MainTarget = FinalDestination.position;
+                    transform.position = Vector2.MoveTowards(transform.position, MainTarget, Speed * Time.deltaTime);
+                    if (Vector2.Distance(transform.position, FinalDestination.position) == 0)
+                    {
+                        ShootAllowed = true;
+                    }   
                 }
             }
             //rotation(); 
@@ -223,6 +239,21 @@ public class Enemy_SpaceShip : SpaceShip
         
     }
 
+    public void DropAttack()
+    {
+        if (!Droping)
+        {
+            Droping = true;
+        }
+        Body.AddForce(new Vector2(0,-8));
+        if (transform.position.y <= -6.25f)
+        {
+            Body.velocity = Vector3.zero;
+            transform.position=new Vector3(transform.position.x,6.25f,transform.position.z);
+            GoDrop = false;
+            Droping = false;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

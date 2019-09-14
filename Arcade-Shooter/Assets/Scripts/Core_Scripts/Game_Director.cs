@@ -78,10 +78,21 @@ public class Game_Director : MonoBehaviour
                         AttackTimer = Random.Range(1.5f, 2f);
                         for (int i = 0; i < Random.Range(1,3); i++)
                         {
-                            if (Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null)
+                            if (Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null &&
+                                !Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee )
                             {
                                 Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
-                            } 
+                            }
+                            else if(Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null &&
+                                    Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee)
+                            {
+                                if (!Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)]
+                                    .GetComponent<Enemy_SpaceShip>().Droping)
+                                {
+                                    Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)]
+                                        .GetComponent<Enemy_SpaceShip>().GoDrop = true;
+                                }
+                            }
                         }
 
                     }

@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655061594256983199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.233, y: -3.988, z: 0}
-  m_LocalScale: {x: 0.020686287, y: 0.020686287, z: 0.020686287}
+  m_LocalPosition: {x: -0.2475, y: -4.0025, z: 0}
+  m_LocalScale: {x: 0.017792275, y: 0.017792275, z: 0.017792275}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d27a9152e03f1b4e9f3bbda4b9babd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   Child: 0
   NavigatPlayer: 0
   Damage: 30
