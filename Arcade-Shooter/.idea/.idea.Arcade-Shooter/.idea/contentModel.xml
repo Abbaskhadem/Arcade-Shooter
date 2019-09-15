@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Sepehr\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Sepehr\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_Arcade-Shooter.1388689351.00" t="ExcludeRecursive" />
-    <e p="E:\Projects\ArcaedShooter\Arcade-Shooter-Main\Arcade-Shooter\Arcade-Shooter" t="IncludeRecursive">
+    <e p="C:\Users\Abbas Khadem\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Abbas Khadem\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_Arcade-Shooter.464032149.00" t="ExcludeRecursive" />
+    <e p="E:\Projects\Arcade-Shooter\Arcade-Shooter\Arcade-Shooter" t="IncludeRecursive">
       <e p="Arcade-Shooter.sln" t="IncludeFlat" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -66,6 +66,7 @@
           <e p="ShipController.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
           <e p="BezierFallow.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Core_Scripts" t="Include">

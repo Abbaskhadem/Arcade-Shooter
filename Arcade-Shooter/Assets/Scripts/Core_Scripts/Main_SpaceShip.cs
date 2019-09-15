@@ -160,7 +160,8 @@ public class Main_SpaceShip : SpaceShip
                 if (Timer >= AttackSpeed)
                 {
                     Timer = 0;
-                    Shoot();
+                    if(!GameManager._Instance.GameEnded)
+                      Shoot();
                 }
             }
 
@@ -241,6 +242,7 @@ public class Main_SpaceShip : SpaceShip
             
             if (bullet != null)
             {
+                turret.GetComponentInChildren<ParticleSystem>().Play();
                 bullet.transform.position = turret.transform.position;
                 bullet.transform.rotation = turret.transform.rotation;
                 bullet.GetComponent<TrailRenderer>().Clear();
@@ -255,17 +257,21 @@ public class Main_SpaceShip : SpaceShip
         {
           //  Instantiate(PowerText, transform.position,Quaternion.identity);
             PowerUpTextController.Instance.Creat("Power Up", transform.position);
+           // UpgradableTurrets[index].SetActive(true);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
                 activePlayerTurrets.Remove(startWeapon);
+               startWeapon.SetActive(false);
                 activePlayerTurrets.Add(UpgradableTurrets[index]);
+              //  UpgradableTurrets[index].SetActive(true);
             }
             else
             {
                 activePlayerTurrets.Remove(UpgradableTurrets[--index]);
                 index++;
                 activePlayerTurrets.Add(startWeapon);
+                startWeapon.SetActive(true);
             }
 
             foreach (var a in ObjectPooler.SharedInstance.pooledObjects)

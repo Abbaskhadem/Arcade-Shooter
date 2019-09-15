@@ -19,6 +19,7 @@ public class Upgrade_Item : MonoBehaviour
         var c = other.GetComponent<Main_SpaceShip>();
         if (gameObject.CompareTag("Damage")&&other.gameObject.CompareTag("Player"))
         {
+            AudioManager._Instance.PlayAudio(0);
             c.UpgradeWeapons();
          //   PowerUpTextController.instance.Creat("Power Up", other.transform.position);
             //Instantiate(PowerText, other.transform.position,Quaternion.identity);

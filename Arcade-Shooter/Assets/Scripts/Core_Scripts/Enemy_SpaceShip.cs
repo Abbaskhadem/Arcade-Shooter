@@ -230,6 +230,7 @@ public class Enemy_SpaceShip : SpaceShip
         ParticleSystem temp = ParticleManager._Instance.GetExplosionParticle(ExEffect);
         temp.transform.position = transform.position;
         temp.Play();
+        AudioManager._Instance.PlayAudio(2);
         gameObject.SetActive(false);
         tparam = 0;
         GetComponent<Animator>().ResetTrigger("GotHit");
