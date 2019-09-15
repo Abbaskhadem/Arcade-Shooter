@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
 
 void Start()
 {
+    Target=GameObject.FindGameObjectWithTag("Player");
 //    if(gameObject.tag=="Player Bullet")
 //    BulletEffect = Instantiate(BulletEffect);
     objectRigidbody = transform.GetComponent<Rigidbody2D>();
@@ -29,8 +30,7 @@ private void OnEnable()
 {
     Timer = 0;
 }
-
-void Update()
+void FixedUpdate()
     {
         if (!GameManager._Instance.GamePause)
         {
@@ -40,7 +40,7 @@ void Update()
                 if (Timer <= 1)
                 {
                     var forceDirection = (Target.transform.position - transform.position).normalized;
-                    if (forceDirection.y > 0)return;
+                   // if (forceDirection.y > 0)return;
                     objectRigidbody.AddForce(forceDirection * Speed);
                 }
             }
