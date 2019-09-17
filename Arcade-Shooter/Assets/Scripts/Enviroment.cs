@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enviroment : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    public float Speed;
 
     // Update is called once per frame
     void Update()
@@ -15,8 +15,7 @@ public class Enviroment : MonoBehaviour
              transform.Translate(0,Speed,0);
         if (gameObject.GetComponent<Transform>().position.y <= -17)
         {
-            Debug.Log("CHANGE!");
-            transform.position=new Vector3(0,17f,0);
+            transform.position=new Vector3(0,17f,26);
         }
     }
 }

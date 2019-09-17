@@ -75,6 +75,7 @@
             <e p="Main_SpaceShip.cs" t="Include" />
             <e p="ParticleManager.cs" t="Include" />
             <e p="Random_Director.cs" t="Include" />
+            <e p="Random_WaveGenerator.cs" t="Include" />
             <e p="ShopControler.cs" t="Include" />
             <e p="SpaceShip.cs" t="Include" />
             <e p="Upgrade_Item.cs" t="Include" />

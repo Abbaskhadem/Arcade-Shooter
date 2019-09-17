@@ -19,8 +19,8 @@ public class Enemy_SpaceShip : SpaceShip
     private Vector2 p1;
     private Vector2 p2;
     private Vector2 p3;
-    public Transform FinalDestination;
-    [HideInInspector] public Transform[] Routes;
+    public Transform FinalDestination; 
+    public Transform[] Routes;
     private Vector2 EnemyPosition;
     private Vector3 MainTarget;
     private Transform Target;
@@ -198,8 +198,10 @@ public class Enemy_SpaceShip : SpaceShip
     void Death()
     {
         if (SceneManager.GetActiveScene().name != "Random")
+        {
             FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
-                .Remove(this.gameObject);
+                .Remove(this.gameObject); 
+        }
         int i = Random.Range(0, 100);
         if (SceneManager.GetActiveScene().name != "Random")
         {
@@ -231,7 +233,12 @@ public class Enemy_SpaceShip : SpaceShip
         temp.transform.position = transform.position;
         temp.Play();
         AudioManager._Instance.PlayAudio(2);
-        gameObject.SetActive(false);
+        if(SceneManager.GetActiveScene().name == "Random")
+             gameObject.SetActive(false);
+        else
+        {
+            Destroy(gameObject);
+        }
         tparam = 0;
         GetComponent<Animator>().ResetTrigger("GotHit");
     }

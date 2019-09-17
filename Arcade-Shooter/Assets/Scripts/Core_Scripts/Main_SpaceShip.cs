@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Main_SpaceShip : SpaceShip
 {
@@ -16,13 +18,16 @@ public class Main_SpaceShip : SpaceShip
 
     #region Exclusive Variables
 
+    [SerializeField] private AnimationCurve MoveOrto;
+    [SerializeField] private GameObject  GameDirector;
+    [SerializeField] private GameObject  ScreenBoundery;
     [SerializeField] private ParticleSystem[] Jetpack;
     [SerializeField] private ParticleSystem DeathEffect;
     [SerializeField] private ParticleSystem SuperPower;
     [HideInInspector] public float TimeShild;
     [HideInInspector]public bool Shild;
-    float min = -0.0022f;
-    float max = 0.0022f;
+    float min = -0.0038f;
+    float max = 0.0038f;
     private int DamageCost = 10;
     private float Starttime;
     private float SuperPowerTimer;
@@ -39,35 +44,29 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField] List<GameObject> UpgradableTurrets;
     [HideInInspector] public List<GameObject> activePlayerTurrets;
     private bool damagedone = false;
-
-    #endregion
-
-    #region List Preparing
-
-    void Awake()
-    {
-      //  GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("Player Bullet");
-    }
-
+    private bool IntroMode = true;
     void Start()
     {
-      //  PowerUpTextController.instance.Creat("Power Up", transform.position);
+        //  PowerUpTextController.instance.Creat("Power Up", transform.position);
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
 //        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
-        Body = this.GetComponent<Rigidbody2D>();
+        Body = GetComponent<Rigidbody2D>();
        // Shoot();
     }
 
     #endregion
 
     #region Actions
-
     void Update()
     {
-        
-        if (!GameManager._Instance.GamePause)
+        if (IntroMode)
         {
+            Intro();
+        }
+        if (!GameManager._Instance.GamePause && !IntroMode)
+        {
+            transform.position=new Vector3(Mathf.Clamp(transform.position.x,-3f,3f),Mathf.Clamp(transform.position.y,-5f,5f),transform.position.z);
             if (SuperPower.isPlaying)
             {
                 SuperPower.transform.parent = GameObject.Find("Main Camera").transform;
@@ -172,6 +171,43 @@ public class Main_SpaceShip : SpaceShip
         }
     }
 
+    void Intro()
+    {
+        for (int i = 0; i < Jetpack.Length; i++)
+        {
+            Jetpack[i].GetComponent<ParticleSystemRenderer>().sortingOrder = -2;
+        }
+        GetComponent<SpriteRenderer>().sortingOrder = -2;
+        IdleMovement();
+        foreach (var VARIABLE in FindObjectsOfType<Enviroment>())
+        {
+            VARIABLE.Speed =-0.09f;
+        }
+
+        if (Camera.main.orthographicSize < 5)
+            Camera.main.orthographicSize += MoveOrto.Evaluate(Time.time/3);
+        if(Camera.main.transform.position.y<0)
+          Camera.main.transform.Translate(0,0.03f,0);
+        else if(Camera.main.transform.position.y>=0 && Camera.main.orthographicSize>=5)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 0;
+            Time.timeScale = 1;
+            ScreenBoundery.SetActive(true);
+            foreach (var VARIABLE in FindObjectsOfType<Enviroment>())
+            {
+                VARIABLE.Speed =-0.003f;
+            }
+                    for (int i = 0; i < Jetpack.Length; i++)
+       {
+           Jetpack[i].Stop();
+           Jetpack[i].GetComponent<ParticleSystemRenderer>().sortingOrder = 0;
+       }
+            GameDirector.SetActive(true);
+            IntroMode = false;
+
+        }
+    }
+
     #endregion
 
     #region Player Ability
@@ -179,7 +215,7 @@ public class Main_SpaceShip : SpaceShip
     void IdleMovement()
     {
         transform.position += new Vector3(Mathf.Lerp(min, max, Starttime), 0, 0);
-        Starttime += 1.2f * Time.deltaTime;
+        Starttime += 1.4f * Time.deltaTime;
         if (Starttime > 1)
         {
             float temp = max;
@@ -242,6 +278,7 @@ public class Main_SpaceShip : SpaceShip
             
             if (bullet != null)
             {
+                GetComponent<AudioSource>().Play();
                 turret.GetComponentInChildren<ParticleSystem>().Play();
                 bullet.transform.position = turret.transform.position;
                 bullet.transform.rotation = turret.transform.rotation;
