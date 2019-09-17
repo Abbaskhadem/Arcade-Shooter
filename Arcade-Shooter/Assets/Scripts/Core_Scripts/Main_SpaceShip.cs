@@ -18,6 +18,7 @@ public class Main_SpaceShip : SpaceShip
 
     #region Exclusive Variables
 
+    [SerializeField] private GameObject Canvas;
     [SerializeField] private AnimationCurve MoveOrto;
     [SerializeField] private GameObject  GameDirector;
     [SerializeField] private GameObject  ScreenBoundery;
@@ -185,11 +186,12 @@ public class Main_SpaceShip : SpaceShip
         }
 
         if (Camera.main.orthographicSize < 5)
-            Camera.main.orthographicSize += MoveOrto.Evaluate(Time.time/3);
+            Camera.main.orthographicSize += MoveOrto.Evaluate(Time.deltaTime);
         if(Camera.main.transform.position.y<0)
           Camera.main.transform.Translate(0,0.03f,0);
         else if(Camera.main.transform.position.y>=0 && Camera.main.orthographicSize>=5)
         {
+            Canvas.SetActive(true);
             GetComponent<SpriteRenderer>().sortingOrder = 0;
             Time.timeScale = 1;
             ScreenBoundery.SetActive(true);
