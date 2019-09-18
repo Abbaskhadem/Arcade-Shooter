@@ -24,6 +24,8 @@ public class Game_Director : MonoBehaviour
    [HideInInspector] public bool SpawnAllowed = true;
     [HideInInspector]public int WaveNumber;
     private float AttackTimer=1.5f;
+    private int K;
+    private int J;
     bool firsttime = false;
     [Header("Enemy Waves")]
     public _Wave[] Waves;
@@ -39,9 +41,31 @@ public class Game_Director : MonoBehaviour
         private int frame;
         public Transform[] Routes;
         public Transform FinalPositions;
+        public float AttackSpeed;
     }
     #endregion
     #region Check When To Active
+
+    private void Awake()
+    {
+        for (int i = 0; i < Waves.Length; i++)
+        {
+            _index = 0;
+            for (int j = 0; j < Waves[i].EnemyTypes.Length; j++)
+            {
+                for (int k = 0; k < Waves[i].Quantity[j]; k++)
+                {
+                    GameObject temp = (GameObject) Instantiate(Waves[i].EnemyTypes[j]);
+                    temp.SetActive(false);
+                    temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[i].FinalPositions.GetChild(_index++);
+                    temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
+                    temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[i].Routes[j];              
+                    Waves[i].EnemyList.Add(temp);
+                }
+            } 
+        }
+
+    }
 
     void Start()
     {
@@ -72,10 +96,10 @@ public class Game_Director : MonoBehaviour
                 }
                 if (!SpawnAllowed)
                 {
-                    AttackTimer -= Time.deltaTime;
-                    if (AttackTimer <= 0)
+                    AttackTimer += Time.deltaTime;
+                    if (AttackTimer >= Waves[WaveNumber].AttackSpeed)
                     {
-                        AttackTimer = Random.Range(1.5f, 2f);
+                        AttackTimer = 0;
                         for (int i = 0; i < Random.Range(1,3); i++)
                         {
                             if (Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null &&
@@ -114,34 +138,18 @@ public class Game_Director : MonoBehaviour
 #region Activating Functions
     IEnumerator SpawnEnemyWaves(int a)
     {
-        if (SpawnAllowed)
-        {
-            for (int j = 0; j < Waves[a].EnemyTypes.Length; j++)
-        {
-            for (int k = 0; k < Waves[a].Quantity[j]; k++)
-            {
-                GameObject temp = (GameObject) Instantiate(Waves[a].EnemyTypes[j]);
-                temp.SetActive(false);
-                temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[a].FinalPositions.GetChild(_index++);
-                temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
-                temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[a].Routes[j];
-                Waves[a].EnemyList.Add(temp);
-            }
-        }
-        }
         for (int i = 0; i < Waves[a].EnemyList.Count; i++)
             {
                 if (!GameManager._Instance.GamePause)
                 {
                     Waves[a].EnemyList[i].transform.position = transform.position;
-                    Waves[a].EnemyList[i].transform.rotation = transform.rotation;
+             //       Waves[a].EnemyList[i].transform.rotation = transform.rotation;
                     Waves[a].EnemyList[i].SetActive(true);
                     yield return new WaitForSeconds(Waves[a].ActiveDly);     
                 }
                 else
                 {
-                    Debug.Log("OMG!");
-                    yield return i;
+                    yield return null;
                 }
             }
         SpawnAllowed = false;
@@ -166,7 +174,6 @@ public class Game_Director : MonoBehaviour
                     int temp = WaveNumber+1;
                     WaveText.GetComponent<Text>().text =Farsi.multiLanguageText( "Wave " +temp,"موج"+temp);
                     EndWaveText.GetComponent<Text>().text = Farsi.multiLanguageText("Great!", "عالی!");
-                       // InnovativeMessages[Random.Range(0, InnovativeMessages.Length)];
                     EndWaveText.SetActive(true); 
                 }
                 StartTimer = true;

@@ -1258,6 +1258,11 @@ PrefabInstance:
       propertyPath: ScreenBoundery
       value: 
       objectReference: {fileID: 958091243}
+    - target: {fileID: 5273252662669026981, guid: a678894678fb81b45b02e18d8f10737c,
+        type: 3}
+      propertyPath: Canvas
+      value: 
+      objectReference: {fileID: 1168607899}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a678894678fb81b45b02e18d8f10737c, type: 3}
 --- !u!1 &287814642
@@ -4231,7 +4236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -242.20004, y: 34}
+  m_AnchoredPosition: {x: -242.20003, y: 34}
   m_SizeDelta: {x: 168.7, y: -229.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1168607899

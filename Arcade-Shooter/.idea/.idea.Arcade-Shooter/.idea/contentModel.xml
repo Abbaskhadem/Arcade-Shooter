@@ -66,29 +66,27 @@
           <e p="ShipController.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
-          <e p="AudioManager.cs" t="Include" />
-          <e p="BezierFallow.cs" t="Include" />
-          <e p="Bullet.cs" t="Include" />
+          <e p="Components" t="Include">
+            <e p="AudioManager.cs" t="Include" />
+            <e p="Bullet.cs" t="Include" />
+            <e p="DeActivator.cs" t="Include" />
+            <e p="Enviroment.cs" t="Include" />
+            <e p="ParticleManager.cs" t="Include" />
+            <e p="PowerUpTextController.cs" t="Include" />
+            <e p="Rout.cs" t="Include" />
+            <e p="Text_Effect.cs" t="Include" />
+          </e>
           <e p="Core_Scripts" t="Include">
             <e p="Enemy_SpaceShip.cs" t="Include" />
             <e p="Game_Director.cs" t="Include" />
             <e p="Main_SpaceShip.cs" t="Include" />
-            <e p="ParticleManager.cs" t="Include" />
             <e p="Random_Director.cs" t="Include" />
             <e p="Random_WaveGenerator.cs" t="Include" />
             <e p="ShopControler.cs" t="Include" />
             <e p="SpaceShip.cs" t="Include" />
             <e p="Upgrade_Item.cs" t="Include" />
           </e>
-          <e p="DeActivator.cs" t="Include" />
-          <e p="enemies.cs" t="Include" />
-          <e p="Enemy_Controller.cs" t="Include" />
-          <e p="EnemyBullet.cs" t="Include" />
-          <e p="Enviroment.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="MainJet.cs" t="Include" />
-          <e p="PositionController.cs" t="Include" />
-          <e p="PowerUpTextController.cs" t="Include" />
           <e p="Reserved Codes" t="Include">
             <e p="BackupCods.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
@@ -97,10 +95,6 @@
             <e p="TempDirectory.cs" t="Include" />
             <e p="TestMove.cs" t="Include" />
           </e>
-          <e p="Rout.cs" t="Include" />
-          <e p="Spawner.cs" t="Include" />
-          <e p="SuperPower.cs" t="Include" />
-          <e p="Text_Effect.cs" t="Include" />
         </e>
         <e p="Sirenix" t="Include">
           <e p="Assemblies" t="Include">

@@ -171,7 +171,7 @@ MonoBehaviour:
   MaximumAmmo: 3
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
-  ExEffect: Effect_1
+  ExEffect: Effect_0
   Melee: 0
   GoDrop: 0
   Droping: 0

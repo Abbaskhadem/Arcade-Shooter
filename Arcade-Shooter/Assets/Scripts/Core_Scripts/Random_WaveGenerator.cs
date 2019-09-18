@@ -6,33 +6,22 @@ public class Random_WaveGenerator : MonoBehaviour
 {
     #region Temp Variables
 
+    public int ItemDropChance;
+    private float AttackSpeed=3.5f;
     public GameObject[] EnemyTypesMain;
     public Transform[] EnemyFinalPositionsMain;
     public Transform[] EnemyRoutsMain;
     public float[] ActiveDlyMain;
     private int FirstEnemy;
     private int LastEnemy = 1;
-
     public _Wave Wave;
     private float AttackTimer;
     private int temp1;
-//    bool UpgrateWave = false;
-//    int LastRandom = 0;
-//    int FirstRandom = 0;
-//    int RandomWave = 0;
-//    int i = 0;
-//    private bool dd = false;
-//    private int temp;
-//    private List<GameObject> activEnemy;
-   [HideInInspector] public bool SpawnAllowed = true;
-//    private int WaveNumber;
-    bool firsttime = false;
-//    public Transform[] Rout;
-//    public _Wave[] Waves;
-//    private int RandomRout;
-//    private int RandomFinalPositions;
-//    private int TmpLast;
-//    IEnumerator b;
+    [HideInInspector] public bool SpawnAllowed = true;
+    private bool firsttime;
+    private int Index;
+    private int RandomType;
+    private int c;
 
     #endregion
 
@@ -45,8 +34,7 @@ public class Random_WaveGenerator : MonoBehaviour
         public int[] Quantity;
         public float ActiveDly;
         public List<GameObject> EnemyList;
-        public bool spetiallRout;
-        public Transform Routes;
+        public Transform[] Routes;
         public Transform FinalPositions;
     }
 
@@ -58,11 +46,37 @@ public class Random_WaveGenerator : MonoBehaviour
         CheckAlive();
         if (SpawnAllowed)
         {
-            Debug.Log(SpawnAllowed);
-          //  Debug.Log("Generate WAVE!");
+            RandomType = Random.Range(0, 100);
             StartCoroutine(SpawnEnemyWaves(GenerateWave()));
         }
-  
+        if (!SpawnAllowed)
+        {
+            AttackTimer += Time.deltaTime;
+            if (AttackTimer >=AttackSpeed )
+            {
+                AttackTimer = 0;
+                for (int i = 0; i < Random.Range(1,3); i++)
+                {
+                    if (Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)] != null &&
+                        !Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee )
+                    {
+                        Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
+                    }
+                    else if(Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)] != null &&
+                            Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee)
+                    {
+                        if (!Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)]
+                            .GetComponent<Enemy_SpaceShip>().Droping)
+                        {
+                            Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)]
+                                .GetComponent<Enemy_SpaceShip>().GoDrop = true;
+                        }
+                    }
+                }
+
+            }
+
+        }
     }
 
     #endregion
@@ -71,14 +85,18 @@ public class Random_WaveGenerator : MonoBehaviour
 
     _Wave GenerateWave()
     {
-        Wave.EnemyTypes=new GameObject[1];
+        Wave.EnemyTypes=new GameObject[Random.Range(1,EnemyTypesMain.Length)];
         for (int i = 0; i < Wave.EnemyTypes.Length; i++)
         {
-            Wave.EnemyTypes[i] = EnemyTypesMain[0];
+            Wave.EnemyTypes[i] = EnemyTypesMain[Random.Range(0,EnemyTypesMain.Length)];
         }
         Wave.FinalPositions = EnemyFinalPositionsMain[Random.Range(0,EnemyFinalPositionsMain.Length)];
-        Wave.Routes = EnemyRoutsMain[Random.Range(0, EnemyRoutsMain.Length)];
-            Wave.ActiveDly = ActiveDlyMain[Random.Range(0, ActiveDlyMain.Length)];
+        Wave.Routes=new Transform[EnemyTypesMain.Length];
+        for (int i = 0; i <Wave.Routes.Length; i++)
+        {
+            Wave.Routes[i] = EnemyRoutsMain[Random.Range(0, EnemyRoutsMain.Length)];
+        }
+        Wave.ActiveDly = ActiveDlyMain[Random.Range(0, ActiveDlyMain.Length)];
         return Wave;
     }
 
@@ -86,18 +104,35 @@ public class Random_WaveGenerator : MonoBehaviour
     {
         if (SpawnAllowed)
         {
-            SpawnAllowed = false;
-            for (int j = 0; j < a.EnemyTypes.Length; ++j)
+            SpawnAllowed = false; 
+                for (int j = 0; j < a.EnemyTypes.Length; ++j)
                 {
-                    for (int k = 0; k < a.FinalPositions.childCount; k++)
+                    for (int k = 0; k < a.FinalPositions.childCount / a.EnemyTypes.Length; k++)
                     {
-                        GameObject temp = Instantiate(a.EnemyTypes[j]);
-                        temp.SetActive(false);
-                        a.EnemyList.Add(temp);
-                        temp.GetComponent<Enemy_SpaceShip>().MoveAllowed = true;
-                        temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
-                        temp.GetComponent<Enemy_SpaceShip>().Routes[0] = a.Routes;
-                        temp.GetComponent<Enemy_SpaceShip>().FinalDestination = a.FinalPositions.GetChild(k);
+                        if (RandomType < 25 ||a.EnemyTypes.Length==1)
+                        {
+                            GameObject temp = Instantiate(a.EnemyTypes[j]);
+                            temp.SetActive(false);
+                            a.EnemyList.Add(temp);
+                            var Local=temp.GetComponent<Enemy_SpaceShip>();
+                            Local.MoveAllowed = true;
+                            Local.Routes = new Transform[1]; 
+                            Local.Routes[0] = a.Routes[j];
+                            Local.FinalDestination = a.FinalPositions.GetChild(Index++);
+                        }
+                        else if(a.EnemyTypes.Length!=1)
+                        {
+                            Debug.Log("YEKI DAR MION!");
+                            GameObject temp = Instantiate(a.EnemyTypes[OnePerUnit()]);
+                            temp.SetActive(false);
+                            a.EnemyList.Add(temp);
+                            var Local=temp.GetComponent<Enemy_SpaceShip>();
+                            Local.MoveAllowed = true;
+                            Local.Routes = new Transform[1]; 
+                            Local.Routes[0] = a.Routes[j];
+                            Local.FinalDestination = a.FinalPositions.GetChild(Index++);
+                        }
+           
                     }
                 }
                 for (int i = 0; i < a.EnemyList.Count; i++)
@@ -114,8 +149,12 @@ public class Random_WaveGenerator : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Enemy") == null && !SpawnAllowed)
         {
+            foreach (var VARIABLE in Wave.EnemyList)
+            {
+                Destroy(VARIABLE);
+            }
+            Index = 0;
             Wave.EnemyList.Clear();
-            Debug.Log("NO ENEMY FOUND!");
             firsttime = false;
             temp1 = 0;
             SpawnAllowed = true;
@@ -127,6 +166,19 @@ public class Random_WaveGenerator : MonoBehaviour
             return true;
         }
     }
-    
+
+    int OnePerUnit()
+    {
+        if (c % 2 == 0)
+        {
+            c++;
+            return c-1;
+        }
+        else
+        {
+            c--;
+            return c + 1;
+        }
+    }
     #endregion
 }

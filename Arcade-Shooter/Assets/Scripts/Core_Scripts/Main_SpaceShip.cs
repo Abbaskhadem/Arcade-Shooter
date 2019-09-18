@@ -127,15 +127,31 @@ public class Main_SpaceShip : SpaceShip
                     {
                         if (SceneManager.GetActiveScene().name != "Random")
                         {
-                            if (!FindObjectOfType<Game_Director>().SpawnAllowed)
+                            if (SceneManager.GetActiveScene().name != "RandomGenerator")
                             {
-                                foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                                if (!FindObjectOfType<Game_Director>().SpawnAllowed)
                                 {
-                                    VARIABLE.TakeDamage(50);
+                                    foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                                    {
+                                        VARIABLE.TakeDamage(50);
+                                    }
+                                    SuperPowerTimer = 0;
+                                    health = 50;
+                                    SuperPower.Play();
                                 }
-                                SuperPowerTimer = 0;
-                                health = 50;
-                                SuperPower.Play();
+                            }
+                            else
+                            {
+                                if (!FindObjectOfType<Random_WaveGenerator>().SpawnAllowed)
+                                {
+                                    foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                                    {
+                                        VARIABLE.TakeDamage(50);
+                                    }
+                                    SuperPowerTimer = 0;
+                                    health = 50;
+                                    SuperPower.Play();
+                                }
                             }
                         }
                         else
@@ -198,12 +214,12 @@ public class Main_SpaceShip : SpaceShip
             foreach (var VARIABLE in FindObjectsOfType<Enviroment>())
             {
                 VARIABLE.Speed =-0.003f;
+            } 
+            for (int i = 0; i < Jetpack.Length; i++)
+            {
+                 Jetpack[i].Stop();
+                 Jetpack[i].GetComponent<ParticleSystemRenderer>().sortingOrder = 0; 
             }
-                    for (int i = 0; i < Jetpack.Length; i++)
-       {
-           Jetpack[i].Stop();
-           Jetpack[i].GetComponent<ParticleSystemRenderer>().sortingOrder = 0;
-       }
             GameDirector.SetActive(true);
             IntroMode = false;
 
@@ -294,16 +310,13 @@ public class Main_SpaceShip : SpaceShip
     {
         if (index < UpgradableTurrets.Count)
         {
-          //  Instantiate(PowerText, transform.position,Quaternion.identity);
             PowerUpTextController.Instance.Creat("Power Up", transform.position);
-           // UpgradableTurrets[index].SetActive(true);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
                 activePlayerTurrets.Remove(startWeapon);
                startWeapon.SetActive(false);
                 activePlayerTurrets.Add(UpgradableTurrets[index]);
-              //  UpgradableTurrets[index].SetActive(true);
             }
             else
             {

@@ -197,18 +197,32 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Death()
     {
-        if (SceneManager.GetActiveScene().name != "Random")
+        if (SceneManager.GetActiveScene().name != "Random" )
         {
-            FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
-                .Remove(this.gameObject); 
+            if (SceneManager.GetActiveScene().name != "RandomGenerator")
+            {
+                FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
+                    .Remove(this.gameObject); 
+            }
         }
         int i = Random.Range(0, 100);
         if (SceneManager.GetActiveScene().name != "Random")
         {
-            if (i > FindObjectOfType<Game_Director>().ItemDropChance)
+            if (SceneManager.GetActiveScene().name != "RandomGenerator")
             {
-                Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
-                    Quaternion.identity);
+                if (i > FindObjectOfType<Game_Director>().ItemDropChance)
+                {
+                    Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
+                        Quaternion.identity);
+                }
+            }
+            else
+            {
+                if (i > FindObjectOfType<Random_WaveGenerator>().ItemDropChance)
+                {
+                    Instantiate(RandomItems[Random.Range(0, RandomItems.Length)], transform.position,
+                        Quaternion.identity);
+                }
             }
         }
         else
@@ -233,14 +247,14 @@ public class Enemy_SpaceShip : SpaceShip
         temp.transform.position = transform.position;
         temp.Play();
         AudioManager._Instance.PlayAudio(2);
-        if(SceneManager.GetActiveScene().name == "Random")
+       // if(SceneManager.GetActiveScene().name == "Random")
              gameObject.SetActive(false);
-        else
-        {
-            Destroy(gameObject);
-        }
+  //     else
+        //{
+     //       Destroy(gameObject);
+    //   }
         tparam = 0;
-        GetComponent<Animator>().ResetTrigger("GotHit");
+//        GetComponent<Animator>().ResetTrigger("GotHit");
     }
 
     public void Shoot()

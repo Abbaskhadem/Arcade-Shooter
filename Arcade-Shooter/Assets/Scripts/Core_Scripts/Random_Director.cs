@@ -186,11 +186,6 @@ public class Random_Director : MonoBehaviour
             temp1 = 0;
             SpawnAllowed = true;
             RandomRout = Random.Range(0, Rout.Length);
-            // }
-            // else
-            // {
-            //     WaveNumber = Waves.Length - 1;
-            // }
 
             return false;
         }
@@ -241,18 +236,6 @@ public class Random_Director : MonoBehaviour
             b = SpawnEnemyWaves(RandomWave);
             StartCoroutine(b);
         }
-
-
-        // FirstRandom = WaveNumber - 1;
-        //  LastRandom = WaveNumber + 2;
-        //  if (FirstRandom < 0) FirstRandom = 0;
-        //  if (FirstRandom >= Waves.Length) FirstRandom = Waves.Length - 3;
-        //  if (LastRandom > Waves.Length) LastRandom = Waves.Length;
-        //  RandomWave = Random.Range(FirstRandom, LastRandom);
-        //  UpgrateWave = false;
-        //  if (b != null) StopCoroutine(b);
-        //  b = SpawnEnemyWaves(RandomWave);
-        //  StartCoroutine(b);
     }
 
     #endregion
