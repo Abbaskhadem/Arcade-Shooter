@@ -19,7 +19,7 @@ public class Enemy_SpaceShip : SpaceShip
     private Vector2 p1;
     private Vector2 p2;
     private Vector2 p3;
-    public Transform FinalDestination; 
+   [HideInInspector] public Transform FinalDestination; 
     public Transform[] Routes;
     private Vector2 EnemyPosition;
     private Vector3 MainTarget;
@@ -35,6 +35,7 @@ public class Enemy_SpaceShip : SpaceShip
     private bool check;
     [HideInInspector] public bool ShootAllowed = false;
     private bool ShootBool;
+    [HideInInspector]public bool Targeted = false;
     [SerializeField] private bool Looping;
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
@@ -94,15 +95,12 @@ public class Enemy_SpaceShip : SpaceShip
     private IEnumerator GoByTheRoute(int RouteNumber)
     {
         coroutineAllowed = false;
-        if (firsttime)
-        {
-            p0 = Routes[RouteNumber].GetChild(0).position;
+        p0 = Routes[RouteNumber].GetChild(0).position;
             p1 = Routes[RouteNumber].GetChild(1).position;
             p2 = Routes[RouteNumber].GetChild(2).position;
             p3 = Routes[RouteNumber].GetChild(3).position;
-        }
 
-        while (tparam < 1 && !GameManager._Instance.GamePause)
+            while (tparam < 1 && !GameManager._Instance.GamePause)
         {
             tparam += Time.deltaTime * SpeedModifier;
             EnemyPosition = Mathf.Pow(1 - tparam, 3) * p0 +
@@ -130,12 +128,14 @@ public class Enemy_SpaceShip : SpaceShip
         {
             if (Looping)
             {
+                Debug.Log("HELLO!");
+                RouteNumber = 0;
                 tparam = 0;
                 RoutesToGo = 0;
-                p0 = Routes[RouteNumber].GetChild(3).position;
-                p1 = Routes[RouteNumber].GetChild(2).position;
-                p2 = Routes[RouteNumber].GetChild(1).position;
-                p3 = Routes[RouteNumber].GetChild(0).position;
+                p0 = Routes[RouteNumber].GetChild(0).position;
+                p1 = Routes[RouteNumber].GetChild(1).position;
+                p2 = Routes[RouteNumber].GetChild(2).position;
+                p3 = Routes[RouteNumber].GetChild(3).position;
                 if (firsttime)
                     firsttime = false;
                 else
@@ -248,7 +248,7 @@ public class Enemy_SpaceShip : SpaceShip
         temp.Play();
         AudioManager._Instance.PlayAudio(2);
        // if(SceneManager.GetActiveScene().name == "Random")
-             gameObject.SetActive(false);
+            Destroy(gameObject);
   //     else
         //{
      //       Destroy(gameObject);

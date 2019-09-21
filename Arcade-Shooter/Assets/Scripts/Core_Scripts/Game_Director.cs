@@ -39,9 +39,14 @@ public class Game_Director : MonoBehaviour
         public float ActiveDly;
         [HideInInspector]public List<GameObject> EnemyList;
         private int frame;
-        public Transform[] Routes;
+        public Routes[] Movements;
         public Transform FinalPositions;
         public float AttackSpeed;
+    }
+    [System.Serializable]
+    public class Routes
+    {
+        public Transform[] Parts;
     }
     #endregion
     #region Check When To Active
@@ -58,8 +63,11 @@ public class Game_Director : MonoBehaviour
                     GameObject temp = (GameObject) Instantiate(Waves[i].EnemyTypes[j]);
                     temp.SetActive(false);
                     temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[i].FinalPositions.GetChild(_index++);
-                    temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[1]; 
-                    temp.GetComponent<Enemy_SpaceShip>().Routes[0] = Waves[i].Routes[j];              
+                    temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[Waves[i].Movements[j].Parts.Length];
+                    for (int l = 0; l < Waves[i].Movements[j].Parts.Length; l++)
+                    {
+                        temp.GetComponent<Enemy_SpaceShip>().Routes[l] = Waves[i].Movements[j].Parts[l];    
+                    }
                     Waves[i].EnemyList.Add(temp);
                 }
             } 

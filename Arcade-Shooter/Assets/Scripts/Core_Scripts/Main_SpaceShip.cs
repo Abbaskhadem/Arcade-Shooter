@@ -17,7 +17,6 @@ public class Main_SpaceShip : SpaceShip
     #endregion
 
     #region Exclusive Variables
-
     [SerializeField] private GameObject Canvas;
     [SerializeField] private AnimationCurve MoveOrto;
     [SerializeField] private GameObject  GameDirector;
@@ -37,23 +36,19 @@ public class Main_SpaceShip : SpaceShip
     private float deltaX;
     private float deltaY;
     [HideInInspector] public float Timer;
+    [SerializeField] private GameObject Rocket;
     private int MaxBullets;
     private Vector2 ScreenBounds;
     public GameObject startWeapon;
     private int index;
-    [SerializeField] private GameObject PowerText;
     [SerializeField] List<GameObject> UpgradableTurrets;
     [HideInInspector] public List<GameObject> activePlayerTurrets;
-    private bool damagedone = false;
     private bool IntroMode = true;
     void Start()
     {
-        //  PowerUpTextController.instance.Creat("Power Up", transform.position);
         activePlayerTurrets = new List<GameObject>();
         activePlayerTurrets.Add(startWeapon);
-//        bullet[PlayerPrefs.GetInt("GunIndex")].GetComponentInChildren<Bullet>().Damage = Damage;
         Body = GetComponent<Rigidbody2D>();
-       // Shoot();
     }
 
     #endregion
@@ -78,24 +73,24 @@ public class Main_SpaceShip : SpaceShip
                 SuperPower.transform.position = this.transform.position;
             }
             #region PC Buttons
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
-                transform.Translate(-1f,0,0);
+                transform.position+=new Vector3(-0.08f,0,0);
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 
-               transform.Translate(1f,0,0);
+                transform.position+=new Vector3(0.08f,0,0);
             }
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
-                transform.Translate(0,1,0);
+                transform.position+=new Vector3(0f,0.08f,0);
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
-               transform.Translate(0,-1,0);
+                transform.position+=new Vector3(0f,-0.08f,0);
             }
             #endregion
             if (health < 0)
@@ -138,6 +133,8 @@ public class Main_SpaceShip : SpaceShip
                                     SuperPowerTimer = 0;
                                     health = 50;
                                     SuperPower.Play();
+                                    Camera.main.GetComponent<RipplePost>().enabled = true;
+                                    Camera.main.GetComponent<RipplePost>().RippleEffect(transform);
                                 }
                             }
                             else
@@ -339,6 +336,20 @@ public class Main_SpaceShip : SpaceShip
         }
     }
 
+    public void LaunchRocket()
+    {
+        StartCoroutine(LaunchingRockets());
+    }
+
+    private IEnumerator LaunchingRockets()
+    {
+        for (int i = 0; i < Random.Range(4,6); i++)
+        {
+            Instantiate(Rocket, new Vector2(transform.position.x-Random.Range(0,0.02f),transform.position.y-Random.Range(-0.02f,0.02f)), Quaternion.identity);
+            yield return new  WaitForSeconds(0.2f);
+        }
+        yield return null;
+    }
     public void TakeDamage()
     {
         if (!Shild)
@@ -350,62 +361,7 @@ public class Main_SpaceShip : SpaceShip
             health -= 50;
         }
     }
-
-    #endregion
-
-    #region HistoryCodes
-
-    // BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
-    // for (int i = 0; i < BulletList.Count; i++)
-    // {
-    //     //BulletList = GameManager.ObjectPooler(bullet[PlayerPrefs.GetInt("GunIndex")], MaximumBullets);
-    //     if (BulletList[i] != null)
-    //     {
-    //         if (!BulletList[i].activeInHierarchy)
-    //         {
-    //             Timer += Time.deltaTime;
-    //             if (Timer >= AttackSpeed)
-    //             {
-    //                 Timer = 0;
-    //                 //for (int j = 0; j < GunPoints.Length; j++)
-    //                // 
-    //                 foreach (GameObject turret in activePlayerTurrets)
-    //                 {
-    //                     BulletList[i].transform.position = turret.transform.position;
-    //                     BulletList[i].transform.rotation = turret.transform.rotation;
-    //                     BulletList[i].SetActive(true);
-    //                    // BulletList[i + 1].transform.position = tripleShotTurrets[1].transform.position;
-    //                    // BulletList[i + 1].transform.rotation = tripleShotTurrets[1].transform.rotation;
-    //                    // BulletList[i+1].SetActive(true);
-    //                 }
-    //               
-    //             }
-    //         }
-    //     }
-    // }
-
-//    IEnumerator ActivateScatterShotTurret()
-//    {
-//        // The ScatterShot turret is shot independantly of the spacebar
-//        // This Coroutine shoots the scatteshot at a reload interval
-//
-//        while (true)
-//        {
-//            foreach (GameObject turret in scatterShotTurrets)
-//            {
-//                for (int i = 0; i < BulletList.Count; i++)
-//                {
-//                    if (BulletList[i] != null)
-//                    {
-//                        BulletList[i].transform.position = turret.transform.position;
-//                        BulletList[i].transform.rotation = turret.transform.rotation;
-//                        BulletList[i].SetActive(true);
-//                    }
-//                }
-//            }
-//            yield return new WaitForSeconds(scatterShotTurretReloadTime);
-//        }
-//    }
+    
 
     #endregion
 }
