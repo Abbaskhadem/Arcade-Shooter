@@ -18,16 +18,7 @@ public class ObjectPooler : MonoBehaviour
     } // Use this for initialization
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-        foreach (ObjectPoolItem item in itemsToPool)
-        {
-            for (int i = 0; i < item.amountToPool; i++)
-            {
-                GameObject obj = Instantiate(item.objectToPool);
-                obj.SetActive(false);
-                pooledObjects.Add(obj);
-            }
-        }
+       GetObjects();
     }
     public GameObject GetPooledObject(string tag)
     {
@@ -52,5 +43,19 @@ public class ObjectPooler : MonoBehaviour
             }
         }
         return null;
+    }
+
+   public void GetObjects()
+    {
+        pooledObjects = new List<GameObject>();
+        foreach (ObjectPoolItem item in itemsToPool)
+        {
+            for (int i = 0; i < item.amountToPool; i++)
+            {
+                GameObject obj = Instantiate(item.objectToPool);
+                obj.SetActive(false);
+                pooledObjects.Add(obj);
+            }
+        }
     }
 }

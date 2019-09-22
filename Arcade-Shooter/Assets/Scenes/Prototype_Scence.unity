@@ -1325,8 +1325,8 @@ MonoBehaviour:
   WaveNumber: 0
   Waves:
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 0200000003000000
     ActiveDly: 0.3
     EnemyList: []
@@ -1339,7 +1339,7 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 2
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 08000000
     ActiveDly: 0.3
     EnemyList: []
@@ -1350,7 +1350,7 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 3
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 07000000
     ActiveDly: 0.3
     EnemyList: []
@@ -1362,7 +1362,7 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 2
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 14000000
     ActiveDly: 0.2
     EnemyList: []
@@ -1373,8 +1373,8 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 3
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-    - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 0600000006000000
     ActiveDly: 0.2
     EnemyList: []
@@ -1389,7 +1389,7 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 2
   - EnemyTypes:
-    - {fileID: 8805684853517118623, guid: cd3c0e1c9338d844b95801a49bad1eec, type: 3}
+    - {fileID: 3675224922301645856, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 07000000
     ActiveDly: 0.25
     EnemyList: []
@@ -2349,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2025599063
 ParticleSystemRenderer:
   serializedVersion: 6

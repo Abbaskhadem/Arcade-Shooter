@@ -5,7 +5,6 @@ using UnityEngine;
 public class Random_WaveGenerator : MonoBehaviour
 {
     #region Temp Variables
-
     public int ItemDropChance;
     private float AttackSpeed=3.5f;
     public GameObject[] EnemyTypesMain;
@@ -15,6 +14,7 @@ public class Random_WaveGenerator : MonoBehaviour
     private int FirstEnemy;
     private int LastEnemy = 1;
     public _Wave Wave;
+    public _Wave[] SpecialWaves;
     private float AttackTimer;
     private int temp1;
     [HideInInspector] public bool SpawnAllowed = true;
@@ -22,8 +22,11 @@ public class Random_WaveGenerator : MonoBehaviour
     private int Index;
     private int RandomType;
     private int c;
+    private int WaveNumber;
+    private int FirstEindex;
+    private int LastEindex=3;
 
-    #endregion
+        #endregion
 
     #region MyWave_Class
 
@@ -85,10 +88,15 @@ public class Random_WaveGenerator : MonoBehaviour
 
     _Wave GenerateWave()
     {
-        Wave.EnemyTypes=new GameObject[Random.Range(1,EnemyTypesMain.Length)];
+        if (WaveNumber >= 4)
+        {
+            FirstEindex += 2;
+            LastEindex += 2;
+        }
+        Wave.EnemyTypes=new GameObject[Random.Range(1,3)];
         for (int i = 0; i < Wave.EnemyTypes.Length; i++)
         {
-            Wave.EnemyTypes[i] = EnemyTypesMain[Random.Range(0,EnemyTypesMain.Length)];
+            Wave.EnemyTypes[i] = EnemyTypesMain[Random.Range(FirstEindex,LastEindex)];
         }
         Wave.FinalPositions = EnemyFinalPositionsMain[Random.Range(0,EnemyFinalPositionsMain.Length)];
         Wave.Routes=new Transform[EnemyTypesMain.Length];
@@ -122,7 +130,6 @@ public class Random_WaveGenerator : MonoBehaviour
                         }
                         else if(a.EnemyTypes.Length!=1)
                         {
-                            Debug.Log("YEKI DAR MION!");
                             GameObject temp = Instantiate(a.EnemyTypes[OnePerUnit()]);
                             temp.SetActive(false);
                             a.EnemyList.Add(temp);
@@ -153,6 +160,7 @@ public class Random_WaveGenerator : MonoBehaviour
             {
                 Destroy(VARIABLE);
             }
+            WaveNumber++;
             Index = 0;
             Wave.EnemyList.Clear();
             firsttime = false;
@@ -160,11 +168,8 @@ public class Random_WaveGenerator : MonoBehaviour
             SpawnAllowed = true;
             return false;
         }
-        else
-        {
-            firsttime = true;
+        firsttime = true;
             return true;
-        }
     }
 
     int OnePerUnit()
@@ -174,11 +179,8 @@ public class Random_WaveGenerator : MonoBehaviour
             c++;
             return c-1;
         }
-        else
-        {
-            c--;
-            return c + 1;
-        }
+        c--; 
+        return c + 1;
     }
     #endregion
 }
