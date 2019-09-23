@@ -193,7 +193,8 @@ public class Main_SpaceShip : SpaceShip
         IdleMovement();
         foreach (var VARIABLE in FindObjectsOfType<Enviroment>())
         {
-            VARIABLE.Speed =-0.09f;
+            if(VARIABLE.Speed>-0.09)
+                VARIABLE.Speed +=-0.09f;
         }
 
         if (Camera.main.orthographicSize < 5)
@@ -208,7 +209,7 @@ public class Main_SpaceShip : SpaceShip
             ScreenBoundery.SetActive(true);
             foreach (var VARIABLE in FindObjectsOfType<Enviroment>())
             {
-                VARIABLE.Speed =-0.003f;
+                VARIABLE.Speed -=-0.09f;
             } 
             for (int i = 0; i < Jetpack.Length; i++)
             {

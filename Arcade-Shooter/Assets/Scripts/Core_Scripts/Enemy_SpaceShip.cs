@@ -63,7 +63,7 @@ public class Enemy_SpaceShip : SpaceShip
     {
         RoutesToGo = 0;
         tparam = 0;
-        SpeedModifier = 0.3f;
+        SpeedModifier = 0.4f;
         coroutineAllowed = true;
         AttackSpeed = Random.Range(4, 5);
         bullet[0].GetComponent<Bullet>().Damage = Damage;
