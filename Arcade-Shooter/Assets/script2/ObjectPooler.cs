@@ -9,6 +9,7 @@ public class ObjectPoolItem
 }
 public class ObjectPooler : MonoBehaviour
 {
+    public GameObject[] PlayerBullets;
     public static ObjectPooler SharedInstance;
     public List<ObjectPoolItem> itemsToPool;
     public List<GameObject> pooledObjects;
@@ -18,7 +19,8 @@ public class ObjectPooler : MonoBehaviour
     } // Use this for initialization
     void Start()
     {
-       GetObjects();
+        itemsToPool[0].objectToPool = PlayerBullets[PlayerPrefs.GetInt("PlayerBullet")];
+        GetObjects();
     }
     public GameObject GetPooledObject(string tag)
     {

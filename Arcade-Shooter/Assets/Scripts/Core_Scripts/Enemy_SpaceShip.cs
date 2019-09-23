@@ -204,6 +204,11 @@ public class Enemy_SpaceShip : SpaceShip
                 FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
                     .Remove(this.gameObject); 
             }
+            else
+            {
+                FindObjectOfType<Random_WaveGenerator>().Wave.EnemyList
+                    .Remove(this.gameObject); 
+            }
         }
         int i = Random.Range(0, 100);
         if (SceneManager.GetActiveScene().name != "Random")

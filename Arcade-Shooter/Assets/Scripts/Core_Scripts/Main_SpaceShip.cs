@@ -73,6 +73,22 @@ public class Main_SpaceShip : SpaceShip
                 SuperPower.transform.position = this.transform.position;
             }
             #region PC Buttons
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (health >= 100)
+                {
+                    foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                    {
+                        VARIABLE.TakeDamage(50);
+                    }
+                    SuperPowerTimer = 0;
+                    health = 50;
+                    SuperPower.Play();
+                    Camera.main.GetComponent<RipplePost>().enabled = true;
+                    Camera.main.GetComponent<RipplePost>().RippleEffect(transform);
+                }
+            }
             if (Input.GetKey(KeyCode.A))
             {
                 transform.position+=new Vector3(-0.08f,0,0);
@@ -114,59 +130,37 @@ public class Main_SpaceShip : SpaceShip
                     PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
                 }
 
-                if (health >= 100)
-                {
-                    // Timer Starts
-                    SuperPowerTimer += Time.deltaTime;
-                    if (SuperPowerTimer >= Random.Range(3f, 5f))
-                    {
-                        if (SceneManager.GetActiveScene().name != "Random")
-                        {
-                            if (SceneManager.GetActiveScene().name != "RandomGenerator")
-                            {
-                                if (!FindObjectOfType<Game_Director>().SpawnAllowed)
-                                {
-                                    foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
-                                    {
-                                        VARIABLE.TakeDamage(50);
-                                    }
-                                    SuperPowerTimer = 0;
-                                    health = 50;
-                                    SuperPower.Play();
-                                    Camera.main.GetComponent<RipplePost>().enabled = true;
-                                    Camera.main.GetComponent<RipplePost>().RippleEffect(transform);
-                                }
-                            }
-                            else
-                            {
-                                if (!FindObjectOfType<Random_WaveGenerator>().SpawnAllowed)
-                                {
-                                    foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
-                                    {
-                                        VARIABLE.TakeDamage(50);
-                                    }
-                                    SuperPowerTimer = 0;
-                                    health = 50;
-                                    SuperPower.Play();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (!FindObjectOfType<Random_Director>().SpawnAllowed )
-                            {
-                                foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
-                                {
-                                    VARIABLE.TakeDamage(50);
-                                }
-                                SuperPowerTimer = 0;
-                                health = 50;
-                                SuperPower.Play();
-                            }
-                        }
+       
+
+                // Timer Starts
+                   // if (SuperPowerTimer >= Random.Range(3f, 5f))
+                  //  {
+                  //    if (SceneManager.GetActiveScene().name != "Random")
+                      //  {
+                          //  if (SceneManager.GetActiveScene().name != "RandomGenerator")
+                          //  {
+                                //if (!FindObjectOfType<Game_Director>().SpawnAllowed)
+                             //   {
+                             
+                            //    }
+                           // }
+                      //  }
+                     //   else
+                     //   {
+                        //    if (!FindObjectOfType<Random_Director>().SpawnAllowed )
+                        //    {
+                         //       foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                         //       {
+                          //          VARIABLE.TakeDamage(50);
+                           //     }
+                           //     SuperPowerTimer = 0;
+                           //     health = 50;
+                          //      SuperPower.Play();
+                          //  }
+                     //   }
                         // Super Power Activates!
-                    }
-                }
+                 //   }
+            //    }
 
                 Movement();
                 Timer += Time.deltaTime;
@@ -178,6 +172,10 @@ public class Main_SpaceShip : SpaceShip
                 }
             }
 
+            if (health >= 100)
+            {
+                ActiveSuperPower();
+            }
             if (!moveAllowed)
             {
                 IdleMovement();
@@ -336,6 +334,24 @@ public class Main_SpaceShip : SpaceShip
         }
     }
 
+    void ActiveSuperPower()
+    {
+        foreach (var touch in Input.touches)
+        {
+            if (touch.tapCount == 2)
+            {
+                foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
+                {
+                    VARIABLE.TakeDamage(50);
+                }
+                SuperPowerTimer = 0;
+                health = 50;
+                SuperPower.Play();
+                Camera.main.GetComponent<RipplePost>().enabled = true;
+                Camera.main.GetComponent<RipplePost>().RippleEffect(transform);
+            }
+        }
+    }
     public void LaunchRocket()
     {
         StartCoroutine(LaunchingRockets());

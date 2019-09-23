@@ -63,7 +63,8 @@ public class Random_WaveGenerator : MonoBehaviour
                     if (Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)] != null &&
                         !Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee )
                     {
-                        Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
+                      if(Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)]!=null)
+                              Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
                     }
                     else if(Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)] != null &&
                             Wave.EnemyList[Random.Range(0, Wave.EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee)
