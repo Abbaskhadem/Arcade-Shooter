@@ -24,13 +24,13 @@ public class ObjectPooler : MonoBehaviour
     }
     public GameObject GetPooledObject(string tag)
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
-        {
-            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag.Equals(tag))
-            {
-                return pooledObjects[i];
-            }
-        }
+       // for (int i = 0; i < pooledObjects.Count; i++)
+       // {
+       //     if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag.Equals(tag))
+       //     {
+       //         return pooledObjects[i];
+       //     }
+       // }
         foreach (ObjectPoolItem item in itemsToPool)
         {
             if (item.objectToPool.CompareTag(tag))
