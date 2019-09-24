@@ -351,10 +351,11 @@ public class Enemy_SpaceShip : SpaceShip
 
     void ShotLazer()
     {
-        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Vector2.right);
-        if (Hit.collider != null)
+        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Vector2.up);
+        if (Hit.collider != null && Hit.collider.CompareTag("Enemy"))
         {
-            LazerRender.SetPosition(0,Hit.transform.position);
+            Debug.Log("WHAT?!");
+                      LazerRender.SetPosition(0,Hit.transform.position);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

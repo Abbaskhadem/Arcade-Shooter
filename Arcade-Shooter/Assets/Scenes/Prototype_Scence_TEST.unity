@@ -453,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152378608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.37, y: -2.71, z: 0}
+  m_LocalPosition: {x: 0.3, y: -6.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 525962069}
@@ -954,7 +954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525962067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4279509, y: 1.63, z: -26.867188}
+  m_LocalPosition: {x: 2.29, y: 5.11, z: -26.867188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1320042608}
@@ -1314,7 +1314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817889112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.37, y: -2.71, z: 0}
+  m_LocalPosition: {x: 0.33, y: -8.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1955074338}
@@ -1531,8 +1531,8 @@ MonoBehaviour:
   - EnemyTypes:
     - {fileID: 6996764184323871022, guid: 9432736f13861074e97e2de46883db1d, type: 3}
     - {fileID: 6996764184323871022, guid: 9432736f13861074e97e2de46883db1d, type: 3}
-    Quantity: 0a0000000a000000
-    ActiveDly: 0.25
+    Quantity: 0100000001000000
+    ActiveDly: 0
     EnemyList: []
     Movements:
     - Parts:
@@ -1776,7 +1776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320042607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.98, z: 0}
+  m_LocalPosition: {x: 0, y: 7.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 525962069}
@@ -2518,7 +2518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955074336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.35, y: 1.63, z: -26.867188}
+  m_LocalPosition: {x: -2.35, y: 7.48, z: -26.867188}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 286346234}

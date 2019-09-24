@@ -29,8 +29,9 @@ Transform:
   m_GameObject: {fileID: 338377827030062562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.861219, y: 0.11842941, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children:
+  - {fileID: 3909893705106675528}
   - {fileID: 8397377490360989050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,6 +117,7 @@ MonoBehaviour:
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
   ExEffect: Effect_0
+  Lazer: 0
   Melee: 1
   GoDrop: 0
   Droping: 0
@@ -156,6 +158,49 @@ CircleCollider2D:
   m_Offset: {x: 0.028076768, y: -0.27007043}
   serializedVersion: 2
   m_Radius: 3.4235563
+--- !u!1 &6210857820582068006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3909893705106675528}
+  - component: {fileID: 2825284650334670756}
+  m_Layer: 0
+  m_Name: Halo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3909893705106675528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210857820582068006}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.18, y: -0.18429402, z: -0.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6963394567809425483}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!122 &2825284650334670756
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210857820582068006}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294901760
+  m_Size: 0.33
 --- !u!1 &7667934785124169521
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6963394567809425483}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3517254466353115930
 SpriteRenderer:

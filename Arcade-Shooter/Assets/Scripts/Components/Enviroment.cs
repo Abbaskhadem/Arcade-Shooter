@@ -13,7 +13,7 @@ public class Enviroment : MonoBehaviour
        // Debug.Log(transform.position.y);
         if(!GameManager._Instance.GamePause)
              transform.Translate(0,Speed,0);
-        if (gameObject.GetComponent<Transform>().position.y <= -17)
+        if (gameObject.GetComponent<Transform>().position.y <= -21)
         {
             transform.position=new Vector3(0,17f,26);
         }
