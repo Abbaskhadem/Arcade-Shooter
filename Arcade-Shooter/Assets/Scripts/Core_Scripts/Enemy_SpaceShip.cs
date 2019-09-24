@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -40,8 +41,9 @@ public class Enemy_SpaceShip : SpaceShip
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
     public string ExEffect;
-
+    public bool Lazer;
     public bool Melee;
+    private LineRenderer LazerRender;
 
     // private float DropTime;
     [HideInInspector] public bool GoDrop;
@@ -61,6 +63,10 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Start()
     {
+        if (Lazer)
+        {
+            LazerRender = GetComponent<LineRenderer>();
+        }
         RoutesToGo = 0;
         tparam = 0;
         SpeedModifier = 0.4f;
@@ -76,12 +82,11 @@ public class Enemy_SpaceShip : SpaceShip
     void Update()
     {
         ManageEnemyMovement();
-        if (ShootAllowed && !Melee)
+        if (ShootAllowed && !Melee && !Lazer)
         {
             IdleMovement();
         }
-
-        if (ShootAllowed && Melee)
+        if (ShootAllowed && Melee && !Lazer)
         {
             if (!Droping)
                 IdleMovement();
@@ -89,6 +94,10 @@ public class Enemy_SpaceShip : SpaceShip
             {
                 DropAttack();
             }
+        }
+        if (Lazer)
+        {
+            ShotLazer();
         }
     }
 
@@ -264,24 +273,63 @@ public class Enemy_SpaceShip : SpaceShip
 
     public void Shoot()
     {
-        if (gameObject.activeInHierarchy)
+        if (MaximumAmmo <= 3)
         {
-            if (BulletList[0] != null)
+            if (gameObject.activeInHierarchy)
             {
-                if (!BulletList[0].activeInHierarchy)
+                if (BulletList[0] != null)
                 {
-                    for (int j = 0; j < GunPoints.Length; j++)
+                    if (!BulletList[0].activeInHierarchy)
                     {
-                        BulletList[0].transform.position = GunPoints[0].transform.position;
-                        BulletList[0].transform.rotation = GunPoints[0].transform.rotation;
-                        BulletList[0].GetComponent<TrailRenderer>().Clear();
-                        BulletList[0].SetActive(true);
+                        for (int j = 0; j < GunPoints.Length; j++)
+                        {
+                            BulletList[0].transform.position = GunPoints[0].transform.position;
+                            BulletList[0].transform.rotation = GunPoints[0].transform.rotation;
+                            BulletList[0].GetComponent<TrailRenderer>().Clear();
+                            BulletList[0].SetActive(true);
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            MultiShot();
+        }
+
     }
 
+    void MultiShot()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            float z = 5f;
+            float b = 0;
+            float a = -0.3f;
+            if (BulletList[0] != null)
+            {
+                if (!BulletList[0].activeInHierarchy)
+                {
+                    for (int j = 0; j < MaximumAmmo-1; j++)
+                    {
+                        BulletList[j].transform.position = new Vector3(GunPoints[0].position.x-a,GunPoints[0].position.y+b,GunPoints[0].position.z);
+                        BulletList[j].transform.localRotation=Quaternion.Euler(0,0,z);
+                        z -= 5f;
+                        a += 0.15f;
+                        if (b > -0.1)
+                            b -= 0.2f;
+                        else
+                        {
+                            b += 0.2f;
+                        }
+                        BulletList[j].GetComponent<TrailRenderer>().Clear();
+                        BulletList[j].SetActive(true);
+                    }
+             
+                }
+            }
+        }
+    }
     public void DropAttack()
     {
         if (!Droping)
@@ -289,9 +337,11 @@ public class Enemy_SpaceShip : SpaceShip
             Droping = true;
         }
 
+        GetComponentInChildren<Rotator>().Speed +=0.25f;
         Body.AddForce(new Vector2(0, -8));
         if (transform.position.y <= -6.25f)
         {
+            GetComponentInChildren<Rotator>().Speed = 2f;
             Body.velocity = Vector3.zero;
             transform.position = new Vector3(transform.position.x, 6.25f, transform.position.z);
             GoDrop = false;
@@ -299,6 +349,14 @@ public class Enemy_SpaceShip : SpaceShip
         }
     }
 
+    void ShotLazer()
+    {
+        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Vector2.right);
+        if (Hit.collider != null)
+        {
+            LazerRender.SetPosition(0,Hit.transform.position);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

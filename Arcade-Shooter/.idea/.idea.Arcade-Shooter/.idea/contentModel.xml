@@ -78,6 +78,7 @@
             <e p="PowerUpTextController.cs" t="Include" />
             <e p="RipplePost.cs" t="Include" />
             <e p="Rockets.cs" t="Include" />
+            <e p="Rotator.cs" t="Include" />
             <e p="Rout.cs" t="Include" />
             <e p="Text_Effect.cs" t="Include" />
           </e>

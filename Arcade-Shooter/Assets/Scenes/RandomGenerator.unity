@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02979002283e2a64bbd785b02988416a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerBullets: []
   itemsToPool:
   - objectToPool: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798,
       type: 3}

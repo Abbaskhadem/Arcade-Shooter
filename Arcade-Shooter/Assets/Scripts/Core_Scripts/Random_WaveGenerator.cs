@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Random_WaveGenerator : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class Random_WaveGenerator : MonoBehaviour
     private int WaveNumber;
     private int FirstEindex;
     private int LastEindex=3;
+    private int CheckWave=10;
+    private int CheckWaveCost = 40;
 
         #endregion
 
@@ -44,6 +48,12 @@ public class Random_WaveGenerator : MonoBehaviour
     #endregion
 
     #region Check When To Active
+
+    private void Start()
+    {
+        WaveNumber = PlayerPrefs.GetInt("RandomWave");
+    }
+
     void Update()
     {
         CheckAlive();
@@ -89,10 +99,12 @@ public class Random_WaveGenerator : MonoBehaviour
 
     _Wave GenerateWave()
     {
-        if (WaveNumber >= 4)
+        if (WaveNumber >= CheckWave)
         {
+            PlayerPrefs.SetInt("RandomWave",WaveNumber);
             FirstEindex += 2;
             LastEindex += 2;
+            CheckWave += 40;
         }
         Wave.EnemyTypes=new GameObject[Random.Range(1,3)];
         for (int i = 0; i < Wave.EnemyTypes.Length; i++)

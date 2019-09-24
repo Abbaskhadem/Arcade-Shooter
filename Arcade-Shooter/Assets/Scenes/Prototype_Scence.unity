@@ -1327,7 +1327,7 @@ MonoBehaviour:
   WaveNumber: 0
   Waves:
   - EnemyTypes:
-    - {fileID: 30034252010085949, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
+    - {fileID: 7722602414944807531, guid: 98ed5cf873cd7c44a855b2a176d7d9ca, type: 3}
     - {fileID: 30034252010085949, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
     Quantity: 0200000003000000
     ActiveDly: 0.3
@@ -1341,7 +1341,7 @@ MonoBehaviour:
       type: 3}
     AttackSpeed: 2
   - EnemyTypes:
-    - {fileID: 30034252010085949, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
+    - {fileID: 338377827030062562, guid: f102df0efea40844a9dbdfd2b766bc36, type: 3}
     Quantity: 08000000
     ActiveDly: 0.3
     EnemyList: []
@@ -7802,6 +7802,11 @@ PrefabInstance:
     - target: {fileID: 978412341, guid: a678894678fb81b45b02e18d8f10737c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273252662669026982, guid: a678894678fb81b45b02e18d8f10737c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a678894678fb81b45b02e18d8f10737c, type: 3}

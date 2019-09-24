@@ -34,7 +34,7 @@ void FixedUpdate()
     {
         if (!GameManager._Instance.GamePause)
         {
-            if (NavigatPlayer)
+            if (NavigatPlayer && GameObject.FindGameObjectWithTag("Player")!=null)
             {
                 Timer += Time.deltaTime;
                 if (Timer <= 1)

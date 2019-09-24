@@ -83,7 +83,7 @@ public class Game_Director : MonoBehaviour
     }
     void Update()
     {
-        if (!GameManager._Instance.GamePause)
+        if (!GameManager._Instance.GamePause && !GameManager._Instance.GameEnded)
         {
             if (WaveNumber<Waves.Length)
             {
@@ -102,7 +102,7 @@ public class Game_Director : MonoBehaviour
                         }
                     }
                 }
-                if (!SpawnAllowed)
+                if (!SpawnAllowed )
                 {
                     AttackTimer += Time.deltaTime;
                     if (AttackTimer >= Waves[WaveNumber].AttackSpeed)
@@ -151,7 +151,6 @@ public class Game_Director : MonoBehaviour
                 if (!GameManager._Instance.GamePause)
                 {
                     Waves[a].EnemyList[i].transform.position = transform.position;
-             //       Waves[a].EnemyList[i].transform.rotation = transform.rotation;
                     Waves[a].EnemyList[i].SetActive(true);
                     yield return new WaitForSeconds(Waves[a].ActiveDly);     
                 }
