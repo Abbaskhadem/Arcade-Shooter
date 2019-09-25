@@ -53,7 +53,6 @@ public class sinderella : MonoBehaviour
                 if (i < target.Length - 1)
                     i++;
                 transform.position = Vector2.MoveTowards(transform.position, target[i], speed * Time.deltaTime);
-                Debug.Log("True");
             }
             else
             {
@@ -63,9 +62,7 @@ public class sinderella : MonoBehaviour
                     if (i == 0)
                         LastPos = true;
                 }
-
                 transform.position = Vector2.MoveTowards(transform.position, target[i], speed * Time.deltaTime);
-                Debug.Log("false");
             }
         }
     }
