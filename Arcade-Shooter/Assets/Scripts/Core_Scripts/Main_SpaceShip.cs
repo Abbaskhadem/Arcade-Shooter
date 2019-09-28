@@ -44,6 +44,7 @@ public class Main_SpaceShip : SpaceShip
     [SerializeField] List<GameObject> UpgradableTurrets;
     [HideInInspector] public List<GameObject> activePlayerTurrets;
     private bool IntroMode = true;
+    private bool CenterPosition = false;
     void Start()
     {
         activePlayerTurrets = new List<GameObject>();
@@ -60,7 +61,7 @@ public class Main_SpaceShip : SpaceShip
         {
             Intro();
         }
-        if (!GameManager._Instance.GamePause && !IntroMode)
+        if (!GameManager._Instance.GamePause && !IntroMode && !GameManager._Instance.GameEnded)
         {
             transform.position=new Vector3(Mathf.Clamp(transform.position.x,-3f,3f),Mathf.Clamp(transform.position.y,-5f,5f),transform.position.z);
             if (SuperPower.isPlaying)
@@ -181,6 +182,11 @@ public class Main_SpaceShip : SpaceShip
                 IdleMovement();
             } 
         }
+
+        if (GameManager._Instance.GameEnded)
+        {
+            OutThrough();
+        }
     }
 
     void Intro()
@@ -219,6 +225,21 @@ public class Main_SpaceShip : SpaceShip
             GameDirector.SetActive(true);
             IntroMode = false;
 
+        }
+    }
+
+    void OutThrough()
+    {
+        if (Vector2.Distance(transform.position, new Vector2(0, 0)) != 0 && !CenterPosition)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(0, 0), Speed * Time.deltaTime);
+        }
+        if (Vector2.Distance(transform.position, new Vector2(0, 0))==0 || CenterPosition)
+        {
+            Debug.Log("ENDING!");
+            CenterPosition = true;
+            GetComponentInChildren<TrailRenderer>().enabled = true;
+             Body.AddForce(new Vector2(0,20));
         }
     }
 

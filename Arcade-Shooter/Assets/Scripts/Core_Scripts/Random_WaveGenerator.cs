@@ -26,7 +26,7 @@ public class Random_WaveGenerator : MonoBehaviour
     private int c;
     private int WaveNumber;
     private int FirstEindex;
-    private int LastEindex=3;
+    private int LastEindex=5;
     private int CheckWave=10;
     private int CheckWaveCost = 40;
 
@@ -51,6 +51,13 @@ public class Random_WaveGenerator : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("FirstTimeRandom") == 0)
+        {
+            PlayerPrefs.SetInt("CheckWave",10);
+            PlayerPrefs.SetInt("CheckWaveCost",40);
+            PlayerPrefs.SetInt("FirstTimeRandom",1);
+        }
+        CheckWave = PlayerPrefs.GetInt("CheckWave");
         WaveNumber = PlayerPrefs.GetInt("RandomWave");
     }
 
@@ -95,7 +102,7 @@ public class Random_WaveGenerator : MonoBehaviour
 
     #endregion
 
-    #region Activating Functions
+    #region Activating Functions"
 
     _Wave GenerateWave()
     {
@@ -104,7 +111,9 @@ public class Random_WaveGenerator : MonoBehaviour
             PlayerPrefs.SetInt("RandomWave",WaveNumber);
             FirstEindex += 2;
             LastEindex += 2;
-            CheckWave += 40;
+            CheckWave += PlayerPrefs.GetInt("CheckWaveCost");
+            PlayerPrefs.SetInt("CheckWaveCost",PlayerPrefs.GetInt("CheckWaveCost")-10);
+            PlayerPrefs.SetInt("CheckWave",CheckWave);
         }
         Wave.EnemyTypes=new GameObject[Random.Range(1,3)];
         for (int i = 0; i < Wave.EnemyTypes.Length; i++)

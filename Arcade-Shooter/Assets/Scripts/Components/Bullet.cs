@@ -60,7 +60,8 @@ void OnTriggerEnter2D(Collider2D col)
         if(FindObjectOfType<Main_SpaceShip>()!=null)
         FindObjectOfType<Main_SpaceShip>().health += Random.Range(0.5f,2f);
       //  col.GetComponent<Animator>().SetTrigger("GotHit");
-       ParticleSystem temp= ParticleManager._Instance.GetShotParticle();
+      ParticleSystem temp= ParticleManager._Instance.GetShotParticle();
+     //GetComponentInChildren<ParticleSystem>().Play();
 //       Debug.Log(temp);
         
        temp.transform.position=new Vector3(col.transform.position.x,col.transform.position.y,-0.26f);

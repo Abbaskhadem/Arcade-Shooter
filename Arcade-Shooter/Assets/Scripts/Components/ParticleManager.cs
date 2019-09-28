@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
-   public static ParticleManager _Instance;
+    public static ParticleManager _Instance;
 
-   public ParticleSystem[] ShotEffects;
-   public ParticleSystem[] ExplosionEffects;
+    public ParticleSystem[] ShotEffects;
+    public ParticleSystem[] ExplosionEffects;
 
- [HideInInspector]  public List<ParticleSystem> ShotList;
- [HideInInspector]  public List<ParticleSystem> ExplosionList;
-   ParticleSystem temp2;
+    [HideInInspector] public List<ParticleSystem> ShotList;
+    [HideInInspector] public List<ParticleSystem> ExplosionList;
+
+    ParticleSystem temp2;
+
 //    public ParticleSystem [] ShotEffects;
 //    public ParticleSystem EnemyParticles;
 //    public ParticleSystem tempParticle;
@@ -26,8 +28,9 @@ public class ParticleManager : MonoBehaviour
                 ParticleSystem temp;
                 temp = Instantiate(ExplosionEffects[j]);
                 ExplosionList.Add(temp);
-            }  
+            }
         }
+
         for (int i = 0; i < 3; i++)
         {
             ParticleSystem temp;
@@ -36,8 +39,8 @@ public class ParticleManager : MonoBehaviour
         }
 
 
-       // Instantiate(ShotEffects[0]);
-      //  ShotList.Add(ShotEffects[0]);
+        // Instantiate(ShotEffects[0]);
+        //  ShotList.Add(ShotEffects[0]);
         //  tempParticle = Instantiate(ShotEffects[PlayerPrefs.GetInt("GunIndex")]);
         //    tempParticle2 = Instantiate(EnemyParticles);
         //    tempParticle.transform.position=new Vector3(10,10,0);
@@ -59,6 +62,7 @@ public class ParticleManager : MonoBehaviour
                 return ShotList[i];
             }
         }
+
         temp = Instantiate(ShotEffects[PlayerPrefs.GetInt("GunIndex")]);
         ShotList.Add(temp);
         return temp;
@@ -66,13 +70,12 @@ public class ParticleManager : MonoBehaviour
 
     public ParticleSystem GetExplosionParticle(string ExName)
     {
-
         for (int i = 0; i < ExplosionList.Count; i++)
         {
             if (!ExplosionList[i].isPlaying)
             {
-                if(ExplosionList[i].CompareTag(ExName))
-                return ExplosionList[i];
+                if (ExplosionList[i].CompareTag(ExName))
+                    return ExplosionList[i];
             }
         }
 
@@ -80,11 +83,12 @@ public class ParticleManager : MonoBehaviour
         {
             if (ExplosionEffects[i].CompareTag(ExName))
             {
-                temp2 =  Instantiate(ExplosionEffects[i]);
+                temp2 = Instantiate(ExplosionEffects[i]);
             }
         }
+
         Instantiate(temp2);
         ExplosionList.Add(temp2);
-        return temp2; 
+        return temp2;
     }
 }

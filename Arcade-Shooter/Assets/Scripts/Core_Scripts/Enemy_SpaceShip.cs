@@ -43,6 +43,9 @@ public class Enemy_SpaceShip : SpaceShip
     public string ExEffect;
     public bool Lazer;
     public bool Melee;
+    [HideInInspector] public bool GetShotting=false; 
+    [SerializeField]private GameObject EShotEffect;
+    private float AttackEffect;
     private LineRenderer LazerRender;
 
     // private float DropTime;
@@ -95,9 +98,22 @@ public class Enemy_SpaceShip : SpaceShip
                 DropAttack();
             }
         }
-        if (Lazer)
+
+        if (GetShotting)
         {
-            ShotLazer();
+            EShotEffect.SetActive(true);
+            AttackEffect += Time.deltaTime;
+            if (AttackEffect >= 2.4f)
+            {
+                Shoot();
+                if (AttackEffect >= 2.9f)
+                {
+                    GetShotting = false;
+                    EShotEffect.SetActive(false);
+                    AttackEffect = 0;
+                }
+            }
+
         }
     }
 
@@ -273,6 +289,7 @@ public class Enemy_SpaceShip : SpaceShip
 
     public void Shoot()
     {
+        //EShotEffect.SetActive(false);
         if (MaximumAmmo <= 3)
         {
             if (gameObject.activeInHierarchy)
@@ -296,6 +313,7 @@ public class Enemy_SpaceShip : SpaceShip
         {
             MultiShot();
         }
+
 
     }
 
@@ -337,8 +355,8 @@ public class Enemy_SpaceShip : SpaceShip
             Droping = true;
         }
 
-        GetComponentInChildren<Rotator>().Speed +=0.25f;
-        Body.AddForce(new Vector2(0, -8));
+        GetComponentInChildren<Rotator>().Speed +=0.25f * Time.timeScale;
+        Body.AddForce(new Vector2(0, -8*Time.timeScale));
         if (transform.position.y <= -6.25f)
         {
             GetComponentInChildren<Rotator>().Speed = 2f;

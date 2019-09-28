@@ -113,7 +113,7 @@ public class Game_Director : MonoBehaviour
                             if (Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null &&
                                 !Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee )
                             {
-                                Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Shoot();
+                                Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().GetShotting=true;
                             }
                             else if(Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)] != null &&
                                     Waves[WaveNumber].EnemyList[Random.Range(0, Waves[WaveNumber].EnemyList.Count)].GetComponent<Enemy_SpaceShip>().Melee)

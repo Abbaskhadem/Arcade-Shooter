@@ -7,6 +7,6 @@ public class Rotator : MonoBehaviour
     [HideInInspector]public float Speed = 2f;
     void Update()
     {
-        transform.Rotate(0,0,Speed);
+        transform.Rotate(0,0,Speed*Time.timeScale);
     }
 }
