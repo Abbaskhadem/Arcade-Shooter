@@ -236,10 +236,14 @@ public class Main_SpaceShip : SpaceShip
         }
         if (Vector2.Distance(transform.position, new Vector2(0, 0))==0 || CenterPosition)
         {
-            Debug.Log("ENDING!");
-            CenterPosition = true;
-            GetComponentInChildren<TrailRenderer>().enabled = true;
-             Body.AddForce(new Vector2(0,20));
+            if (!CenterPosition)
+            {
+                GetComponentInChildren<TrailRenderer>().enabled = true;
+                Camera.main.GetComponent<RipplePost>().enabled = true;
+                Camera.main.GetComponent<RipplePost>().RippleEffect(transform);  
+                CenterPosition = true;
+            }
+            Body.AddForce(new Vector2(0,20));
         }
     }
 

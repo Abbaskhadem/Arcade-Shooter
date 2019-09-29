@@ -19,6 +19,7 @@ TagManager:
   - Effect_1
   - Shield
   - sinderella Bullet
+  - Shot_01
   layers:
   - Default
   - TransparentFX

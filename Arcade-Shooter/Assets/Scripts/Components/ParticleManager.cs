@@ -52,17 +52,27 @@ public class ParticleManager : MonoBehaviour
         _Instance = this;
     }
 
-    public ParticleSystem GetShotParticle()
+    public ParticleSystem GetShotParticle(string ExName)
     {
         ParticleSystem temp;
         for (int i = 0; i < ShotList.Count; i++)
         {
             if (!ShotList[i].isPlaying)
             {
+                if(ShotList[i].CompareTag(ExName))
                 return ShotList[i];
             }
         }
-
+        for (int i = 0; i < ShotEffects.Length; i++)
+        {
+            if (ShotEffects[i].CompareTag(ExName))
+            {
+                temp2 = Instantiate(ShotEffects[i]);
+            }
+        }
+        Instantiate(temp2);
+        ShotList.Add(temp2);
+        return temp2;
         temp = Instantiate(ShotEffects[PlayerPrefs.GetInt("GunIndex")]);
         ShotList.Add(temp);
         return temp;

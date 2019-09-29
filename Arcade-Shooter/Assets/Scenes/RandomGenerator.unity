@@ -2064,9 +2064,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemDropChance: 80
   EnemyTypesMain:
-  - {fileID: 8805684853517118623, guid: 4d2d8d35b3b0cdc458e460e85c87d089, type: 3}
-  - {fileID: 8805684853517118623, guid: 4dc2bfd646cf29f449bb837daa5f1206, type: 3}
-  - {fileID: 8805684853517118623, guid: 6161e8ae49bf504488e1ca5ba3fbfba6, type: 3}
+  - {fileID: 30034252010085949, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
+  - {fileID: 338377827030062562, guid: f102df0efea40844a9dbdfd2b766bc36, type: 3}
+  - {fileID: 1522809016746020589, guid: dc4635737c14bad4795f2e6a69cdb984, type: 3}
+  - {fileID: 7722602414944807531, guid: 98ed5cf873cd7c44a855b2a176d7d9ca, type: 3}
   EnemyFinalPositionsMain:
   - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - {fileID: 7733214137702013629, guid: 180095af0dca23947b00f8431c09cb5a, type: 3}

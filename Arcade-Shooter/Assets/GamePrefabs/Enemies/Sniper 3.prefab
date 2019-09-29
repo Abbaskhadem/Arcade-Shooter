@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: 602966542264189887}
   - component: {fileID: 3341076698572457620}
   m_Layer: 0
-  m_Name: Sniper
+  m_Name: Sniper 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4951,7 +4951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729b095d03b0d9d4b9a68abd341c180c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 800
   Damage: 20
   bullet:
   - {fileID: 5655061594256983199, guid: b3378d91024c6444d92a5c7ba430f635, type: 3}

@@ -42,6 +42,8 @@ public class Game_Director : MonoBehaviour
         public Routes[] Movements;
         public Transform FinalPositions;
         public float AttackSpeed;
+        public float WaveSpeed = 0.4f;
+        [SerializeField] public bool isBoss;
     }
     [System.Serializable]
     public class Routes
@@ -61,12 +63,14 @@ public class Game_Director : MonoBehaviour
                 for (int k = 0; k < Waves[i].Quantity[j]; k++)
                 {
                     GameObject temp = (GameObject) Instantiate(Waves[i].EnemyTypes[j]);
+                    var local = temp.GetComponent<Enemy_SpaceShip>();
                     temp.SetActive(false);
-                    temp.GetComponent<Enemy_SpaceShip>().FinalDestination = Waves[i].FinalPositions.GetChild(_index++);
-                    temp.GetComponent<Enemy_SpaceShip>().Routes = new Transform[Waves[i].Movements[j].Parts.Length];
+                   local.FinalDestination = Waves[i].FinalPositions.GetChild(_index++);
+                   local.Routes = new Transform[Waves[i].Movements[j].Parts.Length];
+                   local.SpeedModifier = Waves[i].WaveSpeed;
                     for (int l = 0; l < Waves[i].Movements[j].Parts.Length; l++)
                     {
-                        temp.GetComponent<Enemy_SpaceShip>().Routes[l] = Waves[i].Movements[j].Parts[l];    
+                        local.Routes[l] = Waves[i].Movements[j].Parts[l];    
                     }
                     Waves[i].EnemyList.Add(temp);
                 }
@@ -137,16 +141,14 @@ public class Game_Director : MonoBehaviour
                 EndGameUI.SetActive(true);
             } 
         }
-        else
-        {
-          //  StopAllCoroutines();
-        }
     }
     #endregion
 #region Activating Functions
     IEnumerator SpawnEnemyWaves(int a)
     {
-        for (int i = 0; i < Waves[a].EnemyList.Count; i++)
+        if (!Waves[a].isBoss)
+        {
+            for (int i = 0; i < Waves[a].EnemyList.Count; i++)
             {
                 if (!GameManager._Instance.GamePause)
                 {
@@ -159,6 +161,11 @@ public class Game_Director : MonoBehaviour
                     yield return null;
                 }
             }
+        }
+        else
+        {
+            Instantiate(Waves[a].EnemyList[0], transform.position, Quaternion.identity);
+        }
         SpawnAllowed = false;
         yield return null;
     }

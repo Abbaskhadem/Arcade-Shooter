@@ -20,7 +20,7 @@ public class Enemy_SpaceShip : SpaceShip
     private Vector2 p1;
     private Vector2 p2;
     private Vector2 p3;
-   [HideInInspector] public Transform FinalDestination; 
+    [HideInInspector] public Transform FinalDestination;
     public Transform[] Routes;
     private Vector2 EnemyPosition;
     private Vector3 MainTarget;
@@ -30,21 +30,21 @@ public class Enemy_SpaceShip : SpaceShip
     private List<GameObject> BulletList;
     private float Timer;
     private float tparam;
-    private float SpeedModifier;
+    [HideInInspector] public float SpeedModifier;
     [HideInInspector] public bool MoveAllowed;
     [HideInInspector] public bool coroutineAllowed;
     private bool check;
     [HideInInspector] public bool ShootAllowed = false;
     private bool ShootBool;
-    [HideInInspector]public bool Targeted = false;
+    [HideInInspector] public bool Targeted = false;
     [SerializeField] private bool Looping;
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
     public string ExEffect;
     public bool Lazer;
     public bool Melee;
-    [HideInInspector] public bool GetShotting=false; 
-    [SerializeField]private GameObject EShotEffect;
+    [HideInInspector] public bool GetShotting = false;
+    [SerializeField] private GameObject EShotEffect;
     private float AttackEffect;
     private LineRenderer LazerRender;
 
@@ -70,9 +70,10 @@ public class Enemy_SpaceShip : SpaceShip
         {
             LazerRender = GetComponent<LineRenderer>();
         }
+
         RoutesToGo = 0;
         tparam = 0;
-        SpeedModifier = 0.4f;
+        // SpeedModifier = 0.4f;
         coroutineAllowed = true;
         AttackSpeed = Random.Range(4, 5);
         bullet[0].GetComponent<Bullet>().Damage = Damage;
@@ -89,6 +90,7 @@ public class Enemy_SpaceShip : SpaceShip
         {
             IdleMovement();
         }
+
         if (ShootAllowed && Melee && !Lazer)
         {
             if (!Droping)
@@ -103,17 +105,16 @@ public class Enemy_SpaceShip : SpaceShip
         {
             EShotEffect.SetActive(true);
             AttackEffect += Time.deltaTime;
-            if (AttackEffect >= 2.4f)
+            if (AttackEffect >= 1.02f)
             {
                 Shoot();
-                if (AttackEffect >= 2.9f)
+                if (AttackEffect >= 2.02f)
                 {
                     GetShotting = false;
                     EShotEffect.SetActive(false);
                     AttackEffect = 0;
                 }
             }
-
         }
     }
 
@@ -121,11 +122,11 @@ public class Enemy_SpaceShip : SpaceShip
     {
         coroutineAllowed = false;
         p0 = Routes[RouteNumber].GetChild(0).position;
-            p1 = Routes[RouteNumber].GetChild(1).position;
-            p2 = Routes[RouteNumber].GetChild(2).position;
-            p3 = Routes[RouteNumber].GetChild(3).position;
+        p1 = Routes[RouteNumber].GetChild(1).position;
+        p2 = Routes[RouteNumber].GetChild(2).position;
+        p3 = Routes[RouteNumber].GetChild(3).position;
 
-            while (tparam < 1 && !GameManager._Instance.GamePause)
+        while (tparam < 1 && !GameManager._Instance.GamePause)
         {
             tparam += Time.deltaTime * SpeedModifier;
             EnemyPosition = Mathf.Pow(1 - tparam, 3) * p0 +
@@ -222,19 +223,20 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Death()
     {
-        if (SceneManager.GetActiveScene().name != "Random" )
+        if (SceneManager.GetActiveScene().name != "Random")
         {
             if (SceneManager.GetActiveScene().name != "RandomGenerator")
             {
                 FindObjectOfType<Game_Director>().Waves[FindObjectOfType<Game_Director>().WaveNumber].EnemyList
-                    .Remove(this.gameObject); 
+                    .Remove(this.gameObject);
             }
             else
             {
                 FindObjectOfType<Random_WaveGenerator>().Wave.EnemyList
-                    .Remove(this.gameObject); 
+                    .Remove(this.gameObject);
             }
         }
+
         int i = Random.Range(0, 100);
         if (SceneManager.GetActiveScene().name != "Random")
         {
@@ -277,12 +279,12 @@ public class Enemy_SpaceShip : SpaceShip
         temp.transform.position = transform.position;
         temp.Play();
         AudioManager._Instance.PlayAudio(2);
-       // if(SceneManager.GetActiveScene().name == "Random")
-            Destroy(gameObject);
-  //     else
+        // if(SceneManager.GetActiveScene().name == "Random")
+        Destroy(gameObject);
+        //     else
         //{
-     //       Destroy(gameObject);
-    //   }
+        //       Destroy(gameObject);
+        //   }
         tparam = 0;
 //        GetComponent<Animator>().ResetTrigger("GotHit");
     }
@@ -313,8 +315,6 @@ public class Enemy_SpaceShip : SpaceShip
         {
             MultiShot();
         }
-
-
     }
 
     void MultiShot()
@@ -328,10 +328,11 @@ public class Enemy_SpaceShip : SpaceShip
             {
                 if (!BulletList[0].activeInHierarchy)
                 {
-                    for (int j = 0; j < MaximumAmmo-1; j++)
+                    for (int j = 0; j < MaximumAmmo - 1; j++)
                     {
-                        BulletList[j].transform.position = new Vector3(GunPoints[0].position.x-a,GunPoints[0].position.y+b,GunPoints[0].position.z);
-                        BulletList[j].transform.localRotation=Quaternion.Euler(0,0,z);
+                        BulletList[j].transform.position = new Vector3(GunPoints[0].position.x - a,
+                            GunPoints[0].position.y + b, GunPoints[0].position.z);
+                        BulletList[j].transform.localRotation = Quaternion.Euler(0, 0, z);
                         z -= 5f;
                         a += 0.15f;
                         if (b > -0.1)
@@ -340,14 +341,15 @@ public class Enemy_SpaceShip : SpaceShip
                         {
                             b += 0.2f;
                         }
+
                         BulletList[j].GetComponent<TrailRenderer>().Clear();
                         BulletList[j].SetActive(true);
                     }
-             
                 }
             }
         }
     }
+
     public void DropAttack()
     {
         if (!Droping)
@@ -355,8 +357,8 @@ public class Enemy_SpaceShip : SpaceShip
             Droping = true;
         }
 
-        GetComponentInChildren<Rotator>().Speed +=0.25f * Time.timeScale;
-        Body.AddForce(new Vector2(0, -8*Time.timeScale));
+        GetComponentInChildren<Rotator>().Speed += 0.25f * Time.timeScale;
+        Body.AddForce(new Vector2(0, -8 * Time.timeScale));
         if (transform.position.y <= -6.25f)
         {
             GetComponentInChildren<Rotator>().Speed = 2f;
@@ -373,9 +375,10 @@ public class Enemy_SpaceShip : SpaceShip
         if (Hit.collider != null && Hit.collider.CompareTag("Enemy"))
         {
             Debug.Log("WHAT?!");
-                      LazerRender.SetPosition(0,Hit.transform.position);
+            LazerRender.SetPosition(0, Hit.transform.position);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

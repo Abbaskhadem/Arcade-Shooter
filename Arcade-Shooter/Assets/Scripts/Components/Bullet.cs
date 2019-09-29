@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     public int Damage;
     [SerializeField] float Speed;
     private Rigidbody2D objectRigidbody;
+    [SerializeField]  private string Effect;
     [SerializeField] private ParticleSystem BulletEffect;
 #endregion
 #region Bullet Methods
@@ -60,7 +61,7 @@ void OnTriggerEnter2D(Collider2D col)
         if(FindObjectOfType<Main_SpaceShip>()!=null)
         FindObjectOfType<Main_SpaceShip>().health += Random.Range(0.5f,2f);
       //  col.GetComponent<Animator>().SetTrigger("GotHit");
-      ParticleSystem temp= ParticleManager._Instance.GetShotParticle();
+      ParticleSystem temp= ParticleManager._Instance.GetShotParticle(Effect);
      //GetComponentInChildren<ParticleSystem>().Play();
 //       Debug.Log(temp);
         

@@ -11,7 +11,6 @@
         <e p="Animation" t="Include">
           <e p="Ripple.shader" t="Include" />
         </e>
-        <e p="changeLan.cs" t="Include" />
         <e p="GamePrefabs" t="Include">
           <e p="Effects" t="Include">
             <e p="SimpleFX" t="Include">
@@ -58,8 +57,6 @@
             </e>
           </e>
         </e>
-        <e p="ObjectPoolerEnemy.cs" t="Include" />
-        <e p="ObstacleSpawner.cs" t="Include" />
         <e p="script2" t="Include">
           <e p="Boundary.cs" t="Include" />
           <e p="DestroyByBoundary.cs" t="Include" />
@@ -75,8 +72,11 @@
           <e p="Components" t="Include">
             <e p="AudioManager.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
+            <e p="changeLan.cs" t="Include" />
             <e p="DeActivator.cs" t="Include" />
             <e p="Enviroment.cs" t="Include" />
+            <e p="ObjectPoolerEnemy.cs" t="Include" />
+            <e p="ObstacleSpawner.cs" t="Include" />
             <e p="ParticleHole.cs" t="Include" />
             <e p="ParticleManager.cs" t="Include" />
             <e p="PowerUpTextController.cs" t="Include" />
