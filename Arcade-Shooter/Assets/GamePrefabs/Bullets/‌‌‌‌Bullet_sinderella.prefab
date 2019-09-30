@@ -118,6 +118,7 @@ MonoBehaviour:
   NavigatPlayer: 0
   Damage: 30
   Speed: 15
+  Effect: 
   BulletEffect: {fileID: 5791056097967136, guid: be470345fc8f1e04d89537bf1c6f8482,
     type: 3}
 --- !u!50 &1894032287228352060

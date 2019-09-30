@@ -1225,9 +1225,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerBullets:
-  - {fileID: 5655061594256983199, guid: 49fe5edaf543ec94b9f413c5c17a3c15, type: 3}
+  - {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   itemsToPool:
   - objectToPool: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798,
+      type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - objectToPool: {fileID: 5655061594256983199, guid: da16310496889ba4abbd27a9c98bfa76,
       type: 3}
     amountToPool: 0
     shouldExpand: 1

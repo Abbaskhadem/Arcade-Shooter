@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 33361144}
   - component: {fileID: 33361146}
   - component: {fileID: 33361143}
+  - component: {fileID: 33361147}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -413,6 +414,21 @@ MonoBehaviour:
   ShakeIndensity: 2
   ShakeImplitiude: 0
   _startTime: 10
+--- !u!114 &33361147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33361142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4496d885478ba49bc61ea3c87b49a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RippleMaterial: {fileID: 2100000, guid: 8aa489a368847e4408409dec953e0c4f, type: 2}
+  MaxAmount: 50
+  Friction: 0.9
 --- !u!1 &82722577
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,11 +586,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerBullets:
-  - {fileID: 5655061594256983199, guid: 49fe5edaf543ec94b9f413c5c17a3c15, type: 3}
+  - {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   itemsToPool:
   - objectToPool: {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798,
       type: 3}
-    amountToPool: 0
+    amountToPool: 10
     shouldExpand: 1
   pooledObjects:
   - {fileID: 0}
@@ -1625,6 +1641,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &586011127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5196474522679250494, guid: 5b085187e54d5df47bdc49196c117643,
+    type: 3}
+  m_PrefabInstance: {fileID: 1922271431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &603819893
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,12 +2084,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c7ee9c679c18e4aace6dd9bc4bcf01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveText: {fileID: 586011127}
   ItemDropChance: 80
   EnemyTypesMain:
   - {fileID: 30034252010085949, guid: 00f34debc6c2e30409c415f9b7644e24, type: 3}
   - {fileID: 338377827030062562, guid: f102df0efea40844a9dbdfd2b766bc36, type: 3}
   - {fileID: 1522809016746020589, guid: dc4635737c14bad4795f2e6a69cdb984, type: 3}
   - {fileID: 7722602414944807531, guid: 98ed5cf873cd7c44a855b2a176d7d9ca, type: 3}
+  - {fileID: 30034252010085949, guid: a5ff749ebf36e604e89bcda6cd99c1db, type: 3}
+  - {fileID: 338377827030062562, guid: 3e61fec74e1368a41abf33b2d805bb04, type: 3}
+  - {fileID: 7722602414944807531, guid: 32887de9bf33e094daaaf3d59703fbfe, type: 3}
+  - {fileID: 1522809016746020589, guid: bf2a63ad65bc7ff4fadbb2bad37f55a4, type: 3}
+  - {fileID: 338377827030062562, guid: c758b2423b24bc74ab2311a11417d364, type: 3}
+  - {fileID: 30034252010085949, guid: 7bb3c2efdc5e2994aae227d2f07b33b9, type: 3}
+  - {fileID: 1522809016746020589, guid: 5a690e0a79b111242938b4e3da573e9f, type: 3}
+  - {fileID: 7722602414944807531, guid: 3e51afde0ca5a8c40863359697304f13, type: 3}
+  - {fileID: 338377827030062562, guid: 7c9dcb98b468f044baae2a00a677a389, type: 3}
+  - {fileID: 30034252010085949, guid: 1ee35df3b4b9f9e48b0c9fa02739d02a, type: 3}
+  - {fileID: 7722602414944807531, guid: 7fbbde28c62d5f44880bcfdb7da5ae82, type: 3}
   EnemyFinalPositionsMain:
   - {fileID: 3555499148367958557, guid: 7b68dec327c76e6438c3cf736ea4e2ff, type: 3}
   - {fileID: 7733214137702013629, guid: 180095af0dca23947b00f8431c09cb5a, type: 3}

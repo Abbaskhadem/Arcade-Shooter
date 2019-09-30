@@ -20,6 +20,7 @@ TagManager:
   - Shield
   - sinderella Bullet
   - Shot_01
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

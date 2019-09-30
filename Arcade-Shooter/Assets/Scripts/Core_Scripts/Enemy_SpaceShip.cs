@@ -41,12 +41,10 @@ public class Enemy_SpaceShip : SpaceShip
     [SerializeField] int MaximumAmmo;
     [SerializeField] private GameObject[] RandomItems;
     public string ExEffect;
-    public bool Lazer;
     public bool Melee;
     [HideInInspector] public bool GetShotting = false;
     [SerializeField] private GameObject EShotEffect;
     private float AttackEffect;
-    private LineRenderer LazerRender;
 
     // private float DropTime;
     [HideInInspector] public bool GoDrop;
@@ -66,14 +64,9 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Start()
     {
-        if (Lazer)
-        {
-            LazerRender = GetComponent<LineRenderer>();
-        }
-
         RoutesToGo = 0;
         tparam = 0;
-        // SpeedModifier = 0.4f;
+        SpeedModifier = 0.4f;
         coroutineAllowed = true;
         AttackSpeed = Random.Range(4, 5);
         bullet[0].GetComponent<Bullet>().Damage = Damage;
@@ -86,12 +79,12 @@ public class Enemy_SpaceShip : SpaceShip
     void Update()
     {
         ManageEnemyMovement();
-        if (ShootAllowed && !Melee && !Lazer)
+        if (ShootAllowed && !Melee)
         {
             IdleMovement();
         }
 
-        if (ShootAllowed && Melee && !Lazer)
+        if (ShootAllowed && Melee)
         {
             if (!Droping)
                 IdleMovement();
@@ -103,17 +96,20 @@ public class Enemy_SpaceShip : SpaceShip
 
         if (GetShotting)
         {
-            EShotEffect.SetActive(true);
-            AttackEffect += Time.deltaTime;
-            if (AttackEffect >= 1.02f)
+            if (!Melee && !Looping)
             {
-                Shoot();
-                if (AttackEffect >= 2.02f)
+                EShotEffect.SetActive(true);
+                AttackEffect += Time.deltaTime;
+                if (AttackEffect >= 1.02f)
                 {
-                    GetShotting = false;
-                    EShotEffect.SetActive(false);
-                    AttackEffect = 0;
-                }
+                    Shoot();
+                    if (AttackEffect >= 2.02f)
+                    {
+                        GetShotting = false;
+                        EShotEffect.SetActive(false);
+                        AttackEffect = 0;
+                    }
+                } 
             }
         }
     }
@@ -369,15 +365,15 @@ public class Enemy_SpaceShip : SpaceShip
         }
     }
 
-    void ShotLazer()
-    {
-        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Vector2.up);
-        if (Hit.collider != null && Hit.collider.CompareTag("Enemy"))
-        {
-            Debug.Log("WHAT?!");
-            LazerRender.SetPosition(0, Hit.transform.position);
-        }
-    }
+//    void ShotLazer()
+//    {
+//        RaycastHit2D Hit = Physics2D.Raycast(transform.position, Vector2.up);
+//        if (Hit.collider != null && Hit.collider.CompareTag("Enemy"))
+//        {
+//            Debug.Log("WHAT?!");
+//            LazerRender.SetPosition(0, Hit.transform.position);
+//        }
+//    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

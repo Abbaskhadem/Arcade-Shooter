@@ -329,9 +329,9 @@ public class Main_SpaceShip : SpaceShip
 
     public void UpgradeWeapons()
     {
+        PowerUpTextController.Instance.Creat("Power Up", transform.position);
         if (index < UpgradableTurrets.Count)
         {
-            PowerUpTextController.Instance.Creat("Power Up", transform.position);
             activePlayerTurrets.Add(UpgradableTurrets[index++]);
             if (index % 2 == 1)
             {
