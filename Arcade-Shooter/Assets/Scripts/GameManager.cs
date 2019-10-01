@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager _Instance;
    [HideInInspector] public bool GameEnded = false;
    [HideInInspector] public bool GamePause = false;
-    private static string tag;
+    //rivate static string tag;
+    public int Score;
     public _ShopItems[] ShopItems;
     [System.Serializable]
     public class _ShopItems

@@ -10,6 +10,7 @@ public class Random_WaveGenerator : MonoBehaviour
     #region Temp Variables
 
     [SerializeField] private GameObject WaveText;
+    [SerializeField] public Text ScoreText;
     public int ItemDropChance;
     private float AttackSpeed = 3.5f;
     public GameObject[] EnemyTypesMain;
@@ -34,6 +35,7 @@ public class Random_WaveGenerator : MonoBehaviour
     private int CheckWaveCost = 40;
     private bool StartTimer = true;
     private float WaveTimer;
+    private int TempScore;
 
     #endregion
 
@@ -74,6 +76,11 @@ public class Random_WaveGenerator : MonoBehaviour
 
     void Update()
     {
+        if (TempScore < GameManager._Instance.Score)
+        {
+            TempScore += 8;
+            ScoreText.text = TempScore.ToString();
+        }
         CheckAlive();
         if (SpawnAllowed)
         {

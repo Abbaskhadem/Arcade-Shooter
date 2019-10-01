@@ -45,7 +45,7 @@ public class Enemy_SpaceShip : SpaceShip
     [HideInInspector] public bool GetShotting = false;
     [SerializeField] private GameObject EShotEffect;
     private float AttackEffect;
-
+    private float AliveTimer;
     // private float DropTime;
     [HideInInspector] public bool GoDrop;
     [HideInInspector] public bool Droping;
@@ -78,6 +78,8 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "RandomGenerator")
+            AliveTimer += Time.deltaTime;
         ManageEnemyMovement();
         if (ShootAllowed && !Melee)
         {
@@ -219,6 +221,12 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Death()
     {
+        if (SceneManager.GetActiveScene().name == "RandomGenerator")
+        {
+            if (AliveTimer <= 5f)
+                GameManager._Instance.Score += 200;
+            GameManager._Instance.Score += 300;
+        }
         if (SceneManager.GetActiveScene().name != "Random")
         {
             if (SceneManager.GetActiveScene().name != "RandomGenerator")
@@ -275,14 +283,8 @@ public class Enemy_SpaceShip : SpaceShip
         temp.transform.position = transform.position;
         temp.Play();
         AudioManager._Instance.PlayAudio(2);
-        // if(SceneManager.GetActiveScene().name == "Random")
         Destroy(gameObject);
-        //     else
-        //{
-        //       Destroy(gameObject);
-        //   }
         tparam = 0;
-//        GetComponent<Animator>().ResetTrigger("GotHit");
     }
 
     public void Shoot()

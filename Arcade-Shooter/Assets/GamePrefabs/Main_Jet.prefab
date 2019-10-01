@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 373399187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.1, y: -8.3, z: 0}
-  m_LocalScale: {x: 1.0000933, y: 1.0000933, z: 1.0000933}
+  m_LocalScale: {x: 1.2, y: 1.0000933, z: 1.0000933}
   m_Children: []
   m_Father: {fileID: 5273252662386860672}
   m_RootOrder: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -221,8 +221,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-      maxColor: {r: 0.9811321, g: 0.29156283, b: 0.29156283, a: 1}
+      minColor: {r: 0.990566, g: 0.2258492, b: 0.1728818, a: 0.6509804}
+      maxColor: {r: 1, g: 0.23113209, b: 0.23881692, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -667,7 +667,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4856,7 +4856,7 @@ Transform:
   m_GameObject: {fileID: 463324601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.1, y: -5.15, z: 0}
-  m_LocalScale: {x: 1.0000933, y: 1.0000933, z: 1.0000933}
+  m_LocalScale: {x: 1.2, y: 1.0000933, z: 1.0000933}
   m_Children: []
   m_Father: {fileID: 5273252663798904440}
   m_RootOrder: 0
@@ -4944,7 +4944,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5050,8 +5050,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-      maxColor: {r: 0.9811321, g: 0.29156283, b: 0.29156283, a: 1}
+      minColor: {r: 0.990566, g: 0.2258492, b: 0.1728818, a: 0.6509804}
+      maxColor: {r: 1, g: 0.23113209, b: 0.23881692, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5496,7 +5496,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -9685,7 +9685,7 @@ Transform:
   m_GameObject: {fileID: 978412340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.3, y: -1.6, z: 0}
-  m_LocalScale: {x: 1.0000933, y: 1.0000933, z: 1.0000933}
+  m_LocalScale: {x: 1.2, y: 1.0000933, z: 1.0000933}
   m_Children: []
   m_Father: {fileID: 5273252664093246810}
   m_RootOrder: 0
@@ -9773,7 +9773,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9879,8 +9879,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-      maxColor: {r: 0.9811321, g: 0.29156283, b: 0.29156283, a: 1}
+      minColor: {r: 0.990566, g: 0.2258492, b: 0.1728818, a: 0.6509804}
+      maxColor: {r: 1, g: 0.23113209, b: 0.23881692, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10325,7 +10325,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -14514,7 +14514,7 @@ Transform:
   m_GameObject: {fileID: 2094282554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2, y: -1.5, z: 0}
-  m_LocalScale: {x: 1.0000933, y: 1.0000933, z: 1.0000933}
+  m_LocalScale: {x: 1.2, y: 1.0000933, z: 1.0000933}
   m_Children: []
   m_Father: {fileID: 5273252663627923689}
   m_RootOrder: 0
@@ -14602,7 +14602,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14708,8 +14708,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-      maxColor: {r: 0.9811321, g: 0.29156283, b: 0.29156283, a: 1}
+      minColor: {r: 0.990566, g: 0.2258492, b: 0.1728818, a: 0.6509804}
+      maxColor: {r: 1, g: 0.23113209, b: 0.23881692, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -15154,7 +15154,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -19479,7 +19479,7 @@ Transform:
   m_GameObject: {fileID: 4708977197641406075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5273252663950836265}
   m_RootOrder: 0
@@ -19567,7 +19567,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -19673,8 +19673,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-      maxColor: {r: 0.9811321, g: 0.29156283, b: 0.29156283, a: 1}
+      minColor: {r: 0.990566, g: 0.2258492, b: 0.1728818, a: 0.6509804}
+      maxColor: {r: 1, g: 0.23113209, b: 0.23881692, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -20119,7 +20119,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.85, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -24396,7 +24396,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5675b67d9228e684880127f960b48b35, type: 3}
-  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -24423,7 +24423,7 @@ MonoBehaviour:
   bullet:
   - {fileID: 5655061594256983199, guid: c2d42c0bedbb024429f60a9dc95f8798, type: 3}
   Body: {fileID: 0}
-  AttackSpeed: 0.2
+  AttackSpeed: 0.17
   GunPoints:
   - {fileID: 5273252663950836265}
   - {fileID: 5273252663798904440}
@@ -29739,10 +29739,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_FlameThrower (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 182542, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 19801364, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
       propertyPath: simulationSpeed
       value: 0.5
@@ -29888,10 +29884,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_FlameThrower
       objectReference: {fileID: 0}
-    - target: {fileID: 182542, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 19801364, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
       propertyPath: simulationSpeed
       value: 0.5
@@ -30036,10 +30028,6 @@ PrefabInstance:
     - target: {fileID: 182542, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
       propertyPath: m_Name
       value: FX_FlameThrower (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 182542, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19801364, guid: 5cd5599e01f32bd418f20a3b9eac1c57, type: 3}
       propertyPath: simulationSpeed
