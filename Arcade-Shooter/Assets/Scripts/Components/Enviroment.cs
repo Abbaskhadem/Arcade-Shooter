@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,4 +19,5 @@ public class Enviroment : MonoBehaviour
             transform.position=new Vector3(0,17f,26);
         }
     }
+    
 }

@@ -142,38 +142,6 @@ public class Main_SpaceShip : SpaceShip
                 {
                     PowerBar.GetComponentInChildren<Text>().text = 100 + "%";
                 }
-
-
-                // Timer Starts
-                // if (SuperPowerTimer >= Random.Range(3f, 5f))
-                //  {
-                //    if (SceneManager.GetActiveScene().name != "Random")
-                //  {
-                //  if (SceneManager.GetActiveScene().name != "RandomGenerator")
-                //  {
-                //if (!FindObjectOfType<Game_Director>().SpawnAllowed)
-                //   {
-
-                //    }
-                // }
-                //  }
-                //   else
-                //   {
-                //    if (!FindObjectOfType<Random_Director>().SpawnAllowed )
-                //    {
-                //       foreach (var VARIABLE in FindObjectsOfType<Enemy_SpaceShip>())
-                //       {
-                //          VARIABLE.TakeDamage(50);
-                //     }
-                //     SuperPowerTimer = 0;
-                //     health = 50;
-                //      SuperPower.Play();
-                //  }
-                //   }
-                // Super Power Activates!
-                //   }
-                //    }
-
                 Movement();
                 Timer += Time.deltaTime;
                 if (Timer >= AttackSpeed)
@@ -215,7 +183,6 @@ public class Main_SpaceShip : SpaceShip
             if (VARIABLE.Speed > -0.09)
                 VARIABLE.Speed += -0.09f;
         }
-
         if (Camera.main.orthographicSize < 5)
             Camera.main.orthographicSize += MoveOrto.Evaluate(Time.deltaTime);
         if (Camera.main.transform.position.y < 0)

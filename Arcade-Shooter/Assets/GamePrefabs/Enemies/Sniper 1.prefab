@@ -4962,6 +4962,7 @@ MonoBehaviour:
   Speed: 5
   FinalDestination: {fileID: 0}
   Routes: []
+  SpeedModifier: 0
   MoveAllowed: 0
   coroutineAllowed: 0
   ShootAllowed: 0
@@ -4971,12 +4972,12 @@ MonoBehaviour:
   RandomItems:
   - {fileID: 3569213978484486076, guid: 29ba95389e2c36742aa29079ed1a45f1, type: 3}
   ExEffect: Effect_0
-  Lazer: 0
   Melee: 0
   GetShotting: 0
   EShotEffect: {fileID: 5495211719528382133}
   GoDrop: 0
   Droping: 0
+  Coin: {fileID: 4787648721015895119, guid: ac5fac735d4464b4abe5397cab70963d, type: 3}
 --- !u!50 &3341076698572457620
 Rigidbody2D:
   serializedVersion: 4

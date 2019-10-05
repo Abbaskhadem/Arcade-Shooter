@@ -50,6 +50,7 @@ public class Enemy_SpaceShip : SpaceShip
     [HideInInspector] public bool GoDrop;
     [HideInInspector] public bool Droping;
     private float EnemyBaseHealth;
+    public GameObject Coin;
 
     private void Awake()
     {
@@ -221,6 +222,16 @@ public class Enemy_SpaceShip : SpaceShip
 
     void Death()
     {
+        int a = Random.Range(0, 100);
+        if (a > 50)
+        {
+            for (int j = 0; j < Random.Range(1,4); j++)
+            {
+                Instantiate(Coin,
+                    new Vector3(transform.position.x + Random.Range(-0.2f, +0.2f),
+                        transform.position.y + Random.Range(-0.2f, +0.2f), transform.position.z), Quaternion.identity);
+            }
+        }
         if (SceneManager.GetActiveScene().name == "RandomGenerator")
         {
             if (AliveTimer <= 5f)

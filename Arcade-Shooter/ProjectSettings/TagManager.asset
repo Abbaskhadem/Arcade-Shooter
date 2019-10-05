@@ -21,6 +21,7 @@ TagManager:
   - sinderella Bullet
   - Shot_01
   - PlayerBullet
+  - Coin
   layers:
   - Default
   - TransparentFX
