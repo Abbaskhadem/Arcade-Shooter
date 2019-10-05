@@ -350,7 +350,6 @@ public class Enemy_SpaceShip : SpaceShip
                         {
                             b += 0.2f;
                         }
-
                         BulletList[j].GetComponent<TrailRenderer>().Clear();
                         BulletList[j].SetActive(true);
                     }

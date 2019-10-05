@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2189486908367216245}
   - component: {fileID: 8546600802473459619}
   - component: {fileID: 2699680861995603119}
+  - component: {fileID: 381590693440534745}
   m_Layer: 0
   m_Name: DamageUpgrade
   m_TagString: Damage
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3569213978484486076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.52, y: 1.044, z: 0}
-  m_LocalScale: {x: 0.02015475, y: 0.02015475, z: 0.02015475}
+  m_LocalPosition: {x: -4.1528, y: 1.0512, z: 0}
+  m_LocalScale: {x: 0.046579827, y: 0.046579827, z: 0.046579827}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b272814f14dafda468d524ff4c6ef14c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88f1544e04db4da4985d3704e818ca91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32.19, y: 31.812775}
+  m_Size: {x: 11.41, y: 10.02}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -111,9 +112,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.086042285, y: 0}
   serializedVersion: 2
-  m_Radius: 16.095
+  m_Radius: 4.9955735
 --- !u!50 &2699680861995603119
 Rigidbody2D:
   serializedVersion: 4
@@ -135,3 +136,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!122 &381590693440534745
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569213978484486076}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_Size: 0.3
