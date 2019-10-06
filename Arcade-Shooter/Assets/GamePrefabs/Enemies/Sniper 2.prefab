@@ -4848,7 +4848,6 @@ Transform:
   - {fileID: 1522809017724590509}
   - {fileID: 1522809017822727231}
   - {fileID: 1522809016952799156}
-  - {fileID: 59194990322392163}
   - {fileID: 3933114920765125193}
   - {fileID: 5877575657028213177}
   m_Father: {fileID: 0}
@@ -5404,49 +5403,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1973341516084131460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 59194990322392163}
-  - component: {fileID: 4393079053521897107}
-  m_Layer: 0
-  m_Name: Halo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &59194990322392163
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973341516084131460}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: -3.82, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1522809016746020584}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!122 &4393079053521897107
-Halo:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973341516084131460}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294901779
-  m_Size: 0.2
 --- !u!1 &5495211719528382133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,7 +5436,7 @@ Transform:
   m_Children:
   - {fileID: 8228134169333162377}
   m_Father: {fileID: 1522809016746020584}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 1.0960001, y: 0, z: 0}
 --- !u!198 &175708680905228336
 ParticleSystem:
@@ -10263,5 +10219,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1522809016746020584}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

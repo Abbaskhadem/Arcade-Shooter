@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Prototype_Scence.unity
     guid: 82ccf7127b2ca2042b7a6fc5af27d706
   - enabled: 1
-    path: Assets/Scenes/Random.unity
-    guid: e2402e7abd2ada9488466632eb4043e6
+    path: Assets/Scenes/RandomGenerator.unity
+    guid: 94da8e0736b384846915e341b0214dcf
   m_configObjects: {}

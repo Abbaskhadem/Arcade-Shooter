@@ -9,6 +9,7 @@ public class Random_WaveGenerator : MonoBehaviour
 {
     #region Temp Variables
 
+    [SerializeField] private Text Score;
     [SerializeField] private GameObject WaveText;
     [SerializeField] public Text ScoreText;
     public int ItemDropChance;
@@ -76,6 +77,10 @@ public class Random_WaveGenerator : MonoBehaviour
 
     void Update()
     {
+        if (GameManager._Instance.GameEnded)
+        {
+            Score.text = GameManager._Instance.Score.ToString();
+        }
         if (TempScore < GameManager._Instance.Score)
         {
             TempScore += 8;
