@@ -24400,7 +24400,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 34.72, y: 43.252163}
+  m_Size: {x: 35.55, y: 44.178642}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -24465,17 +24465,18 @@ MonoBehaviour:
   DeathEffect: {fileID: 7854059295339088531, guid: aad02bf18de5bec4fa667ec8cc988a85,
     type: 3}
   SuperPower: {fileID: 9115715932753936164}
-  TimeShild: 0
-  Shild: 0
-  Timer: 0
+  JetHitEffect: {fileID: 0}
   Rocket: {fileID: 0}
-  startWeapon: {fileID: 5273252663950836264}
   UpgradableTurrets:
   - {fileID: 5273252663798904443}
   - {fileID: 5273252662386860675}
   - {fileID: 5273252664093246813}
   - {fileID: 5273252663627923688}
+  TimeShild: 0
+  Shild: 0
   activePlayerTurrets: []
+  Timer: 0
+  startWeapon: {fileID: 5273252663950836264}
 --- !u!50 &5273252662669026980
 Rigidbody2D:
   serializedVersion: 4
@@ -24515,7 +24516,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 35.55, y: 44.178642}
-    newSize: {x: 34.72, y: 43.252163}
+    newSize: {x: 35.55, y: 44.178642}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

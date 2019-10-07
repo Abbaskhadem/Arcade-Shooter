@@ -61,8 +61,11 @@ public class Main_SpaceShip : SpaceShip
 
     void Update()
     {
+        GameObject.Find("Jetpack").GetComponent<SpriteRenderer>().sortingOrder =
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         if (IntroMode)
         {
+
             Intro();
         }
 
